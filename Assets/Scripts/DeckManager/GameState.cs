@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Flippards;
 using System.Collections.Generic;
+using Flippards.Helpers;
 using Sirenix.OdinInspector;
 using Random = UnityEngine.Random;
 
@@ -16,8 +17,8 @@ public struct Result
 public partial class GameState : MonoBehaviour
 {
     private DeckManager deckManager;
-    [SerializeField] private List<FullCard> playerHand;
-    [SerializeField] private List<FullCard> enemyHand;
+    [SerializeField] public List<FullCard> playerHand;
+    [SerializeField] public List<FullCard> enemyHand;
 
     [SerializeField] private int playerHealth;
     [SerializeField] private int playerMaxHealth;
@@ -60,15 +61,18 @@ public partial class GameState : MonoBehaviour
     }
 
 
-    [Button("Start turn")]
-    public void PerformMove(EntityType type)
+    [Button("Perform Player turn")]
+    public void DebugPlayerMove()
     {
-        if (type == EntityType.ENEMY)
-            StartCoroutine(DoEnemyTurn());
-        else
-            StartCoroutine(DoEnemyTurn());
+        StartCoroutine(DoPlayerTurn());
     }
 
+    [Button("Perform Enemy turn")]
+    public void DebugEnemyMove()
+    {
+        StartCoroutine(DoEnemyTurn());
+    }
+    
     [Button("Generate Deck and distribute initial!")]
     private void InitGame()
     {
@@ -101,7 +105,7 @@ public partial class GameState : MonoBehaviour
             }
             else
             {
-                Debug.Log("Game ended and ran out of deck");
+                Debug.Log("Game ended and ran out of deck".GetRichText("red"));
                 InitGame();
             }
         }
@@ -111,7 +115,7 @@ public partial class GameState : MonoBehaviour
         {
             StartCoroutine(isPlayersTurn ? DoPlayerTurn() : DoEnemyTurn());
         }
-        //BattleVisualManager.Instance.onTurnAnimationsCompleted += StartNextTurn;
+        BattleVisualManager.Instance.onTurnAnimationsCompleted += StartNextTurn;
     }
 
 
@@ -172,7 +176,7 @@ public partial class GameState : MonoBehaviour
 
         if (autoTurn)
         {
-            StartNextTurn();
+            //StartNextTurn();
             StartCoroutine(DoEnemyTurn());
         }
     }
@@ -194,7 +198,7 @@ public partial class GameState : MonoBehaviour
 
         if (autoTurn)
         {
-            StartNextTurn();
+            //StartNextTurn();
             StartCoroutine(DoPlayerTurn());
         }
     }
@@ -263,7 +267,7 @@ public partial class GameState : MonoBehaviour
 
         lastPlayedCard = cardToEval;
         isPlayersTurn = !isPlayersTurn;
-        StartNextTurn();
+        //StartNextTurn();
     }
 
     private void AddResult()
@@ -292,9 +296,10 @@ public partial class GameState : MonoBehaviour
                 }
             }
 
-            Debug.Log("PlayerWin " + (float) playerWinCount * 100 / simulationCount + "% " + "EnemyWin " +
-                      (float) enemyWinCount * 100 / simulationCount + "% " + "Draw " +
-                      (float) drawCount * 100 / simulationCount + "% + turnCount " + turnCount);
+            string s = "PlayerWin " + (float) playerWinCount * 100 / simulationCount + "% " + "EnemyWin " +
+                       (float) enemyWinCount * 100 / simulationCount + "% " + "Draw " +
+                       (float) drawCount * 100 / simulationCount + "% + turnCount " + turnCount;
+            Debug.Log(s.GetRichText("blue"));
         }
         else
         {
@@ -309,7 +314,6 @@ public partial class GameState : MonoBehaviour
         foreach (var t in cardsToFlip)
         {
             t.isCardFlipped = !t.isCardFlipped;
-            Debug.Log($"Flipping for {entity} and updated card name = {t.GetTopCardAttributes().name}");
         }
     }
 
