@@ -15,5 +15,10 @@ namespace Flippards
             this.backCard = backCard;
             this.isCardFlipped = false;
         }
+
+        public CardAttributes GetTopCardAttributes()
+        {
+            return isCardFlipped ? backCard : frontCard;
+        }
     }
 }
