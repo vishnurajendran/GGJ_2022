@@ -73,12 +73,18 @@ public class BattleVisuals : MonoBehaviour
 
         if(type == EntityType.PLAYER)
         {
+            if(playerHealth != null)
+                Destroy(playerHealth.gameObject);
+
             playerTransform = entity;
             playerHealth = healthBarObj.GetComponent<HealthBar>();
             playerHealth.SetHealth(1,1);
         }
         else
         {
+            if (enemyHealth != null)
+                Destroy(enemyHealth.gameObject);
+
             enemyTransform = entity;
             enemyHealth = healthBarObj.GetComponent<HealthBar>();
             enemyHealth.SetHealth(1,1);
