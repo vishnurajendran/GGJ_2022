@@ -29,7 +29,7 @@ public partial class GameState : MonoBehaviour
 
     private List<Result> resultsList = new List<Result>();
 
-    private bool isPlayersTurn = true;
+    [ShowInInspector, ReadOnly] private bool isPlayersTurn = true;
     private CardAttributes lastPlayedCard;
 
 
@@ -128,11 +128,13 @@ public partial class GameState : MonoBehaviour
         {
             if (isPlayersTurn)
             {
+                Debug.Log($"Player took card from deck".GetRichText("orange"));
                 playerHand.Add(cardDrawn);
                 PlayerCardHolder.Instance.AddCard(cardDrawn);
             }
             else
             {
+                Debug.Log($"Enemy took card from deck".GetRichText("orange"));
                 enemyHand.Add(cardDrawn);
             }
         }
@@ -208,8 +210,7 @@ public partial class GameState : MonoBehaviour
     private void DoTurn(FullCard cardPlayed, EntityType entityType = EntityType.PLAYER)
     {
         CardAttributes cardToEval = cardPlayed.GetTopCardAttributes();
-        Debug.Log(
-            $"{entityType} turn. Played {cardToEval.name}. Type = {cardToEval.cardType} and value = {cardToEval.value}");
+        isPlayersTurn = !isPlayersTurn;
 
         // if (isPlayer)
         //     cardToEval = isPlayerFlipped ? cardPlayed.backCard : cardPlayed.frontCard;
@@ -268,7 +269,6 @@ public partial class GameState : MonoBehaviour
         }
 
         lastPlayedCard = cardToEval;
-        isPlayersTurn = !isPlayersTurn;
         //StartNextTurn();
     }
 
@@ -304,7 +304,7 @@ public partial class GameState : MonoBehaviour
             string s = "PlayerWin " + (float) playerWinCount * 100 / simulationCount + "% " + "EnemyWin " +
                        (float) enemyWinCount * 100 / simulationCount + "% " + "Draw " +
                        (float) drawCount * 100 / simulationCount + "% + turnCount " + turnCount;
-            Debug.Log(s.GetRichText("blue"));
+            Debug.Log(s.GetRichText("white"));
         }
         else
         {

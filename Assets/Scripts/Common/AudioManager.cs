@@ -21,6 +21,11 @@ using UnityEngine;
                 if (instance == null)
                 {
                     instance = FindObjectOfType<AudioManager>();
+                    if(instance == null)
+                    {
+                        GameObject obj = Instantiate(Resources.Load<GameObject>("AudioManager"));
+                        instance = obj.GetComponent<AudioManager>();
+                    }
                     instance.Init();
                 }
 

@@ -13,6 +13,13 @@ namespace IRIS.RPG.DialogueSystem
         public string NextDialogueEntry;
     }
 
+    [System.Serializable]
+    public class DialogueStruct
+    {
+        public string Background;
+        public Dictionary<string, DailogueEntry> Dialogues;
+    }
+
     public class DialogueOptionData
     {
         public string OptionText;
@@ -25,7 +32,9 @@ namespace IRIS.RPG.DialogueSystem
 
         public void LoadDialogFromTextAsset(TextAsset textAsset)
         {
-            dialogs = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, DailogueEntry>>>(textAsset.text)["Dialogues"];
+            DialogueStruct dStruct =  Newtonsoft.Json.JsonConvert.DeserializeObject<DialogueStruct>(textAsset.text);
+            dialogs = dStruct.Dialogues;
+            CutsceneManager.Instance.SetImage(Resources.Load<Sprite>("Floors/" + dStruct.Background));
         }
 
         public DailogueEntry GetStartDialogue()
