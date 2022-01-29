@@ -6,13 +6,13 @@ using Sirenix.OdinInspector;
 public class GameState : MonoBehaviour
 {
     private DeckManager deckManager;
-    private List<FullCard> playerHand;
-    private List<FullCard> enemyHand;
+    [SerializeField] private List<FullCard> playerHand;
+    [SerializeField] private List<FullCard> enemyHand;
 
-    private int playerHealth;
-    private int playerMaxHealth;
-    private int enemyHealth;
-    private int enemyMaxHealth;
+    [SerializeField] private int playerHealth;
+    [SerializeField] private int playerMaxHealth;
+    [SerializeField] private int enemyHealth;
+    [SerializeField] private int enemyMaxHealth;
 
 
     private bool isPlayersTurn = true;
@@ -20,7 +20,8 @@ public class GameState : MonoBehaviour
 
     public int startingHandCount;
 
-    private void Start()
+    [Button("Generate Deck and distribute initial!")]
+    private void InitGame()
     {
         deckManager = GetComponent<DeckManager>();
         deckManager.GenerateDeck();
@@ -41,6 +42,7 @@ public class GameState : MonoBehaviour
 
         BattleVisualManager.Instance.onTurnAnimationsCompleted += StartNextTurn;
     }
+    
 
     private void StartNextTurn()
     {
@@ -56,18 +58,29 @@ public class GameState : MonoBehaviour
         }
     }
 
-    [Button("Do turn!")]
-    private void DoDebugTurn(EntityType type, CardAttributes cardToPlay)
+    [Button("Do Player Turn!")]
+    private void DoPlayerTurn()
     {
-        FullCard bla = new FullCard();
-        bla.frontCard = cardToPlay;
-        DoTurn(bla, type);
+        var cardToPlay = playerHand[Random.Range(0, playerHand.Count)];
+        playerHand.Remove(cardToPlay);
+        DoTurn(cardToPlay, EntityType.PLAYER);
+
+    }
+
+    [Button("Do Enemy Turn!")]
+    private void DoEnemyTurn()
+    {
+        var cardToPlay = enemyHand[Random.Range(0, enemyHand.Count)];
+        enemyHand.Remove(cardToPlay);
+        DoTurn(cardToPlay, EntityType.ENEMY);
     }
 
 
     private void DoTurn(FullCard cardPlayed, EntityType entityType = EntityType.PLAYER)
     {
         CardAttributes cardToEval = cardPlayed.GetTopCardAttributes();
+        Debug.Log($"{entityType} turn. Played {cardToEval.name}. Type = {cardToEval.cardType} and value = {cardToEval.value}");
+
         // if (isPlayer)
         //     cardToEval = isPlayerFlipped ? cardPlayed.backCard : cardPlayed.frontCard;
         // else
@@ -115,18 +128,17 @@ public class GameState : MonoBehaviour
             }
         }
 
-        //TODO : ask venkat!
         lastPlayerCard = cardToEval;
     }
 
     private void FlipCards(EntityType entity, CardAttributes cardToEval)
     {
         BattleVisualManager.Instance.FlipCardsVisually(entity, cardToEval);
-        //TODO : Discuss, Flip only opponents cards? Or both?
         List<FullCard> cardsToFlip = entity == EntityType.PLAYER ? enemyHand : playerHand;
         foreach (var t in cardsToFlip)
         {
             t.isCardFlipped = !t.isCardFlipped;
+            Debug.Log($"Flipping for {entity} and updated card name = {t.GetTopCardAttributes().name}");
         }
     }
 

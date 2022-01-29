@@ -8,10 +8,9 @@ namespace Flippards
     public class DeckManager : MonoBehaviour
     {
         [SerializeField] private CardDB cardDB;
-        
+
         [SerializeField] private Deck MasterDeck;
 
-        [Button("Generate Deck")]
         public void GenerateDeck()
         {
             List<CardAttributes> frontCards = new List<CardAttributes>();
@@ -20,14 +19,18 @@ namespace Flippards
             {
                 var frontCardTemplate = cardDB.frontCards[i];
                 var backCardTemplate = cardDB.backCards[i];
+                Debug.Log($"Starting for {frontCardTemplate.name} and {backCardTemplate.name}");
 
                 for (int j = 0; j < frontCardTemplate.count; j++)
                 {
-                    frontCards.Add(frontCardTemplate); //ref copy please don't break my shit.
+                    Debug.Log($"Timers = {j}");
+                    frontCards.Add(new CardAttributes(frontCardTemplate));
                 }
+
                 for (int j = 0; j < backCardTemplate.count; j++)
                 {
-                    backCards.Add(backCardTemplate); //ref copy please don't break my shit.
+                    Debug.Log($"Timers = {j}");
+                    backCards.Add(new CardAttributes(backCardTemplate));
                 }
             }
             MasterDeck = new Deck(frontCards, backCards);

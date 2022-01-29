@@ -624,6 +624,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d43d5b3551408f478af1d6f11900572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHand: []
+  enemyHand: []
+  playerHealth: 100
+  playerMaxHealth: 100
+  enemyHealth: 100
+  enemyMaxHealth: 100
   startingHandCount: 5
 --- !u!114 &803977013
 MonoBehaviour:

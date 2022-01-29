@@ -10,8 +10,10 @@ namespace Flippards
     {
         public List<FullCard> FullCardDeck;
         public int CurrentDeckIdx { get; private set; }
+
         public Deck(List<CardAttributes> frontCards, List<CardAttributes> backCards)
         {
+            
             frontCards.Shuffle();
             backCards.Shuffle();
 
