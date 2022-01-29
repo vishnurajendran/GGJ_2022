@@ -14,6 +14,7 @@ public enum EntityType{
 
 public enum HitFXType
 {
+    NONE,
     LIGHT_HIT,
     HEAVY_HIT,
     LIQUID_LIGHT,
@@ -208,7 +209,7 @@ public class BattleVisuals : SerializedMonoBehaviour
 
     public void AddHitFX(HitFXType type, Transform transform)
     {
-        if (transform == null)
+        if (transform == null || type == HitFXType.NONE)
             return;
 
         Instantiate(prefabsRef[type], transform.position, Quaternion.identity);

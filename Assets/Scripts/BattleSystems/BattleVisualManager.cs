@@ -48,9 +48,11 @@ namespace Flippards
             // {
             //     fullCard.view.Flip();
             // }
+            BattleVisuals.Instance.AddHitFX(HitFXType.FLIP, entity == EntityType.PLAYER ? playerPlaceHolder : npcPlaceHolder);
             string s = $"Flipped {entity}s Cards.";
             Debug.Log($"{s.GetRichText("yellow")}");
             onTurnAnimationsCompleted?.Invoke();
+            
         }
 
         public void DealDamage(EntityType targetEntity, CardAttributes cardChosen, int value)
@@ -68,16 +70,33 @@ namespace Flippards
 
             void OnThrowObjectReached()
             {
+                BattleVisuals.Instance.AddHitFX(GetFXTypeFromClass(cardChosen), targetEntity == EntityType.PLAYER ? playerPlaceHolder : npcPlaceHolder);
+
                 Debug.Log($"Dealing {"damage".GetRichText("red")} to {targetEntity} {value.ToString().GetRichText("red")}");
                 onTurnAnimationsCompleted?.Invoke();
                 BattleVisuals.Instance.ApplyDamage(targetEntity, value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio);
             }
         }
 
+        private HitFXType GetFXTypeFromClass(CardAttributes card)
+        {
+            bool bhaariWala = card.value < gameState.GetModifiedStatValue(card);
+            switch (card.cardClass)
+            {
+                case CardClass.Weight:
+                    return bhaariWala ? HitFXType.HEAVY_HIT : HitFXType.LIGHT_HIT;
+                case CardClass.Liquid:
+                    return bhaariWala ? HitFXType.LIQUID_HEAVY : HitFXType.LIQUID_LIGHT;
+                case CardClass.Paper:
+                    return bhaariWala ? HitFXType.PAPER_HEAVY : HitFXType.PAPER_LIGHT;
+            }
+            return HitFXType.NONE;
+        }
         public void GainHealth(EntityType targetEntity, CardAttributes cardChosen, int value)
         {
             // TODO : Add parameters based on UI needs
             Debug.Log($"Dealing {"Health".GetRichText("green")} to {targetEntity} {value.ToString().GetRichText("green")}");
+            BattleVisuals.Instance.AddHitFX(HitFXType.HEAL, targetEntity == EntityType.PLAYER ? playerPlaceHolder : npcPlaceHolder);
             BattleVisuals.Instance.ApplyDamage(targetEntity, value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio, true);
             onTurnAnimationsCompleted?.Invoke();
         }

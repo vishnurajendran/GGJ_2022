@@ -322,7 +322,7 @@ public partial class GameState : MonoBehaviour
         }
     }
 
-    private int GetModifiedStatValue(CardAttributes playedCard)
+    public int GetModifiedStatValue(CardAttributes playedCard)
     {
         if (lastPlayedCard == null || playedCard.cardClass == lastPlayedCard.cardClass)
         {
