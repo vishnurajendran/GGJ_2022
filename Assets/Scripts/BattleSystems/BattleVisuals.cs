@@ -1,8 +1,10 @@
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
 
 [System.Serializable]
 public enum EntityType{
@@ -10,7 +12,19 @@ public enum EntityType{
     ENEMY
 }
 
-public class BattleVisuals : MonoBehaviour
+public enum HitFXType
+{
+    LIGHT_HIT,
+    HEAVY_HIT,
+    LIQUID_LIGHT,
+    LIQUID_HEAVY,
+    PAPER_LIGHT,
+    PAPER_HEAVY,
+    HEAL,
+    FLIP
+}
+
+public class BattleVisuals : SerializedMonoBehaviour
 {
     private static BattleVisuals instance;
     public static BattleVisuals Instance
@@ -24,22 +38,15 @@ public class BattleVisuals : MonoBehaviour
         }
     }
 
-#pragma warning disable CS0649 // Field 'BattleVisuals.animator' is never assigned to, and will always have its default value null
     [SerializeField] Animator animator;
-#pragma warning restore CS0649 // Field 'BattleVisuals.animator' is never assigned to, and will always have its default value null
-#pragma warning disable CS0649 // Field 'BattleVisuals.statsCanvas' is never assigned to, and will always have its default value null
     [SerializeField] Transform statsCanvas;
-#pragma warning restore CS0649 // Field 'BattleVisuals.statsCanvas' is never assigned to, and will always have its default value null
 
 
     [Header("Testing")]
     [SerializeField] bool isTesting = false;
-#pragma warning disable CS0649 // Field 'BattleVisuals.pl' is never assigned to, and will always have its default value null
     [SerializeField] Transform pl;
-#pragma warning restore CS0649 // Field 'BattleVisuals.pl' is never assigned to, and will always have its default value null
-#pragma warning disable CS0649 // Field 'BattleVisuals.en' is never assigned to, and will always have its default value null
     [SerializeField] Transform en;
-#pragma warning restore CS0649 // Field 'BattleVisuals.en' is never assigned to, and will always have its default value null
+
 
     HealthBar playerHealth;
     HealthBar enemyHealth;
@@ -48,13 +55,14 @@ public class BattleVisuals : MonoBehaviour
     GameObject damageTextRef;
     GameObject HealthbarRef;
 
+    [OdinSerialize] Dictionary<HitFXType, GameObject> prefabsRef; 
+
+
     public BattleAnimEventComplete onBeginComplete;
     public BattleAnimEventComplete onWinComplete;
     public BattleAnimEventComplete onLoseComplete;
 
-#pragma warning disable CS0414 // The field 'BattleVisuals.i' is assigned but its value is never used
     float i=1;
-#pragma warning restore CS0414 // The field 'BattleVisuals.i' is assigned but its value is never used
 
     private void Start()
     {
@@ -196,5 +204,13 @@ public class BattleVisuals : MonoBehaviour
     public void InvokeLoseComplete()
     {
         onLoseComplete?.Invoke();
+    }
+
+    public void AddHitFX(HitFXType type, Transform transform)
+    {
+        if (transform == null)
+            return;
+
+        Instantiate(prefabsRef[type], transform.position, Quaternion.identity);
     }
 }
