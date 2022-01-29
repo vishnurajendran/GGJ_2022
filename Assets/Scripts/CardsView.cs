@@ -1,37 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Flippards;
+using System.Collections;
+using UnityEngine.UI;
 
-public class CardsView : MonoBehaviour
+public class CardsView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private SpriteRenderer front;
-    private SpriteRenderer back;
-    public Animation anim;
+    private Sprite front;
+    private Sprite back;
+    private Image image;
+    private CardHolder cardHolder;
+    [SerializeField] private AnimationCurve scaleUpCurve;
+    [SerializeField] private AnimationCurve scaleDownCurve;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Initialize(FullCard cardData, CardHolder cardHolder)
     {
-        anim = this.GetComponent<Animation>();
+        image = GetComponent<Image>();
+        front = Resources.Load<Sprite>(cardData.frontCard.imagePath);
+        back = Resources.Load<Sprite>(cardData.backCard.imagePath);
+        image.sprite = front;
     }
 
-    public void Initialize(FullCard cardData)
+    public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        front = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
-        back = this.transform.GetChild(1).GetComponent<SpriteRenderer>();
-
-        front.sprite = Resources.Load<Sprite>(cardData.frontCard.imagePath);
-        back.sprite = Resources.Load<Sprite>(cardData.backCard.imagePath);
+        StartCoroutine(ScaleUp());
     }
 
-
-    public void Flip()
+    public void OnPointerExit(PointerEventData pointerEventData)
     {
-        anim.Play("CardFlip");
+        StartCoroutine(ScaleDown());
     }
 
-    public void UnFlip()
+    IEnumerator ScaleUp()
     {
-        anim.Play("CardUnflip");
+        transform.localScale = Vector3.one;
+        var timer = 0f;
+        var animTime = 0.4f;
+
+        while(timer > animTime)
+        {
+            timer += Time.deltaTime;
+            transform.localScale = Vector3.one * Mathf.Lerp(1, 1.2f, scaleUpCurve.Evaluate(timer / animTime));
+            yield return null;
+        }
+
+        transform.localScale = Vector3.one * 1.2f;
+    }
+
+    IEnumerator ScaleDown()
+    {
+        var timer = 0f;
+        var animTime = 0.2f;
+        transform.localScale = Vector3.one * 1.2f;
+        while(timer > animTime)
+        {
+            timer += Time.deltaTime;
+            transform.localScale = Vector3.one * Mathf.Lerp(1, 1.2f, scaleUpCurve.Evaluate(timer / animTime));
+            yield return null;
+        }
+
+        transform.localScale = Vector3.one;
     }
 }

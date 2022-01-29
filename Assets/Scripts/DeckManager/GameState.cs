@@ -97,7 +97,7 @@ public partial class GameState : MonoBehaviour
                 if (i % 2 == 0)
                 {
                     playerHand.Add(cardDrawn);
-                    PlayerCardHolder.Instance.AddCard(cardDrawn);
+                    CardHolder.Instance.AddCard(cardDrawn);
                 }
                 else
                 {
@@ -130,7 +130,7 @@ public partial class GameState : MonoBehaviour
             {
                 Debug.Log($"Player took card from deck".GetRichText("orange"));
                 playerHand.Add(cardDrawn);
-                PlayerCardHolder.Instance.AddCard(cardDrawn);
+                CardHolder.Instance.AddCard(cardDrawn);
             }
             else
             {
