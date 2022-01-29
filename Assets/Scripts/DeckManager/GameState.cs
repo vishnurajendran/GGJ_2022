@@ -13,7 +13,7 @@ public struct Result
     public int turnCount;
 }
 
-public class GameState : MonoBehaviour
+public partial class GameState : MonoBehaviour
 {
     private DeckManager deckManager;
     [SerializeField] private List<FullCard> playerHand;
@@ -34,9 +34,10 @@ public class GameState : MonoBehaviour
 
 
     [ShowInInspector, ReadOnly] private int CurrentSimulationIndex;
+
     private void Update()
     {
-        CurrentSimulationIndex = resultsList!=null ? resultsList.Count : 0;
+        CurrentSimulationIndex = resultsList?.Count ?? 0;
     }
 
     public int startingHandCount;
@@ -59,23 +60,22 @@ public class GameState : MonoBehaviour
     }
 
 
-
-    [Button("Start turn")]    
+    [Button("Start turn")]
     public void PerformMove(EntityType type)
     {
         if (type == EntityType.ENEMY)
             StartCoroutine(DoEnemyTurn());
-        else    
+        else
             StartCoroutine(DoEnemyTurn());
     }
-    
+
     [Button("Generate Deck and distribute initial!")]
     private void InitGame()
     {
         BattleVisualManager.Instance.InitVisuals();
         turnCount = 0;
         newDeckCount = 0;
-        isPlayersTurn = Random.Range(0,100) % 2 == 0;
+        isPlayersTurn = Random.Range(0, 100) % 2 == 0;
         lastPlayedCard = null;
         deckManager = GetComponent<DeckManager>();
         deckManager.GenerateDeck();
@@ -154,7 +154,7 @@ public class GameState : MonoBehaviour
         //UI Update with card
     }
 
-    
+
     private IEnumerator DoPlayerTurn()
     {
         turnCount++;
@@ -168,7 +168,7 @@ public class GameState : MonoBehaviour
         playerHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.PLAYER);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return null;
 
         if (autoTurn)
         {
@@ -186,11 +186,11 @@ public class GameState : MonoBehaviour
             yield break;
         }
 
-        var cardToPlay = enemyHand[Random.Range(0, enemyHand.Count)];
+        var cardToPlay = GetAIMove();
         enemyHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.ENEMY);
 
-        yield return new WaitForSeconds(0.1f);
+        yield return null;
 
         if (autoTurn)
         {
@@ -274,7 +274,7 @@ public class GameState : MonoBehaviour
         result.turnCount = turnCount;
         resultsList.Add(result);
 
-        if (resultsList.Count == simulationCount)
+        if (resultsList.Count >= simulationCount)
         {
             foreach (var e in resultsList)
             {
