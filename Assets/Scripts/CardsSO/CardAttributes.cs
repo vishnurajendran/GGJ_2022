@@ -22,26 +22,20 @@ public class CardAttributes
     public CardClass cardClass;
     public CardType cardType;
     public int count;
-
-
-    public string frontImage;
-    public string backImage;
+    public string imagePath;
 
     public CardAttributes(CardAttributes copyConstructor) : this(copyConstructor.name, copyConstructor.value,
-        copyConstructor.cardClass, copyConstructor.cardType, copyConstructor.count, copyConstructor.frontImage,
-        copyConstructor.backImage)
+        copyConstructor.cardClass, copyConstructor.cardType, copyConstructor.count, copyConstructor.imagePath)
     {
     }
 
-    public CardAttributes(string name, int value, CardClass cardClass, CardType cardType, int count, string frontImage,
-        string backImage)
+    public CardAttributes(string name, int value, CardClass cardClass, CardType cardType, int count, string imagePath)
     {
         this.name = name;
         this.value = value;
         this.cardClass = cardClass;
         this.cardType = cardType;
         this.count = count;
-        this.frontImage = frontImage;
-        this.backImage = backImage;
+        this.imagePath = imagePath;
     }
 }

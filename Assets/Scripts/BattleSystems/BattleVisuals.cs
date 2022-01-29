@@ -105,6 +105,7 @@ public class BattleVisuals : MonoBehaviour
 
     public void ApplyDamage(EntityType entityType ,int damageValue, float healthPerc, bool isGain=false)
     {
+        return;
         healthPerc = Mathf.Clamp01(healthPerc);
         if(entityType == EntityType.PLAYER)
         {

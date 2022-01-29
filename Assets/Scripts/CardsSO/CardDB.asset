@@ -18,265 +18,227 @@ MonoBehaviour:
     cardClass: 3
     cardType: 2
     count: 3
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/Flip
   - name: Stapler
-    value: 4
+    value: 8
     cardClass: 0
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/stapler
   - name: Stapler
-    value: 4
+    value: 8
     cardClass: 0
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Defense/stapler
   - name: Paperweight
-    value: 2
+    value: 4
     cardClass: 0
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/paperweight
   - name: Paperweight
-    value: 2
+    value: 4
     cardClass: 0
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Defense/paperweight
   - name: Pen
-    value: 1
+    value: 2
     cardClass: 0
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Assets/Textures/Attack/pen
   - name: Pen
-    value: 1
+    value: 2
     cardClass: 0
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Assets/Textures/Attack/pen
   - name: Hot Coffee
-    value: 4
+    value: 8
     cardClass: 1
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Defense/coffee
   - name: Hot Coffee
-    value: 4
+    value: 8
     cardClass: 1
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/coffee
   - name: Jam
-    value: 2
+    value: 4
     cardClass: 1
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/ink
   - name: Jam
+    value: 4
+    cardClass: 1
+    cardType: 1
+    count: 1
+    imagePath: Textures/Defense/ink
+  - name: Water Bottle
+    value: 2
+    cardClass: 1
+    cardType: 0
+    count: 1
+    imagePath: Textures/Attack/waterBottle
+  - name: Water Bottle
     value: 2
     cardClass: 1
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Water Bottle
-    value: 1
-    cardClass: 1
+    imagePath: Textures/Defense/waterBottle
+  - name: Company Rule Book
+    value: 8
+    cardClass: 2
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Water Bottle
-    value: 1
-    cardClass: 1
+    imagePath: Textures/Attack/paperTowel
+  - name: Company Rule Book
+    value: 8
+    cardClass: 2
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Company Rule Book
+    imagePath: Textures/Defense/paperTowel
+  - name: Memo
     value: 4
     cardClass: 2
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Company Rule Book
+    imagePath: Textures/Attack/binder
+  - name: Memo
     value: 4
     cardClass: 2
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Memo
+    imagePath: Textures/Defense/binder
+  - name: Payslip
     value: 2
     cardClass: 2
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Memo
+    imagePath: Textures/Attack/postit
+  - name: Payslip
     value: 2
     cardClass: 2
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Payslip
-    value: 1
-    cardClass: 2
-    cardType: 0
-    count: 1
-    frontImage: 
-    backImage: 
-  - name: Payslip
-    value: 1
-    cardClass: 2
-    cardType: 1
-    count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Defense/postit
   backCards:
   - name: Flip
     value: 0
-    cardClass: 0
-    cardType: 0
+    cardClass: 3
+    cardType: 2
     count: 3
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/Flip
   - name: Stapler
-    value: 4
+    value: 8
     cardClass: 0
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/stapler
   - name: Stapler
-    value: 4
+    value: 8
     cardClass: 0
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Defense/stapler
   - name: Paperweight
-    value: 2
+    value: 4
     cardClass: 0
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/paperweight
   - name: Paperweight
-    value: 2
+    value: 4
     cardClass: 0
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Defense/paperweight
   - name: Pen
-    value: 1
+    value: 2
     cardClass: 0
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Assets/Textures/Attack/pen
   - name: Pen
-    value: 1
+    value: 2
     cardClass: 0
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Assets/Textures/Attack/pen
   - name: Hot Coffee
-    value: 4
+    value: 8
     cardClass: 1
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Defense/coffee
   - name: Hot Coffee
-    value: 4
+    value: 8
     cardClass: 1
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/coffee
   - name: Jam
-    value: 2
+    value: 4
     cardClass: 1
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Attack/ink
   - name: Jam
+    value: 4
+    cardClass: 1
+    cardType: 1
+    count: 1
+    imagePath: Textures/Defense/ink
+  - name: Water Bottle
+    value: 2
+    cardClass: 1
+    cardType: 0
+    count: 1
+    imagePath: Textures/Attack/waterBottle
+  - name: Water Bottle
     value: 2
     cardClass: 1
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Water Bottle
-    value: 1
-    cardClass: 1
+    imagePath: Textures/Defense/waterBottle
+  - name: Company Rule Book
+    value: 8
+    cardClass: 2
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Water Bottle
-    value: 1
-    cardClass: 1
+    imagePath: Textures/Attack/paperTowel
+  - name: Company Rule Book
+    value: 8
+    cardClass: 2
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Company Rule Book
+    imagePath: Textures/Defense/paperTowel
+  - name: Memo
     value: 4
     cardClass: 2
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Company Rule Book
+    imagePath: Textures/Attack/binder
+  - name: Memo
     value: 4
     cardClass: 2
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Memo
+    imagePath: Textures/Defense/binder
+  - name: Payslip
     value: 2
     cardClass: 2
     cardType: 0
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Memo
+    imagePath: Textures/Attack/postit
+  - name: Payslip
     value: 2
     cardClass: 2
     cardType: 1
     count: 1
-    frontImage: 
-    backImage: 
-  - name: Payslip
-    value: 1
-    cardClass: 2
-    cardType: 0
-    count: 1
-    frontImage: 
-    backImage: 
-  - name: Payslip
-    value: 1
-    cardClass: 2
-    cardType: 1
-    count: 1
-    frontImage: 
-    backImage: 
+    imagePath: Textures/Defense/postit

@@ -24,8 +24,6 @@ namespace Flippards
         [SerializeField] private Transform playerPlaceHolder;
         [SerializeField] private Transform npcPlaceHolder;
 
-        
-        
 
         private Transform activeThrowObject;
         private const float ThrowTime = 1f;

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Flippards;
@@ -48,6 +47,7 @@ public partial class GameState : MonoBehaviour
     int turnCount = 0;
     int newDeckCount = 0;
     public bool autoTurn = true;
+    private WaitForSeconds waitTimeBetweenTurns = new WaitForSeconds(0.01f);
 
     [Button("Start Simulation")]
     private void StartSim()
@@ -93,6 +93,7 @@ public partial class GameState : MonoBehaviour
                 if (i % 2 == 0)
                 {
                     playerHand.Add(cardDrawn);
+                    PlayerCardHolder.Instance.AddCard(cardDrawn);
                 }
                 else
                 {
@@ -124,6 +125,7 @@ public partial class GameState : MonoBehaviour
             if (isPlayersTurn)
             {
                 playerHand.Add(cardDrawn);
+                PlayerCardHolder.Instance.AddCard(cardDrawn);
             }
             else
             {
@@ -276,6 +278,7 @@ public partial class GameState : MonoBehaviour
 
         if (resultsList.Count >= simulationCount)
         {
+            int turnCountAvg = 0;
             foreach (var e in resultsList)
             {
                 if (e.playerHealth > e.enemyHealth)
@@ -290,11 +293,13 @@ public partial class GameState : MonoBehaviour
                 {
                     drawCount++;
                 }
+
+                turnCountAvg += e.turnCount;
             }
 
-            Debug.Log("PlayerWin " + (float) playerWinCount * 100 / simulationCount + "% " + "EnemyWin " +
-                      (float) enemyWinCount * 100 / simulationCount + "% " + "Draw " +
-                      (float) drawCount * 100 / simulationCount + "% + turnCount " + turnCount);
+            Debug.Log("PlayerWin " + (float)playerWinCount * 100 / simulationCount + "% " + "EnemyWin " +
+                      (float)enemyWinCount * 100 / simulationCount + "% " + "Draw " +
+                      (float)drawCount * 100 / simulationCount + "% + turnCount " + turnCount);
         }
         else
         {
