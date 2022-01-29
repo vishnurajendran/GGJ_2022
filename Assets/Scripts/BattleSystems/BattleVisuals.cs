@@ -26,6 +26,12 @@ public class BattleVisuals : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Transform statsCanvas;
 
+    [SerializeField] Transform pl;
+    [SerializeField] Transform en;
+
+    [SerializeField] EntityType type;
+    [SerializeField] bool hit;
+
     HealthBar playerHealth;
     HealthBar enemyHealth;
     Transform playerTransform;
@@ -36,6 +42,24 @@ public class BattleVisuals : MonoBehaviour
     public BattleAnimEventComplete onBeginComplete;
     public BattleAnimEventComplete onWinComplete;
     public BattleAnimEventComplete onLoseComplete;
+
+    float i=1;
+
+    private void Start()
+    {
+        SetupEntity(pl, EntityType.PLAYER);
+        SetupEntity(en, EntityType.ENEMY);
+    }
+
+    private void Update()
+    {
+        if (hit)
+        {
+            hit = false;
+            i -= 0.1f;
+            ApplyDamage(type, 10, i);
+        }
+    }
 
     public void SetupEntity(Transform entity, EntityType type)
     {
