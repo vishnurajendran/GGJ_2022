@@ -29,6 +29,6 @@ public class CutsceneManager : MonoBehaviour
 
     private void Start()
     {
-        LoadCutsceneFor("Test");
+       
     }
 }
