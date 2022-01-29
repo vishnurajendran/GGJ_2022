@@ -1,6 +1,7 @@
 using UnityEngine;
 using Flippards;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 public class GameState : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class GameState : MonoBehaviour
         deckManager = GetComponent<DeckManager>();
         deckManager.GenerateDeck();
 
+        playerHand = new List<FullCard>();
+        enemyHand = new List<FullCard>();
         for (int i = 0; i < 2 * startingHandCount; i++)
         {
             if (i % 2 == 0)
@@ -52,6 +55,15 @@ public class GameState : MonoBehaviour
             enemyHand.Add(cardDrawn);
         }
     }
+
+    [Button("Do turn!")]
+    private void DoDebugTurn(EntityType type, CardAttributes cardToPlay)
+    {
+        FullCard bla = new FullCard();
+        bla.frontCard = cardToPlay;
+        DoTurn(bla, type);
+    }
+
 
     private void DoTurn(FullCard cardPlayed, EntityType entityType = EntityType.PLAYER)
     {

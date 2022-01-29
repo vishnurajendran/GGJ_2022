@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Flippards
@@ -7,12 +8,10 @@ namespace Flippards
     public class DeckManager : MonoBehaviour
     {
         [SerializeField] private CardDB cardDB;
-        [SerializeField] private int cardsPerPlayer;
-        [SerializeField] private bool giveExtraCard;
-        [SerializeField] private int numFlipInDeck;
         
         [SerializeField] private Deck MasterDeck;
 
+        [Button("Generate Deck")]
         public void GenerateDeck()
         {
             List<CardAttributes> frontCards = new List<CardAttributes>();
