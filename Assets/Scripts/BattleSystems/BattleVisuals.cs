@@ -44,41 +44,6 @@ public class BattleVisuals : MonoBehaviour
     public BattleAnimEventComplete onWinComplete;
     public BattleAnimEventComplete onLoseComplete;
 
-    float i = 1;
-    private void Start()
-    {
-        SetupEntity(pl, EntityType.PLAYER);
-        SetupEntity(en, EntityType.ENEMY);
-    }
-
-    private void Update()
-    {
-        if (hit)
-        {
-            hit = false;
-            i -= 0.1f;
-            ApplyDamage(type, 10,i);
-        }
-
-        if (begin)
-        {
-            begin = false;
-            PlayBegin();
-        }
-
-        if (lose)
-        {
-            lose = false;
-            PlayLose();
-        }
-
-        if (win)
-        {
-            win = false;
-            PlayWin();
-        }
-    }
-
     public void SetupEntity(Transform entity, EntityType type)
     {
         if (HealthbarRef == null)
