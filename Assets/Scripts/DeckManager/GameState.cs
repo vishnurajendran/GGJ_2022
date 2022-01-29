@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Flippards;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Random = UnityEngine.Random;
 
 public struct Result
 {
@@ -29,6 +31,13 @@ public class GameState : MonoBehaviour
 
     private bool isPlayersTurn = true;
     private CardAttributes lastPlayedCard;
+
+
+    [ShowInInspector, ReadOnly] private int CurrentSimulationIndex;
+    private void Update()
+    {
+        CurrentSimulationIndex = resultsList!=null ? resultsList.Count : 0;
+    }
 
     public int startingHandCount;
     public int simulationCount;
@@ -63,9 +72,10 @@ public class GameState : MonoBehaviour
     [Button("Generate Deck and distribute initial!")]
     private void InitGame()
     {
+        BattleVisualManager.Instance.InitVisuals();
         turnCount = 0;
         newDeckCount = 0;
-        isPlayersTurn = true;
+        isPlayersTurn = Random.Range(0,100) % 2 == 0;
         lastPlayedCard = null;
         deckManager = GetComponent<DeckManager>();
         deckManager.GenerateDeck();
@@ -98,7 +108,9 @@ public class GameState : MonoBehaviour
 
         StartNextTurn();
         if (autoTurn)
-            StartCoroutine(DoPlayerTurn());
+        {
+            StartCoroutine(isPlayersTurn ? DoPlayerTurn() : DoEnemyTurn());
+        }
         //BattleVisualManager.Instance.onTurnAnimationsCompleted += StartNextTurn;
     }
 
@@ -156,7 +168,7 @@ public class GameState : MonoBehaviour
         playerHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.PLAYER);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
 
         if (autoTurn)
         {
@@ -178,7 +190,7 @@ public class GameState : MonoBehaviour
         enemyHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.ENEMY);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
 
         if (autoTurn)
         {
@@ -206,7 +218,8 @@ public class GameState : MonoBehaviour
         {
             if (cardToEval.cardType == CardType.Hit)
             {
-                enemyHealth -= GetModifiedStatValue(cardToEval);
+                var t = GetModifiedStatValue(cardToEval);
+                enemyHealth -= t;
                 enemyHealth = Mathf.Clamp(enemyHealth, 0, enemyMaxHealth);
 
                 if (enemyHealth == 0)
@@ -215,22 +228,24 @@ public class GameState : MonoBehaviour
                 }
 
                 //Battle visuals send health and percentage
-                BattleVisualManager.Instance.DealDamage(EntityType.ENEMY, cardToEval);
+                BattleVisualManager.Instance.DealDamage(EntityType.ENEMY, cardToEval, t);
             }
             else if (cardToEval.cardType == CardType.Heal)
             {
-                playerHealth += GetModifiedStatValue(cardToEval);
+                var t = GetModifiedStatValue(cardToEval);
+                playerHealth += t;
                 playerHealth = Mathf.Clamp(playerHealth, 0, playerHealth);
-                BattleVisualManager.Instance.GainHealth(EntityType.PLAYER, cardToEval);
+                BattleVisualManager.Instance.GainHealth(EntityType.PLAYER, cardToEval, t);
             }
         }
         else if (entityType == EntityType.ENEMY)
         {
             if (cardToEval.cardType == CardType.Hit)
             {
-                playerHealth -= GetModifiedStatValue(cardToEval);
+                var t = GetModifiedStatValue(cardToEval);
+                playerHealth -= t;
                 playerHealth = Mathf.Clamp(playerHealth, 0, playerHealth);
-                BattleVisualManager.Instance.DealDamage(EntityType.PLAYER, cardToEval);
+                BattleVisualManager.Instance.DealDamage(EntityType.PLAYER, cardToEval, t);
 
                 if (enemyHealth == 0)
                 {
@@ -239,9 +254,10 @@ public class GameState : MonoBehaviour
             }
             else if (cardToEval.cardType == CardType.Heal)
             {
-                enemyHealth += GetModifiedStatValue(cardToEval);
+                var t = GetModifiedStatValue(cardToEval);
+                enemyHealth += t;
                 enemyHealth = Mathf.Clamp(enemyHealth, 0, enemyMaxHealth);
-                BattleVisualManager.Instance.GainHealth(EntityType.ENEMY, cardToEval);
+                BattleVisualManager.Instance.GainHealth(EntityType.ENEMY, cardToEval, t);
             }
         }
 

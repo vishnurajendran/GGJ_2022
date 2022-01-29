@@ -514,7 +514,7 @@ MonoBehaviour:
   enemyHealth: 20
   enemyMaxHealth: 20
   startingHandCount: 5
-  simulationCount: 1
+  simulationCount: 25
   autoTurn: 0
 --- !u!114 &803977013
 MonoBehaviour:
@@ -1184,7 +1184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 665368985971858761, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
       propertyPath: isTesting
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 665368986088021428, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
       propertyPath: m_BlockingMask.m_Bits

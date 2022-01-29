@@ -24,32 +24,45 @@ namespace Flippards
         [SerializeField] private Transform playerPlaceHolder;
         [SerializeField] private Transform npcPlaceHolder;
 
+        
+        
+
         private Transform activeThrowObject;
         private const float ThrowTime = 1f;
 
         public Action onTurnAnimationsCompleted;
 
+        public void InitVisuals()
+        {
+            BattleVisuals.Instance.onBeginComplete.AddListener(() =>
+            {
+                BattleVisuals.Instance.SetupEntity(npcPlaceHolder.GetChild(0).GetChild(0), EntityType.ENEMY);
+                BattleVisuals.Instance.SetupEntity(playerPlaceHolder.GetChild(0).GetChild(0), EntityType.PLAYER);
+            });
+            BattleVisuals.Instance.PlayBegin();
+        }
+        
         public void FlipCardsVisually(EntityType player, CardAttributes cardChosen)
         {
             
         }
 
-        public void DealDamage(EntityType targetEntity, CardAttributes cardChosen)
+        public void DealDamage(EntityType targetEntity, CardAttributes cardChosen, int value)
         {
             Debug.Log($"Dealing damage to {targetEntity} with {cardChosen.name}");
             // TODO : Add parameters based on UI needs
 
             StartCoroutine(LerpShit(targetEntity, cardChosen));
             //call this in  onComplete of LerpShit!!!
-            BattleVisuals.Instance.ApplyDamage(targetEntity, cardChosen.value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio);
+            BattleVisuals.Instance.ApplyDamage(targetEntity, value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio);
         }
 
-        public void GainHealth(EntityType targetEntity, CardAttributes cardChosen)
+        public void GainHealth(EntityType targetEntity, CardAttributes cardChosen, int value)
         {
             Debug.Log($"Adding health to {targetEntity} with {cardChosen.name}");
             // TODO : Add parameters based on UI needs
             Debug.Log($"On {targetEntity} Subtracting value = {cardChosen.value}, P = {gameState.PlayerHealthRatio}, E =  {gameState.EnemyHealthRatio}");
-            BattleVisuals.Instance.ApplyDamage(targetEntity, cardChosen.value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio);
+            BattleVisuals.Instance.ApplyDamage(targetEntity, value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio, true);
         }
 
         private IEnumerator LerpShit(EntityType type, CardAttributes cardChosen)
