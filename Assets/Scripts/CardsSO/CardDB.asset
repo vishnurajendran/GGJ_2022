@@ -15,6 +15,102 @@ MonoBehaviour:
   frontCards:
   - name: Flip
     value: 0
+    cardClass: 3
+    cardType: 2
+    count: 3
+  - name: Stapler
+    value: 3
+    cardClass: 0
+    cardType: 0
+    count: 1
+  - name: Stapler
+    value: 3
+    cardClass: 0
+    cardType: 1
+    count: 1
+  - name: Paperweight
+    value: 2
+    cardClass: 0
+    cardType: 0
+    count: 1
+  - name: Paperweight
+    value: 2
+    cardClass: 0
+    cardType: 1
+    count: 1
+  - name: Pen
+    value: 1
+    cardClass: 0
+    cardType: 0
+    count: 1
+  - name: Pen
+    value: 1
+    cardClass: 0
+    cardType: 1
+    count: 1
+  - name: Hot Coffee
+    value: 3
+    cardClass: 1
+    cardType: 0
+    count: 1
+  - name: Hot Coffee
+    value: 3
+    cardClass: 1
+    cardType: 1
+    count: 1
+  - name: Jam
+    value: 2
+    cardClass: 1
+    cardType: 0
+    count: 1
+  - name: Jam
+    value: 2
+    cardClass: 1
+    cardType: 1
+    count: 1
+  - name: Water Bottle
+    value: 1
+    cardClass: 1
+    cardType: 0
+    count: 1
+  - name: Water Bottle
+    value: 1
+    cardClass: 1
+    cardType: 1
+    count: 1
+  - name: Company Rule Book
+    value: 3
+    cardClass: 2
+    cardType: 0
+    count: 1
+  - name: Company Rule Book
+    value: 3
+    cardClass: 2
+    cardType: 1
+    count: 1
+  - name: Memo
+    value: 2
+    cardClass: 2
+    cardType: 0
+    count: 1
+  - name: Memo
+    value: 2
+    cardClass: 2
+    cardType: 1
+    count: 1
+  - name: Payslip
+    value: 1
+    cardClass: 2
+    cardType: 0
+    count: 1
+  - name: Payslip
+    value: 1
+    cardClass: 2
+    cardType: 1
+    count: 1
+  backCards:
+  - name: Flip
+    value: 0
     cardClass: 0
     cardType: 0
     count: 3
@@ -23,59 +119,88 @@ MonoBehaviour:
     cardClass: 0
     cardType: 0
     count: 1
+  - name: Stapler
+    value: 3
+    cardClass: 0
+    cardType: 1
+    count: 1
   - name: Paperweight
     value: 2
     cardClass: 0
     cardType: 0
+    count: 1
+  - name: Paperweight
+    value: 2
+    cardClass: 0
+    cardType: 1
     count: 1
   - name: Pen
     value: 1
     cardClass: 0
     cardType: 0
     count: 1
+  - name: Pen
+    value: 1
+    cardClass: 0
+    cardType: 1
+    count: 1
   - name: Hot Coffee
     value: 3
     cardClass: 1
     cardType: 0
+    count: 1
+  - name: Hot Coffee
+    value: 3
+    cardClass: 1
+    cardType: 1
     count: 1
   - name: Jam
     value: 2
     cardClass: 1
     cardType: 0
     count: 1
+  - name: Jam
+    value: 2
+    cardClass: 1
+    cardType: 1
+    count: 1
   - name: Water Bottle
     value: 1
     cardClass: 1
     cardType: 0
+    count: 1
+  - name: Water Bottle
+    value: 1
+    cardClass: 1
+    cardType: 1
     count: 1
   - name: Company Rule Book
     value: 3
     cardClass: 2
     cardType: 0
     count: 1
+  - name: Company Rule Book
+    value: 3
+    cardClass: 2
+    cardType: 1
+    count: 1
   - name: Memo
     value: 2
     cardClass: 2
     cardType: 0
     count: 1
-  - name: Payslip
+  - name: Memo
     value: 2
+    cardClass: 2
+    cardType: 1
+    count: 1
+  - name: Payslip
+    value: 1
     cardClass: 2
     cardType: 0
     count: 1
-  backCards:
-  - name: Flip
-    value: 0
-    cardClass: 0
-    cardType: 0
-    count: 3
-  - name: BackCard1
-    value: 0
-    cardClass: 0
-    cardType: 0
-    count: 4
-  - name: BackCard2
-    value: 0
-    cardClass: 0
-    cardType: 0
-    count: 5
+  - name: Payslip
+    value: 1
+    cardClass: 2
+    cardType: 1
+    count: 1
