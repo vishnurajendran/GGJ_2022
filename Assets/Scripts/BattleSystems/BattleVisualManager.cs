@@ -8,6 +8,7 @@ namespace Flippards
     //Class for managing throwing animations and shit as well as calling Vishnu ka health UI and stuff on player
     public class BattleVisualManager : MonoBehaviour
     {
+        public GameState gameState;
         private static BattleVisualManager instance;
         public static BattleVisualManager Instance
         {
@@ -40,14 +41,15 @@ namespace Flippards
 
             StartCoroutine(LerpShit(targetEntity, cardChosen));
             //call this in  onComplete of LerpShit!!!
-            BattleVisuals.Instance.ApplyDamage(targetEntity, 0, 0);
+            BattleVisuals.Instance.ApplyDamage(targetEntity, cardChosen.value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio);
         }
 
         public void GainHealth(EntityType targetEntity, CardAttributes cardChosen)
         {
             Debug.Log($"Adding health to {targetEntity} with {cardChosen.name}");
             // TODO : Add parameters based on UI needs
-            BattleVisuals.Instance.ApplyDamage(targetEntity, 0, 0);
+            Debug.Log($"On {targetEntity} Subtracting value = {cardChosen.value}, P = {gameState.PlayerHealthRatio}, E =  {gameState.EnemyHealthRatio}");
+            BattleVisuals.Instance.ApplyDamage(targetEntity, cardChosen.value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio);
         }
 
         private IEnumerator LerpShit(EntityType type, CardAttributes cardChosen)

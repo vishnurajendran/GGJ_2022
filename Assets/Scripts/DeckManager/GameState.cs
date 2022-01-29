@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Flippards;
 using System.Collections.Generic;
@@ -20,6 +21,9 @@ public class GameState : MonoBehaviour
     [SerializeField] private int playerMaxHealth;
     [SerializeField] private int enemyHealth;
     [SerializeField] private int enemyMaxHealth;
+
+    public float PlayerHealthRatio => (float) playerHealth / playerMaxHealth;
+    public float EnemyHealthRatio => (float) enemyHealth / enemyMaxHealth;
 
     private List<Result> resultsList = new List<Result>();
 
@@ -45,6 +49,17 @@ public class GameState : MonoBehaviour
         InitGame();
     }
 
+
+
+    [Button("Start turn")]    
+    public void PerformMove(EntityType type)
+    {
+        if (type == EntityType.ENEMY)
+            StartCoroutine(DoEnemyTurn());
+        else    
+            StartCoroutine(DoEnemyTurn());
+    }
+    
     [Button("Generate Deck and distribute initial!")]
     private void InitGame()
     {
@@ -83,7 +98,7 @@ public class GameState : MonoBehaviour
 
         StartNextTurn();
         if (autoTurn)
-            DoPlayerTurn();
+            StartCoroutine(DoPlayerTurn());
         //BattleVisualManager.Instance.onTurnAnimationsCompleted += StartNextTurn;
     }
 
@@ -127,53 +142,56 @@ public class GameState : MonoBehaviour
         //UI Update with card
     }
 
-    [Button("Do Player Turn!")]
-    private void DoPlayerTurn()
+    
+    private IEnumerator DoPlayerTurn()
     {
         turnCount++;
         if (playerHand.Count == 0)
         {
             AddResult();
-            return;
+            yield break;
         }
 
         var cardToPlay = playerHand[Random.Range(0, playerHand.Count)];
         playerHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.PLAYER);
 
+        yield return new WaitForSeconds(1f);
+
         if (autoTurn)
         {
             StartNextTurn();
-            DoEnemyTurn();
+            StartCoroutine(DoEnemyTurn());
         }
-
     }
 
-    [Button("Do Enemy Turn!")]
-    private void DoEnemyTurn()
+    private IEnumerator DoEnemyTurn()
     {
         turnCount++;
         if (enemyHand.Count == 0)
         {
             AddResult();
-            return;
+            yield break;
         }
 
         var cardToPlay = enemyHand[Random.Range(0, enemyHand.Count)];
         enemyHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.ENEMY);
 
+        yield return new WaitForSeconds(1f);
+
         if (autoTurn)
         {
             StartNextTurn();
-            DoPlayerTurn();
+            StartCoroutine(DoPlayerTurn());
         }
     }
 
     private void DoTurn(FullCard cardPlayed, EntityType entityType = EntityType.PLAYER)
     {
         CardAttributes cardToEval = cardPlayed.GetTopCardAttributes();
-        Debug.Log($"{entityType} turn. Played {cardToEval.name}. Type = {cardToEval.cardType} and value = {cardToEval.value}");
+        Debug.Log(
+            $"{entityType} turn. Played {cardToEval.name}. Type = {cardToEval.cardType} and value = {cardToEval.value}");
 
         // if (isPlayer)
         //     cardToEval = isPlayerFlipped ? cardPlayed.backCard : cardPlayed.frontCard;
@@ -258,7 +276,9 @@ public class GameState : MonoBehaviour
                 }
             }
 
-            Debug.Log("PlayerWin " + (float)playerWinCount * 100 / simulationCount + "% " + "EnemyWin " + (float)enemyWinCount * 100 / simulationCount + "% " + "Draw " + (float)drawCount * 100 / simulationCount + "% + turnCount " + turnCount);
+            Debug.Log("PlayerWin " + (float) playerWinCount * 100 / simulationCount + "% " + "EnemyWin " +
+                      (float) enemyWinCount * 100 / simulationCount + "% " + "Draw " +
+                      (float) drawCount * 100 / simulationCount + "% + turnCount " + turnCount);
         }
         else
         {
