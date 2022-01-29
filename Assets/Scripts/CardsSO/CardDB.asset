@@ -14,21 +14,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontCards:
   - name: Flip
-    damage: 0
+    value: 0
+    cardClass: 0
+    cardType: 0
     count: 3
-  - name: FrontCard1
-    damage: 2
-    count: 4
-  - name: FrontCard2
-    damage: 3
-    count: 5
+  - name: Stapler
+    value: 3
+    cardClass: 0
+    cardType: 0
+    count: 1
+  - name: Paperweight
+    value: 2
+    cardClass: 0
+    cardType: 0
+    count: 1
+  - name: Pen
+    value: 1
+    cardClass: 0
+    cardType: 0
+    count: 1
+  - name: Hot Coffee
+    value: 3
+    cardClass: 1
+    cardType: 0
+    count: 1
+  - name: Jam
+    value: 2
+    cardClass: 1
+    cardType: 0
+    count: 1
+  - name: Water Bottle
+    value: 1
+    cardClass: 1
+    cardType: 0
+    count: 1
+  - name: Company Rule Book
+    value: 3
+    cardClass: 2
+    cardType: 0
+    count: 1
+  - name: Memo
+    value: 2
+    cardClass: 2
+    cardType: 0
+    count: 1
+  - name: Payslip
+    value: 2
+    cardClass: 2
+    cardType: 0
+    count: 1
   backCards:
   - name: Flip
-    damage: 0
+    value: 0
+    cardClass: 0
+    cardType: 0
     count: 3
   - name: BackCard1
-    damage: 2
+    value: 0
+    cardClass: 0
+    cardType: 0
     count: 4
   - name: BackCard2
-    damage: 3
+    value: 0
+    cardClass: 0
+    cardType: 0
     count: 5
