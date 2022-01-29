@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public enum EntityType{
@@ -22,9 +23,13 @@ public class BattleVisuals : MonoBehaviour
         }
     }
 
+    [SerializeField] Animator animator;
     [SerializeField] Transform statsCanvas;
     [SerializeField] EntityType type;
     [SerializeField] bool hit = false;
+    [SerializeField] bool begin = false;
+    [SerializeField] bool lose = false;
+    [SerializeField] bool win = false;
     [SerializeField] Transform pl;
     [SerializeField] Transform en;
 
@@ -34,6 +39,10 @@ public class BattleVisuals : MonoBehaviour
     Transform enemyTransform;
     GameObject damageTextRef;
     GameObject HealthbarRef;
+
+    public BattleAnimEventComplete onBeginComplete;
+    public BattleAnimEventComplete onWinComplete;
+    public BattleAnimEventComplete onLoseComplete;
 
     float i = 1;
     private void Start()
@@ -49,6 +58,24 @@ public class BattleVisuals : MonoBehaviour
             hit = false;
             i -= 0.1f;
             ApplyDamage(type, 10,i);
+        }
+
+        if (begin)
+        {
+            begin = false;
+            PlayBegin();
+        }
+
+        if (lose)
+        {
+            lose = false;
+            PlayLose();
+        }
+
+        if (win)
+        {
+            win = false;
+            PlayWin();
         }
     }
 
@@ -117,5 +144,35 @@ public class BattleVisuals : MonoBehaviour
         }
         yield return new WaitForEndOfFrame();
         Destroy(uiDmgText.gameObject);
+    }
+
+    public void PlayBegin()
+    {
+        animator.Play("Begin");
+    }
+
+    public void PlayWin()
+    {
+        animator.Play("Win");
+    }
+
+    public void PlayLose()
+    {
+        animator.Play("Lose");
+    }
+
+    public void InvokeBeginComplete()
+    {
+        onBeginComplete?.Invoke();
+    }
+
+    public void InvokeWinComplete()
+    {
+        onWinComplete?.Invoke();
+    }
+
+    public void InvokeLoseComplete()
+    {
+        onLoseComplete?.Invoke();
     }
 }
