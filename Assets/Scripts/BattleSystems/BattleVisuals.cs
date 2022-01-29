@@ -97,7 +97,7 @@ public class BattleVisuals : MonoBehaviour
         ApplyDamage(EntityType.PLAYER, 10, playerHealth.RemainingHealth - 0.1f);
     }
 
-    public void ApplyDamage(EntityType entityType ,int damageValue, float healthPerc)
+    public void ApplyDamage(EntityType entityType ,int damageValue, float healthPerc, bool isGain=false)
     {
         healthPerc = Mathf.Clamp01(healthPerc);
         if(entityType == EntityType.PLAYER)
@@ -115,13 +115,15 @@ public class BattleVisuals : MonoBehaviour
             enemyHealth.SetHealth(healthPerc);
         }
 
-        ShowDamageText(damageValue, entityType);
+        ShowDamageText(damageValue, entityType, isGain);
     }
 
-    void ShowDamageText(int damage, EntityType type)
+    void ShowDamageText(int damage, EntityType type, bool isGain)
     {
-        if (damageTextRef == null)
-            damageTextRef = Resources.Load<GameObject>("DamageText");
+        if (isGain)
+            damageTextRef = Resources.Load<GameObject>("DamageText_Green");
+        else
+            damageTextRef = Resources.Load<GameObject>("DamageText_Red");
 
         Transform entityTransform = type == EntityType.PLAYER ? playerTransform : enemyTransform;
         Vector3 uiPos = Camera.main.WorldToScreenPoint(enemyTransform.position);
