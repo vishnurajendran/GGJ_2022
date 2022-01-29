@@ -7,7 +7,9 @@ namespace Flippards
 {
     public class DeckManager : MonoBehaviour
     {
+#pragma warning disable CS0649 // Field 'DeckManager.cardDB' is never assigned to, and will always have its default value null
         [SerializeField] private CardDB cardDB;
+#pragma warning restore CS0649 // Field 'DeckManager.cardDB' is never assigned to, and will always have its default value null
 
         [SerializeField] private Deck MasterDeck;
 

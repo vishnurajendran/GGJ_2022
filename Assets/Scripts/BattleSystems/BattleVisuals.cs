@@ -24,14 +24,22 @@ public class BattleVisuals : MonoBehaviour
         }
     }
 
+#pragma warning disable CS0649 // Field 'BattleVisuals.animator' is never assigned to, and will always have its default value null
     [SerializeField] Animator animator;
+#pragma warning restore CS0649 // Field 'BattleVisuals.animator' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'BattleVisuals.statsCanvas' is never assigned to, and will always have its default value null
     [SerializeField] Transform statsCanvas;
+#pragma warning restore CS0649 // Field 'BattleVisuals.statsCanvas' is never assigned to, and will always have its default value null
 
 
     [Header("Testing")]
     [SerializeField] bool isTesting = false;
+#pragma warning disable CS0649 // Field 'BattleVisuals.pl' is never assigned to, and will always have its default value null
     [SerializeField] Transform pl;
+#pragma warning restore CS0649 // Field 'BattleVisuals.pl' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'BattleVisuals.en' is never assigned to, and will always have its default value null
     [SerializeField] Transform en;
+#pragma warning restore CS0649 // Field 'BattleVisuals.en' is never assigned to, and will always have its default value null
 
     HealthBar playerHealth;
     HealthBar enemyHealth;
@@ -44,7 +52,9 @@ public class BattleVisuals : MonoBehaviour
     public BattleAnimEventComplete onWinComplete;
     public BattleAnimEventComplete onLoseComplete;
 
+#pragma warning disable CS0414 // The field 'BattleVisuals.i' is assigned but its value is never used
     float i=1;
+#pragma warning restore CS0414 // The field 'BattleVisuals.i' is assigned but its value is never used
 
     private void Start()
     {

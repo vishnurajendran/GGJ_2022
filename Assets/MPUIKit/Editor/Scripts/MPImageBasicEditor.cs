@@ -6,7 +6,9 @@ using UnityEditor.UI;
 
 
 namespace MPUIKIT.Editor {
+#pragma warning disable CS0246 // The type or namespace name 'MPImageBasic' could not be found (are you missing a using directive or an assembly reference?)
     [CustomEditor(typeof(MPImageBasic))]
+#pragma warning restore CS0246 // The type or namespace name 'MPImageBasic' could not be found (are you missing a using directive or an assembly reference?)
     public class MPImageBasicEditor : ImageEditor {
         private SerializedProperty spSprite;
 

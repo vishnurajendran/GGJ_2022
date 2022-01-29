@@ -1,15 +1,19 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Flippards.Helpers;
 using UnityEngine;
 
 namespace Flippards
 {
-    
     //Class for managing throwing animations and shit as well as calling Vishnu ka health UI and stuff on player
     public class BattleVisualManager : MonoBehaviour
     {
+        [SerializeField] private GameObject throwThingPrefab;
+
         public GameState gameState;
         private static BattleVisualManager instance;
+
         public static BattleVisualManager Instance
         {
             get
@@ -20,13 +24,10 @@ namespace Flippards
                 return instance;
             }
         }
-        
+
         [SerializeField] private Transform playerPlaceHolder;
         [SerializeField] private Transform npcPlaceHolder;
 
-
-        private Transform activeThrowObject;
-        private const float ThrowTime = 1f;
 
         public Action onTurnAnimationsCompleted;
 
@@ -39,47 +40,45 @@ namespace Flippards
             });
             BattleVisuals.Instance.PlayBegin();
         }
-        
-        public void FlipCardsVisually(EntityType player, CardAttributes cardChosen)
+
+        public void FlipCardsVisually(EntityType entity, CardAttributes cardChosen)
         {
-            
+            //List<FullCard> cardsToFlip = entity == EntityType.PLAYER ? gameState.enemyHand : gameState.playerHand;
+            // foreach (var fullCard in cardsToFlip)
+            // {
+            //     fullCard.view.Flip();
+            // }
+            string s = $"Flipped {entity}s Cards.";
+            Debug.Log($"{s.GetRichText("yellow")}");
+            onTurnAnimationsCompleted?.Invoke();
         }
 
         public void DealDamage(EntityType targetEntity, CardAttributes cardChosen, int value)
         {
-            Debug.Log($"Dealing damage to {targetEntity} with {cardChosen.name}");
-            // TODO : Add parameters based on UI needs
 
-            StartCoroutine(LerpShit(targetEntity, cardChosen));
-            //call this in  onComplete of LerpShit!!!
-            BattleVisuals.Instance.ApplyDamage(targetEntity, value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio);
+            ThrownObject activeThrowObject = Instantiate(throwThingPrefab).GetComponent<ThrownObject>();
+            activeThrowObject.gameObject.name = $"Throwed {cardChosen.name}";
+
+            Vector3 startPos = playerPlaceHolder.position;
+            Vector3 endPos = npcPlaceHolder.position;
+            if (targetEntity == EntityType.PLAYER)
+                (startPos, endPos) = (endPos, startPos);
+
+            activeThrowObject.Init(gameState.autoTurn, startPos, endPos, OnThrowObjectReached);
+
+            void OnThrowObjectReached()
+            {
+                Debug.Log($"Dealing {"damage".GetRichText("red")} to {targetEntity} {value.ToString().GetRichText("red")}");
+                onTurnAnimationsCompleted?.Invoke();
+                BattleVisuals.Instance.ApplyDamage(targetEntity, value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio);
+            }
         }
 
         public void GainHealth(EntityType targetEntity, CardAttributes cardChosen, int value)
         {
-            Debug.Log($"Adding health to {targetEntity} with {cardChosen.name}");
             // TODO : Add parameters based on UI needs
-            Debug.Log($"On {targetEntity} Subtracting value = {cardChosen.value}, P = {gameState.PlayerHealthRatio}, E =  {gameState.EnemyHealthRatio}");
+            Debug.Log($"Dealing {"Health".GetRichText("green")} to {targetEntity} {value.ToString().GetRichText("green")}");
             BattleVisuals.Instance.ApplyDamage(targetEntity, value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio, true);
-        }
-
-        private IEnumerator LerpShit(EntityType type, CardAttributes cardChosen)
-        {
-            activeThrowObject = new GameObject(cardChosen.name).transform;
-
-            Vector3 startPos = playerPlaceHolder.position;
-            Vector3 endpos = npcPlaceHolder.position;
-            if (type == EntityType.ENEMY)
-                (startPos, endpos) = (endpos, startPos);
-
-            float currTimer = 0f;
-            while (currTimer < ThrowTime)
-            {
-                currTimer += Time.deltaTime;
-                yield return null;
-                activeThrowObject.position = Vector3.Lerp(startPos, endpos, currTimer / ThrowTime);
-            }
-
             onTurnAnimationsCompleted?.Invoke();
         }
     }

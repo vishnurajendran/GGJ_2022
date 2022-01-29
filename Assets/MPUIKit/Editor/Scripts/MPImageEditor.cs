@@ -6,7 +6,9 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace MPUIKIT.Editor {
+#pragma warning disable CS0246 // The type or namespace name 'MPImage' could not be found (are you missing a using directive or an assembly reference?)
     [CustomEditor(typeof(MPImage), true)]
+#pragma warning restore CS0246 // The type or namespace name 'MPImage' could not be found (are you missing a using directive or an assembly reference?)
     [CanEditMultipleObjects]
     public class MPImageEditor : ImageEditor {
         private SerializedProperty spSprite;
