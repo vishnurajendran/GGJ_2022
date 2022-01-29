@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "CardDBSO", menuName = "CardDB", order = 1)]
+[CreateAssetMenu(fileName = "CardDB", menuName = "CardDB", order = 1)]
 public class CardDB : ScriptableObject
 {
     public List<CardAttributes> frontCards;
