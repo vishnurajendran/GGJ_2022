@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,11 +33,6 @@ public class BattleVisuals : MonoBehaviour
     [SerializeField] Transform pl;
     [SerializeField] Transform en;
 
-    [SerializeField] EntityType type;
-    [SerializeField] bool hit;
-    [SerializeField] bool lose;
-    [SerializeField] bool win;
-
     HealthBar playerHealth;
     HealthBar enemyHealth;
     Transform playerTransform;
@@ -64,31 +60,6 @@ public class BattleVisuals : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (isTesting)
-        {
-            if (hit)
-            {
-                hit = false;
-                i -= 0.1f;
-                ApplyDamage(type, 10, i);
-            }
-
-            if (win)
-            {
-                win = false;
-                PlayWin();
-            }
-
-            if (lose)
-            {
-                lose = false;
-                PlayLose();
-            }
-        }
-    }
-
     public void SetupEntity(Transform entity, EntityType type)
     {
         if (HealthbarRef == null)
@@ -96,7 +67,7 @@ public class BattleVisuals : MonoBehaviour
             HealthbarRef = Resources.Load<GameObject>("HealthBar");
         }
 
-        Vector3 uiPos = Camera.main.WorldToScreenPoint(entity.position) +  new Vector3(50,25,0);
+        Vector3 uiPos = Camera.main.WorldToScreenPoint(entity.position);
         GameObject healthBarObj = Instantiate(HealthbarRef, statsCanvas);
         healthBarObj.transform.position = uiPos;
 
@@ -112,6 +83,18 @@ public class BattleVisuals : MonoBehaviour
             enemyHealth = healthBarObj.GetComponent<HealthBar>();
             enemyHealth.SetHealth(1,1);
         }
+    }
+
+    [Button("Hit Enemy")]
+    void TestHitEnemy()
+    {
+        ApplyDamage(EntityType.ENEMY, 10,enemyHealth.RemainingHealth - 0.1f);
+    }
+
+    [Button("Hit Player")]
+    void TestHitPlayer()
+    {
+        ApplyDamage(EntityType.PLAYER, 10, playerHealth.RemainingHealth - 0.1f);
     }
 
     public void ApplyDamage(EntityType entityType ,int damageValue, float healthPerc)
@@ -163,16 +146,19 @@ public class BattleVisuals : MonoBehaviour
         Destroy(uiDmgText.gameObject);
     }
 
+    [Button("Play Begin")]
     public void PlayBegin()
     {
         animator.Play("Begin");
     }
 
+    [Button("Play Win")]
     public void PlayWin()
     {
         animator.Play("Win");
     }
 
+    [Button("Play Lose")]
     public void PlayLose()
     {
         animator.Play("Lose");
