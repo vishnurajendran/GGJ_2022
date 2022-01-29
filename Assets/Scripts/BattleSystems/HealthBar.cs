@@ -28,21 +28,21 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    public void SetHealth(float perc)
+    public void SetHealth(float perc, float dur=0.15f)
     {
         if (animRoutine != null)
             StopCoroutine(animRoutine);
 
-        animRoutine = StartCoroutine(Animate(perc));
+        animRoutine = StartCoroutine(Animate(perc, dur));
     }
 
-    IEnumerator Animate(float perc)
+    IEnumerator Animate(float perc, float dur)
     {
         float timeStep = 0;
         float currAlpha = cg.alpha;
         while(timeStep <= 1)
         {
-            timeStep += Time.deltaTime / 0.15f;
+            timeStep += Time.deltaTime / dur;
             cg.alpha = Mathf.Lerp(currAlpha, 1, timeStep);
             yield return new WaitForEndOfFrame();
         }

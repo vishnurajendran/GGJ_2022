@@ -26,11 +26,16 @@ public class BattleVisuals : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Transform statsCanvas;
 
+
+    [Header("Testing")]
+    [SerializeField] bool isTesting = false;
     [SerializeField] Transform pl;
     [SerializeField] Transform en;
 
     [SerializeField] EntityType type;
     [SerializeField] bool hit;
+    [SerializeField] bool lose;
+    [SerializeField] bool win;
 
     HealthBar playerHealth;
     HealthBar enemyHealth;
@@ -47,17 +52,40 @@ public class BattleVisuals : MonoBehaviour
 
     private void Start()
     {
-        SetupEntity(pl, EntityType.PLAYER);
-        SetupEntity(en, EntityType.ENEMY);
+        if (isTesting)
+        {
+            onBeginComplete.AddListener(() =>
+            {
+                SetupEntity(pl, EntityType.PLAYER);
+                SetupEntity(en, EntityType.ENEMY);
+            });
+
+            PlayBegin();
+        }
     }
 
     private void Update()
     {
-        if (hit)
+        if (isTesting)
         {
-            hit = false;
-            i -= 0.1f;
-            ApplyDamage(type, 10, i);
+            if (hit)
+            {
+                hit = false;
+                i -= 0.1f;
+                ApplyDamage(type, 10, i);
+            }
+
+            if (win)
+            {
+                win = false;
+                PlayWin();
+            }
+
+            if (lose)
+            {
+                lose = false;
+                PlayLose();
+            }
         }
     }
 
@@ -76,13 +104,13 @@ public class BattleVisuals : MonoBehaviour
         {
             playerTransform = entity;
             playerHealth = healthBarObj.GetComponent<HealthBar>();
-            playerHealth.SetHealth(1);
+            playerHealth.SetHealth(1,1);
         }
         else
         {
             enemyTransform = entity;
             enemyHealth = healthBarObj.GetComponent<HealthBar>();
-            enemyHealth.SetHealth(1);
+            enemyHealth.SetHealth(1,1);
         }
     }
 
