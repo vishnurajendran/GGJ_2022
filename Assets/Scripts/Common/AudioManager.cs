@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
     public class AudioManager : MonoBehaviour
     {
         const string BATTLE_THEME = "Audio/BG/05b Battle Theme";
-        const string MENU_THEME = "Audio/BG/01b Title Theme";
+        const string MENU_THEME = "Audio/BG/Menu";
         const string CUTSCENE_THEME = "Audio/BG/11b Downtime";
         const string UI_SLOT_ENTER_SFX = "Audio/SFX/UI Tight 12";
         const string UI_WEAPON_EQUIP_SFX = "Audio/SFX/Weapon UI 09";
@@ -61,6 +60,8 @@ using UnityEngine;
             bgSourceObj.transform.parent = this.transform;
             sfxSourceObj.transform.parent = this.transform;
             voSourceObj.transform.parent = this.transform;
+
+        DontDestroyOnLoad(this.gameObject);
         }
 
         public void PlayMouseEnterItemSlotSFX()

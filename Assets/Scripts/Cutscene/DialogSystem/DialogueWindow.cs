@@ -21,19 +21,41 @@ public class DialogueWindow : MonoBehaviour
     const string DIALOG_DATA_PATH = "DialogueData/";
 
     [Header("Dialogue References")]
+#pragma warning disable CS0649 // Field 'DialogueWindow.leftChar' is never assigned to, and will always have its default value null
     [SerializeField] Image leftChar;
+#pragma warning restore CS0649 // Field 'DialogueWindow.leftChar' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DialogueWindow.rightChar' is never assigned to, and will always have its default value null
     [SerializeField] Image rightChar;
+#pragma warning restore CS0649 // Field 'DialogueWindow.rightChar' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DialogueWindow.dialogueBody' is never assigned to, and will always have its default value null
     [SerializeField] RectTransform dialogueBody;
+#pragma warning restore CS0649 // Field 'DialogueWindow.dialogueBody' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DialogueWindow.panelCG' is never assigned to, and will always have its default value null
     [SerializeField] CanvasGroup panelCG;
+#pragma warning restore CS0649 // Field 'DialogueWindow.panelCG' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DialogueWindow.dialogueText' is never assigned to, and will always have its default value null
     [SerializeField] TMPro.TMP_Text dialogueText;
+#pragma warning restore CS0649 // Field 'DialogueWindow.dialogueText' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DialogueWindow.moreDialogueArrow' is never assigned to, and will always have its default value null
     [SerializeField] GameObject moreDialogueArrow;
+#pragma warning restore CS0649 // Field 'DialogueWindow.moreDialogueArrow' is never assigned to, and will always have its default value null
 
     [Header("Options References")]
+#pragma warning disable CS0649 // Field 'DialogueWindow.optionsBody' is never assigned to, and will always have its default value null
     [SerializeField] GameObject optionsBody;
+#pragma warning restore CS0649 // Field 'DialogueWindow.optionsBody' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DialogueWindow.optionCG' is never assigned to, and will always have its default value null
     [SerializeField] CanvasGroup optionCG;
+#pragma warning restore CS0649 // Field 'DialogueWindow.optionCG' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DialogueWindow.optionsParent' is never assigned to, and will always have its default value null
     [SerializeField] Transform optionsParent;
+#pragma warning restore CS0649 // Field 'DialogueWindow.optionsParent' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DialogueWindow.optionSelectionArrow' is never assigned to, and will always have its default value null
     [SerializeField] GameObject optionSelectionArrow;
+#pragma warning restore CS0649 // Field 'DialogueWindow.optionSelectionArrow' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'DialogueWindow.arrowMoveArea' is never assigned to, and will always have its default value null
     [SerializeField] RectTransform arrowMoveArea;
+#pragma warning restore CS0649 // Field 'DialogueWindow.arrowMoveArea' is never assigned to, and will always have its default value null
     [SerializeField] float delayBwCharAnim = 0.15f;
   Coroutine dialogStartRoutine = null;
     Coroutine dialogueAnimation = null;
@@ -49,7 +71,9 @@ public class DialogueWindow : MonoBehaviour
     DailogueEntry currEntry;
     [SerializeField] int selectedOptionIndex = 0;
     [SerializeField] int prevSelectionIndex = -1;
+#pragma warning disable CS0414 // The field 'DialogueWindow.dialogueAnimating' is assigned but its value is never used
     [SerializeField] bool dialogueAnimating = false;
+#pragma warning restore CS0414 // The field 'DialogueWindow.dialogueAnimating' is assigned but its value is never used
     GameObject optionsRef;
 
     Image activeSpeaker;

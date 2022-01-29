@@ -2,7 +2,9 @@ using UnityEditor;
 using UnityEngine;
 
 namespace MPUIKIT.Editor {
+#pragma warning disable CS0246 // The type or namespace name 'Hexagon' could not be found (are you missing a using directive or an assembly reference?)
     [CustomPropertyDrawer(typeof(Hexagon))]
+#pragma warning restore CS0246 // The type or namespace name 'Hexagon' could not be found (are you missing a using directive or an assembly reference?)
     public class HexagonPropertyDrawer : PropertyDrawer {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             EditorGUI.BeginProperty(position, label, property);

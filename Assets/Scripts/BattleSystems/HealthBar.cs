@@ -11,12 +11,22 @@ public class BattleAnimEventComplete : UnityEvent
 }
 public class HealthBar : MonoBehaviour
 {
+#pragma warning disable CS0649 // Field 'HealthBar.shatterAnim' is never assigned to, and will always have its default value null
     [SerializeField] GameObject shatterAnim;
+#pragma warning restore CS0649 // Field 'HealthBar.shatterAnim' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'HealthBar.border' is never assigned to, and will always have its default value null
     [SerializeField] GameObject border;
+#pragma warning restore CS0649 // Field 'HealthBar.border' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'HealthBar.bg' is never assigned to, and will always have its default value null
     [SerializeField] GameObject bg;
+#pragma warning restore CS0649 // Field 'HealthBar.bg' is never assigned to, and will always have its default value null
     
+#pragma warning disable CS0649 // Field 'HealthBar.cg' is never assigned to, and will always have its default value null
     [SerializeField] CanvasGroup cg;
+#pragma warning restore CS0649 // Field 'HealthBar.cg' is never assigned to, and will always have its default value null
+#pragma warning disable CS0649 // Field 'HealthBar.fill' is never assigned to, and will always have its default value null
     [SerializeField] Image fill;
+#pragma warning restore CS0649 // Field 'HealthBar.fill' is never assigned to, and will always have its default value null
 
     Coroutine animRoutine = null;
 
