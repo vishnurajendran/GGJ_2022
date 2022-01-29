@@ -15,14 +15,20 @@ MonoBehaviour:
   frontCards:
   - name: Flip
     damage: 0
+    count: 3
   - name: FrontCard1
     damage: 2
+    count: 4
   - name: FrontCard2
     damage: 3
+    count: 5
   backCards:
   - name: Flip
     damage: 0
+    count: 3
   - name: BackCard1
     damage: 2
+    count: 4
   - name: BackCard2
     damage: 3
+    count: 5

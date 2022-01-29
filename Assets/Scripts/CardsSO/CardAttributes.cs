@@ -4,5 +4,6 @@ using System;
 public class CardAttributes
 {
     public string name;
-    public float damage;   
+    public float damage;
+    public int count;
 }
