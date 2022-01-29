@@ -3,6 +3,13 @@ using Flippards;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
+public struct Result
+{
+    public int playerHealth;
+    public int enemyHealth;
+    public int turnCount;
+}
+
 public class GameState : MonoBehaviour
 {
     private DeckManager deckManager;
@@ -14,67 +21,154 @@ public class GameState : MonoBehaviour
     [SerializeField] private int enemyHealth;
     [SerializeField] private int enemyMaxHealth;
 
+    private List<Result> resultsList = new List<Result>();
 
     private bool isPlayersTurn = true;
-    private CardAttributes lastPlayerCard;
+    private CardAttributes lastPlayedCard;
 
     public int startingHandCount;
+    public int simulationCount;
+    int playerWinCount = 0;
+    int enemyWinCount = 0;
+    int drawCount = 0;
+    int turnCount = 0;
+    int newDeckCount = 0;
+    public bool autoTurn = true;
+
+    [Button("Start Simulation")]
+    private void StartSim()
+    {
+        resultsList.Clear();
+        playerWinCount = 0;
+        enemyWinCount = 0;
+        drawCount = 0;
+        InitGame();
+    }
 
     [Button("Generate Deck and distribute initial!")]
     private void InitGame()
     {
+        turnCount = 0;
+        newDeckCount = 0;
+        isPlayersTurn = true;
+        lastPlayedCard = null;
         deckManager = GetComponent<DeckManager>();
         deckManager.GenerateDeck();
 
         playerHand = new List<FullCard>();
         enemyHand = new List<FullCard>();
+        playerHealth = playerMaxHealth;
+        enemyHealth = enemyMaxHealth;
+
         for (int i = 0; i < 2 * startingHandCount; i++)
         {
-            if (i % 2 == 0)
+            FullCard cardDrawn = deckManager.DrawCardFromMasterDeck();
+            if (cardDrawn != null)
             {
-                playerHand.Add(deckManager.DrawCardFromMasterDeck());
+                if (i % 2 == 0)
+                {
+                    playerHand.Add(cardDrawn);
+                }
+                else
+                {
+                    enemyHand.Add(cardDrawn);
+                }
             }
             else
             {
-                enemyHand.Add(deckManager.DrawCardFromMasterDeck());
+                Debug.Log("Game ended and ran out of deck");
+                InitGame();
             }
         }
 
-        BattleVisualManager.Instance.onTurnAnimationsCompleted += StartNextTurn;
+        StartNextTurn();
+        if (autoTurn)
+            DoPlayerTurn();
+        //BattleVisualManager.Instance.onTurnAnimationsCompleted += StartNextTurn;
     }
-    
+
 
     private void StartNextTurn()
     {
         FullCard cardDrawn = deckManager.DrawCardFromMasterDeck();
+
+        if (cardDrawn != null)
+        {
+            if (isPlayersTurn)
+            {
+                playerHand.Add(cardDrawn);
+            }
+            else
+            {
+                enemyHand.Add(cardDrawn);
+            }
+        }
+
+        // if (cardDrawn == null)
+        // {
+        //     if (newDeckCount == 5)
+        //     {
+        //         AddResult();
+        //     }
+        //     deckManager.GenerateDeck();
+        //     cardDrawn = deckManager.DrawCardFromMasterDeck();
+        //     newDeckCount++;
+        // }
+
+        // if (isPlayersTurn)
+        // {
+        //     playerHand.Add(cardDrawn);
+        // }
+        // else
+        // {
+        //     enemyHand.Add(cardDrawn);
+        // }
+
         //UI Update with card
-        if (isPlayersTurn)
-        {
-            playerHand.Add(cardDrawn);
-        }
-        else
-        {
-            enemyHand.Add(cardDrawn);
-        }
     }
 
     [Button("Do Player Turn!")]
     private void DoPlayerTurn()
     {
+        turnCount++;
+        if (playerHand.Count == 0)
+        {
+            AddResult();
+            return;
+        }
+
         var cardToPlay = playerHand[Random.Range(0, playerHand.Count)];
         playerHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.PLAYER);
+
+        if (autoTurn)
+        {
+            StartNextTurn();
+            DoEnemyTurn();
+        }
 
     }
 
     [Button("Do Enemy Turn!")]
     private void DoEnemyTurn()
     {
+        turnCount++;
+        if (enemyHand.Count == 0)
+        {
+            AddResult();
+            return;
+        }
+
         var cardToPlay = enemyHand[Random.Range(0, enemyHand.Count)];
         enemyHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.ENEMY);
-    }
 
+        if (autoTurn)
+        {
+            StartNextTurn();
+            DoPlayerTurn();
+        }
+    }
 
     private void DoTurn(FullCard cardPlayed, EntityType entityType = EntityType.PLAYER)
     {
@@ -84,7 +178,7 @@ public class GameState : MonoBehaviour
         // if (isPlayer)
         //     cardToEval = isPlayerFlipped ? cardPlayed.backCard : cardPlayed.frontCard;
         // else
-        //     cardToEval = isEnemyFlipped ? cardPlayed.backCard : cardPlayed.frontCard;
+        //     cardToEval = isEnemyFlipped ? cardPlayed.backCard : cardPlayed.frontCard; 
 
         if (cardToEval.cardType == CardType.Flip)
         {
@@ -92,43 +186,84 @@ public class GameState : MonoBehaviour
         }
         else if (entityType == EntityType.PLAYER)
         {
-            if (lastPlayerCard != null)
+            if (cardToEval.cardType == CardType.Hit)
             {
-                if (cardToEval.cardType == CardType.Hit)
+                enemyHealth -= GetModifiedStatValue(cardToEval);
+                enemyHealth = Mathf.Clamp(enemyHealth, 0, enemyMaxHealth);
+
+                if (enemyHealth == 0)
                 {
-                    enemyHealth -= GetModifiedStatValue(cardToEval);
-                    enemyHealth = Mathf.Clamp(enemyHealth, 0, enemyMaxHealth);
-                    //Battle visuals send health and percentage
-                    BattleVisualManager.Instance.DealDamage(EntityType.ENEMY, cardToEval);
+                    AddResult();
                 }
-                else if (cardToEval.cardType == CardType.Heal)
-                {
-                    playerHealth += GetModifiedStatValue(cardToEval);
-                    playerHealth = Mathf.Clamp(playerHealth, 0, playerHealth);
-                    BattleVisualManager.Instance.GainHealth(EntityType.PLAYER, cardToEval);
-                }
+
+                //Battle visuals send health and percentage
+                BattleVisualManager.Instance.DealDamage(EntityType.ENEMY, cardToEval);
+            }
+            else if (cardToEval.cardType == CardType.Heal)
+            {
+                playerHealth += GetModifiedStatValue(cardToEval);
+                playerHealth = Mathf.Clamp(playerHealth, 0, playerHealth);
+                BattleVisualManager.Instance.GainHealth(EntityType.PLAYER, cardToEval);
             }
         }
         else if (entityType == EntityType.ENEMY)
         {
-            if (lastPlayerCard != null)
+            if (cardToEval.cardType == CardType.Hit)
             {
-                if (cardToEval.cardType == CardType.Hit)
+                playerHealth -= GetModifiedStatValue(cardToEval);
+                playerHealth = Mathf.Clamp(playerHealth, 0, playerHealth);
+                BattleVisualManager.Instance.DealDamage(EntityType.PLAYER, cardToEval);
+
+                if (enemyHealth == 0)
                 {
-                    playerHealth -= GetModifiedStatValue(cardToEval);
-                    playerHealth = Mathf.Clamp(playerHealth, 0, playerHealth);
-                    BattleVisualManager.Instance.DealDamage(EntityType.PLAYER, cardToEval);
+                    AddResult();
                 }
-                else if (cardToEval.cardType == CardType.Heal)
-                {
-                    enemyHealth += GetModifiedStatValue(cardToEval);
-                    enemyHealth = Mathf.Clamp(enemyHealth, 0, enemyMaxHealth);
-                    BattleVisualManager.Instance.GainHealth(EntityType.ENEMY, cardToEval);
-                }
+            }
+            else if (cardToEval.cardType == CardType.Heal)
+            {
+                enemyHealth += GetModifiedStatValue(cardToEval);
+                enemyHealth = Mathf.Clamp(enemyHealth, 0, enemyMaxHealth);
+                BattleVisualManager.Instance.GainHealth(EntityType.ENEMY, cardToEval);
             }
         }
 
-        lastPlayerCard = cardToEval;
+        lastPlayedCard = cardToEval;
+        isPlayersTurn = !isPlayersTurn;
+        StartNextTurn();
+    }
+
+    private void AddResult()
+    {
+        Result result = new Result();
+        result.playerHealth = playerHealth;
+        result.enemyHealth = enemyHealth;
+        result.turnCount = turnCount;
+        resultsList.Add(result);
+
+        if (resultsList.Count == simulationCount)
+        {
+            foreach (var e in resultsList)
+            {
+                if (e.playerHealth > e.enemyHealth)
+                {
+                    playerWinCount++;
+                }
+                else if (e.enemyHealth > e.playerHealth)
+                {
+                    enemyWinCount++;
+                }
+                else
+                {
+                    drawCount++;
+                }
+            }
+
+            Debug.Log("PlayerWin " + (float)playerWinCount * 100 / simulationCount + "% " + "EnemyWin " + (float)enemyWinCount * 100 / simulationCount + "% " + "Draw " + (float)drawCount * 100 / simulationCount + "% + turnCount " + turnCount);
+        }
+        else
+        {
+            InitGame();
+        }
     }
 
     private void FlipCards(EntityType entity, CardAttributes cardToEval)
@@ -144,15 +279,15 @@ public class GameState : MonoBehaviour
 
     private int GetModifiedStatValue(CardAttributes playedCard)
     {
-        if (playedCard.cardClass == lastPlayerCard.cardClass)
+        if (lastPlayedCard == null || playedCard.cardClass == lastPlayedCard.cardClass)
         {
             return playedCard.value;
         }
         else
         {
-            if (playedCard.cardClass == CardClass.Liquid && lastPlayerCard.cardClass == CardClass.Weight ||
-                playedCard.cardClass == CardClass.Weight && lastPlayerCard.cardClass == CardClass.Paper ||
-                playedCard.cardClass == CardClass.Paper && lastPlayerCard.cardClass == CardClass.Liquid)
+            if (playedCard.cardClass == CardClass.Liquid && lastPlayedCard.cardClass == CardClass.Weight ||
+                playedCard.cardClass == CardClass.Weight && lastPlayedCard.cardClass == CardClass.Paper ||
+                playedCard.cardClass == CardClass.Paper && lastPlayedCard.cardClass == CardClass.Liquid)
             {
                 if (playedCard.cardType == CardType.Hit)
                 {
@@ -163,9 +298,9 @@ public class GameState : MonoBehaviour
                     return playedCard.value + 1;
                 }
             }
-            else if (playedCard.cardClass == CardClass.Weight && lastPlayerCard.cardClass == CardClass.Liquid ||
-                     playedCard.cardClass == CardClass.Paper && lastPlayerCard.cardClass == CardClass.Weight ||
-                     playedCard.cardClass == CardClass.Liquid && lastPlayerCard.cardClass == CardClass.Paper)
+            else if (playedCard.cardClass == CardClass.Weight && lastPlayedCard.cardClass == CardClass.Liquid ||
+                     playedCard.cardClass == CardClass.Paper && lastPlayedCard.cardClass == CardClass.Weight ||
+                     playedCard.cardClass == CardClass.Liquid && lastPlayedCard.cardClass == CardClass.Paper)
             {
                 if (playedCard.cardType == CardType.Hit)
                 {

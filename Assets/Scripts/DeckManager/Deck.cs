@@ -13,7 +13,6 @@ namespace Flippards
 
         public Deck(List<CardAttributes> frontCards, List<CardAttributes> backCards)
         {
-            
             frontCards.Shuffle();
             backCards.Shuffle();
 
@@ -31,7 +30,7 @@ namespace Flippards
         {
             if (FullCardDeck.Count == 0)
             {
-                Debug.LogError($"Ran out of deck!");
+                //Debug.LogError($"Ran out of deck!");
                 return null;
             }
             var removedCard = FullCardDeck[0];

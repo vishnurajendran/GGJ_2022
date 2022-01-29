@@ -18,189 +18,265 @@ MonoBehaviour:
     cardClass: 3
     cardType: 2
     count: 3
+    frontImage: 
+    backImage: 
   - name: Stapler
-    value: 3
+    value: 4
     cardClass: 0
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Stapler
-    value: 3
+    value: 4
     cardClass: 0
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Paperweight
     value: 2
     cardClass: 0
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Paperweight
     value: 2
     cardClass: 0
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Pen
     value: 1
     cardClass: 0
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Pen
     value: 1
     cardClass: 0
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Hot Coffee
-    value: 3
+    value: 4
     cardClass: 1
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Hot Coffee
-    value: 3
+    value: 4
     cardClass: 1
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Jam
     value: 2
     cardClass: 1
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Jam
     value: 2
     cardClass: 1
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Water Bottle
     value: 1
     cardClass: 1
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Water Bottle
     value: 1
     cardClass: 1
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Company Rule Book
-    value: 3
+    value: 4
     cardClass: 2
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Company Rule Book
-    value: 3
+    value: 4
     cardClass: 2
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Memo
     value: 2
     cardClass: 2
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Memo
     value: 2
     cardClass: 2
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Payslip
     value: 1
     cardClass: 2
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Payslip
     value: 1
     cardClass: 2
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   backCards:
   - name: Flip
     value: 0
     cardClass: 0
     cardType: 0
     count: 3
+    frontImage: 
+    backImage: 
   - name: Stapler
-    value: 3
+    value: 4
     cardClass: 0
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Stapler
-    value: 3
+    value: 4
     cardClass: 0
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Paperweight
     value: 2
     cardClass: 0
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Paperweight
     value: 2
     cardClass: 0
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Pen
     value: 1
     cardClass: 0
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Pen
     value: 1
     cardClass: 0
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Hot Coffee
-    value: 3
+    value: 4
     cardClass: 1
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Hot Coffee
-    value: 3
+    value: 4
     cardClass: 1
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Jam
     value: 2
     cardClass: 1
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Jam
     value: 2
     cardClass: 1
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Water Bottle
     value: 1
     cardClass: 1
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Water Bottle
     value: 1
     cardClass: 1
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Company Rule Book
-    value: 3
+    value: 4
     cardClass: 2
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Company Rule Book
-    value: 3
+    value: 4
     cardClass: 2
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Memo
     value: 2
     cardClass: 2
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Memo
     value: 2
     cardClass: 2
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 
   - name: Payslip
     value: 1
     cardClass: 2
     cardType: 0
     count: 1
+    frontImage: 
+    backImage: 
   - name: Payslip
     value: 1
     cardClass: 2
     cardType: 1
     count: 1
+    frontImage: 
+    backImage: 

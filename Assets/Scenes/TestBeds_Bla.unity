@@ -611,7 +611,177 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardDB: {fileID: 11400000, guid: 56eba2cf4ed80bf47b221fd659271932, type: 2}
   MasterDeck:
-    FullCardDeck: []
+    FullCardDeck:
+    - frontCard:
+        name: Flip
+        value: 0
+        cardClass: 3
+        cardType: 2
+        count: 3
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Pen
+        value: 1
+        cardClass: 0
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
+    - frontCard:
+        name: Pen
+        value: 1
+        cardClass: 0
+        cardType: 1
+        count: 1
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Flip
+        value: 0
+        cardClass: 0
+        cardType: 0
+        count: 3
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
+    - frontCard:
+        name: Memo
+        value: 2
+        cardClass: 2
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Hot Coffee
+        value: 4
+        cardClass: 1
+        cardType: 1
+        count: 1
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
+    - frontCard:
+        name: Water Bottle
+        value: 1
+        cardClass: 1
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Water Bottle
+        value: 1
+        cardClass: 1
+        cardType: 1
+        count: 1
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
+    - frontCard:
+        name: Payslip
+        value: 1
+        cardClass: 2
+        cardType: 1
+        count: 1
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Water Bottle
+        value: 1
+        cardClass: 1
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
+    - frontCard:
+        name: Pen
+        value: 1
+        cardClass: 0
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Hot Coffee
+        value: 4
+        cardClass: 1
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
+    - frontCard:
+        name: Jam
+        value: 2
+        cardClass: 1
+        cardType: 1
+        count: 1
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Paperweight
+        value: 2
+        cardClass: 0
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
+    - frontCard:
+        name: Stapler
+        value: 4
+        cardClass: 0
+        cardType: 1
+        count: 1
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Company Rule Book
+        value: 4
+        cardClass: 2
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
+    - frontCard:
+        name: Stapler
+        value: 4
+        cardClass: 0
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Memo
+        value: 2
+        cardClass: 2
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
+    - frontCard:
+        name: Company Rule Book
+        value: 4
+        cardClass: 2
+        cardType: 0
+        count: 1
+        frontImage: 
+        backImage: 
+      backCard:
+        name: Flip
+        value: 0
+        cardClass: 0
+        cardType: 0
+        count: 3
+        frontImage: 
+        backImage: 
+      isCardFlipped: 0
 --- !u!114 &803977012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,13 +794,202 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d43d5b3551408f478af1d6f11900572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHand: []
-  enemyHand: []
-  playerHealth: 100
-  playerMaxHealth: 100
-  enemyHealth: 100
-  enemyMaxHealth: 100
+  playerHand:
+  - frontCard:
+      name: Flip
+      value: 0
+      cardClass: 3
+      cardType: 2
+      count: 3
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Jam
+      value: 2
+      cardClass: 1
+      cardType: 0
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  - frontCard:
+      name: Water Bottle
+      value: 1
+      cardClass: 1
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Stapler
+      value: 4
+      cardClass: 0
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  - frontCard:
+      name: Company Rule Book
+      value: 4
+      cardClass: 2
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Company Rule Book
+      value: 4
+      cardClass: 2
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  - frontCard:
+      name: Hot Coffee
+      value: 4
+      cardClass: 1
+      cardType: 0
+      count: 1
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Pen
+      value: 1
+      cardClass: 0
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  - frontCard:
+      name: Paperweight
+      value: 2
+      cardClass: 0
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Payslip
+      value: 1
+      cardClass: 2
+      cardType: 0
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  - frontCard:
+      name: Paperweight
+      value: 2
+      cardClass: 0
+      cardType: 0
+      count: 1
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Jam
+      value: 2
+      cardClass: 1
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  enemyHand:
+  - frontCard:
+      name: Memo
+      value: 2
+      cardClass: 2
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Paperweight
+      value: 2
+      cardClass: 0
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  - frontCard:
+      name: Jam
+      value: 2
+      cardClass: 1
+      cardType: 0
+      count: 1
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Payslip
+      value: 1
+      cardClass: 2
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  - frontCard:
+      name: Flip
+      value: 0
+      cardClass: 3
+      cardType: 2
+      count: 3
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Flip
+      value: 0
+      cardClass: 0
+      cardType: 0
+      count: 3
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  - frontCard:
+      name: Payslip
+      value: 1
+      cardClass: 2
+      cardType: 0
+      count: 1
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Memo
+      value: 2
+      cardClass: 2
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  - frontCard:
+      name: Hot Coffee
+      value: 4
+      cardClass: 1
+      cardType: 1
+      count: 1
+      frontImage: 
+      backImage: 
+    backCard:
+      name: Stapler
+      value: 4
+      cardClass: 0
+      cardType: 0
+      count: 1
+      frontImage: 
+      backImage: 
+    isCardFlipped: 0
+  playerHealth: 20
+  playerMaxHealth: 20
+  enemyHealth: 20
+  enemyMaxHealth: 20
   startingHandCount: 5
+  simulationCount: 1
+  autoTurn: 0
 --- !u!114 &803977013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,6 +1572,36 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2827192682905220111, guid: a88231a8987ce864ebc07c381c9fce7c, type: 3}
   m_PrefabInstance: {fileID: 1519439347}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1885157038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1885157039}
+  m_Layer: 0
+  m_Name: Stapler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1885157039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885157038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.53333324, y: 0, z: -1.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2023928074
 GameObject:
   m_ObjectHideFlags: 0

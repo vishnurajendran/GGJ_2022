@@ -19,17 +19,17 @@ namespace Flippards
             {
                 var frontCardTemplate = cardDB.frontCards[i];
                 var backCardTemplate = cardDB.backCards[i];
-                Debug.Log($"Starting for {frontCardTemplate.name} and {backCardTemplate.name}");
+                // Debug.Log($"Starting for {frontCardTemplate.name} and {backCardTemplate.name}");
 
                 for (int j = 0; j < frontCardTemplate.count; j++)
                 {
-                    Debug.Log($"Timers = {j}");
+                    // Debug.Log($"Timers = {j}");
                     frontCards.Add(new CardAttributes(frontCardTemplate));
                 }
 
                 for (int j = 0; j < backCardTemplate.count; j++)
                 {
-                    Debug.Log($"Timers = {j}");
+                    // Debug.Log($"Timers = {j}");
                     backCards.Add(new CardAttributes(backCardTemplate));
                 }
             }
