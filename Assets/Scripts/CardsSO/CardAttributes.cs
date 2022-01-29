@@ -10,4 +10,8 @@ public class CardAttributes
     public CardClass cardClass;
     public CardType cardType;
     public int count;
+
+
+    public string frontImage;
+    public string backImage;
 }
