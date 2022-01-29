@@ -12,7 +12,7 @@ public enum EntityType{
 public class BattleVisuals : MonoBehaviour
 {
     private static BattleVisuals instance;
-    public static BattleVisuals Instancea
+    public static BattleVisuals Instance
     {
         get
         {
@@ -25,13 +25,6 @@ public class BattleVisuals : MonoBehaviour
 
     [SerializeField] Animator animator;
     [SerializeField] Transform statsCanvas;
-    [SerializeField] EntityType type;
-    [SerializeField] bool hit = false;
-    [SerializeField] bool begin = false;
-    [SerializeField] bool lose = false;
-    [SerializeField] bool win = false;
-    [SerializeField] Transform pl;
-    [SerializeField] Transform en;
 
     HealthBar playerHealth;
     HealthBar enemyHealth;
@@ -71,12 +64,19 @@ public class BattleVisuals : MonoBehaviour
 
     public void ApplyDamage(EntityType entityType ,int damageValue, float healthPerc)
     {
+        healthPerc = Mathf.Clamp01(healthPerc);
         if(entityType == EntityType.PLAYER)
         {
+            if (playerHealth.RemainingHealth <= 0)
+                return;
+
             playerHealth.SetHealth(healthPerc);
         }
         else
         {
+            if (enemyHealth.RemainingHealth <= 0)
+                return;
+
             enemyHealth.SetHealth(healthPerc);
         }
 
