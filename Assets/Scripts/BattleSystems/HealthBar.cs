@@ -11,10 +11,22 @@ public class BattleAnimEventComplete : UnityEvent
 }
 public class HealthBar : MonoBehaviour
 {
+    [SerializeField] GameObject shatterAnim;
+    [SerializeField] GameObject border;
+    [SerializeField] GameObject bg;
+    
     [SerializeField] CanvasGroup cg;
     [SerializeField] Image fill;
 
     Coroutine animRoutine = null;
+
+    public float RemainingHealth
+    {
+        get
+        {
+            return fill.fillAmount;
+        }
+    }
 
     public void SetHealth(float perc)
     {
@@ -44,7 +56,19 @@ public class HealthBar : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        yield return new WaitForSeconds(2);
+        if (fill.fillAmount <= 0)
+        {
+            shatterAnim.SetActive(true);
+            fill.gameObject.SetActive(false);
+            border.gameObject.SetActive(false);
+            bg.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1);
+        }
+
         timeStep = 0;
         currAlpha = cg.alpha;
         while (timeStep <= 1)
