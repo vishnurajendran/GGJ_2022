@@ -32,6 +32,9 @@ public partial class GameState : MonoBehaviour
     [ShowInInspector, ReadOnly] private bool isPlayersTurn = true;
     private CardAttributes lastPlayedCard;
 
+    private List<string> enemyList = new List<string> { "Liam", "Dualette", "Natasha", "Cyko", "Boss" };
+    private List<int> enemyHealthList = new List<int> { 20, 30, 40, 50, 70 };
+    private List<int> playerHealthList = new List<int> { 20, 25, 30, 35, 50 };
 
     [ShowInInspector, ReadOnly] private int CurrentSimulationIndex;
 
@@ -48,7 +51,29 @@ public partial class GameState : MonoBehaviour
     int turnCount = 0;
     int newDeckCount = 0;
     public bool autoTurn = true;
+    private int currentLevel;
     private WaitForSeconds waitTimeBetweenTurns = new WaitForSeconds(0.01f);
+
+    private void Start()
+    {
+        // PlayerPrefs.SetInt("CurrentLevel", 0);
+        currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
+        Debug.Log("Current enemy level " + currentLevel);
+        GameMenuController.Instance.OnNextClicked.AddListener(() =>
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Prod");
+        });
+        GameMenuController.Instance.OnRestartClicked.AddListener(() =>
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        });
+        // CutsceneManager.Instance.LoadCutsceneFor(enemyList[currentLevel]);
+        CutsceneManager.Instance.LoadCutsceneFor("Test");
+        CutsceneManager.Instance.OnCutsceneComplete.AddListener(() =>
+        {
+            InitGame();
+        });
+    }
 
     [Button("Start Simulation")]
     private void StartSim()
@@ -59,7 +84,6 @@ public partial class GameState : MonoBehaviour
         drawCount = 0;
         InitGame();
     }
-
 
     [Button("Perform Player turn")]
     public void DebugPlayerMove()
@@ -76,7 +100,9 @@ public partial class GameState : MonoBehaviour
     [Button("Generate Deck and distribute initial!")]
     private void InitGame()
     {
+        // PlayerPrefs.DeleteAll();
         BattleVisualManager.Instance.InitVisuals();
+
         turnCount = 0;
         newDeckCount = 0;
         // isPlayersTurn = Random.Range(0, 100) % 2 == 0;
@@ -87,6 +113,9 @@ public partial class GameState : MonoBehaviour
 
         playerHand = new List<FullCard>();
         enemyHand = new List<FullCard>();
+
+        playerMaxHealth = playerHealthList[currentLevel];
+        enemyMaxHealth = enemyHealthList[currentLevel];
         playerHealth = playerMaxHealth;
         enemyHealth = enemyMaxHealth;
 
@@ -183,10 +212,16 @@ public partial class GameState : MonoBehaviour
     {
         if (playerHealth > enemyHealth)
         {
+            currentLevel++;
+            currentLevel = Mathf.Clamp(currentLevel, 0, 5);
+            PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+            PlayerPrefs.Save();
             BattleVisualManager.Instance.ShowVictory();
         }
         else
         {
+            PlayerPrefs.SetInt("CurrentLevel", 0);
+            PlayerPrefs.Save();
             BattleVisualManager.Instance.ShowDefeat();
         }
     }
@@ -239,6 +274,9 @@ public partial class GameState : MonoBehaviour
                 if (enemyHealth == 0)
                 {
                     AddResult();
+                    currentLevel++;
+                    PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+                    PlayerPrefs.Save();
                     BattleVisualManager.Instance.ShowVictory();
                 }
 
@@ -265,6 +303,8 @@ public partial class GameState : MonoBehaviour
                 if (playerHealth == 0)
                 {
                     AddResult();
+                    PlayerPrefs.SetInt("CurrentLevel", 0);
+                    PlayerPrefs.Save();
                     BattleVisualManager.Instance.ShowDefeat();
                 }
             }

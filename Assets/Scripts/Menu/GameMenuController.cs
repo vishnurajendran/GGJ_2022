@@ -33,8 +33,8 @@ public class GameMenuController : MonoBehaviour
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
 
-    BattleAnimEventComplete OnRestartClicked;
-    BattleAnimEventComplete OnNextClicked;
+    public BattleAnimEventComplete OnRestartClicked;
+    public BattleAnimEventComplete OnNextClicked;
 
     GameObject prevMenu;
 
