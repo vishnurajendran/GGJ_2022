@@ -182,6 +182,7 @@ public partial class GameState : MonoBehaviour
         }
 
         var cardToPlay = GetAIMove();
+        EnemyCardHolder.Instance.PlayCard(enemyHand.IndexOf(cardToPlay));
         enemyHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.ENEMY);
 
@@ -228,7 +229,7 @@ public partial class GameState : MonoBehaviour
             {
                 var t = GetModifiedStatValue(cardToEval);
                 playerHealth += t;
-                playerHealth = Mathf.Clamp(playerHealth, 0, playerHealth);
+                playerHealth = Mathf.Clamp(playerHealth, 0, playerMaxHealth);
                 BattleVisualManager.Instance.GainHealth(EntityType.PLAYER, cardToEval, t);
             }
         }
@@ -238,7 +239,7 @@ public partial class GameState : MonoBehaviour
             {
                 var t = GetModifiedStatValue(cardToEval);
                 playerHealth -= t;
-                playerHealth = Mathf.Clamp(playerHealth, 0, playerHealth);
+                playerHealth = Mathf.Clamp(playerHealth, 0, playerMaxHealth);
                 BattleVisualManager.Instance.DealDamage(EntityType.PLAYER, cardToEval, t);
 
                 if (enemyHealth == 0)

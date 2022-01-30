@@ -36,11 +36,11 @@ public class EnemyCardHolder : MonoBehaviour, ICardHolder
         radialLayout.CalculateLayoutInputVertical();
     }
 
-    public void PlayCard(CardsView cardPlayed)
+    public void PlayCard(int cardIndex)
     {
-        gameState.CheckAndTakeTurn(cardsInHand.IndexOf(cardPlayed));
-        cardsInHand.Remove(cardPlayed);
-        Destroy(cardPlayed.gameObject);
+        CardsView cardToPlay = cardsInHand[cardIndex];
+        cardsInHand.RemoveAt(cardIndex);
+        Destroy(cardToPlay.gameObject);
     }
 
     public void FlipCards()
@@ -54,5 +54,10 @@ public class EnemyCardHolder : MonoBehaviour, ICardHolder
         {
             yield return StartCoroutine(cardsInHand[i].Flip());
         }
+    }
+
+    public void PlayCard(CardsView cardPlayed)
+    {
+       
     }
 }

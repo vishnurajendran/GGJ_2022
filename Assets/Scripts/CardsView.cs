@@ -96,7 +96,7 @@ public class CardsView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         isFlipped = !isFlipped;
         var timer = 0f;
-        var animTime = 0.2f;
+        var animTime = 0.1f;
         var from = transform.localRotation;
         var to = Quaternion.Euler(transform.localRotation.eulerAngles + new Vector3(0, 90, 0));
         while (timer < animTime)
@@ -109,7 +109,7 @@ public class CardsView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         image.sprite = isFlipped ? back : front;
 
         timer = 0f;
-        animTime = 0.2f;
+        animTime = 0.1f;
         from = transform.localRotation;
         to = Quaternion.Euler(transform.localRotation.eulerAngles + new Vector3(0, -90, 0));
         while (timer < animTime)
