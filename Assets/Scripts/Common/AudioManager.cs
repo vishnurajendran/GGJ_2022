@@ -42,7 +42,13 @@ public class AudioManager : MonoBehaviour
         AudioSource sfxSource;
         AudioSource voSource;
 
-        private void Init()
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+            Destroy(this.gameObject);
+    }
+
+    private void Init()
         {
             if (bgSource != null)
                 Destroy(bgSource.gameObject);
@@ -144,11 +150,13 @@ public class AudioManager : MonoBehaviour
         {
             if (string.IsNullOrEmpty(clipName))
             {
-            Debug.Log("Clip Empty");
+                Debug.Log("Clip Empty");
                 return;
             }
 
             AudioClip clip = Resources.Load<AudioClip>("Audio/BG/" + clipName);
+            
+            Debug.Log(clip.name + " " + bgSource.clip?.name);
             
             if (bgSource.clip == clip)
                 return;
