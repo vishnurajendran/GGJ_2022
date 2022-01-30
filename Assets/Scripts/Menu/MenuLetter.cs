@@ -28,13 +28,13 @@ public class MenuLetter: MonoBehaviour
                 axis = Vector2.up;
             }
             
-            Vector3 currEuler = transform.eulerAngles;
+            Vector3 currEuler = transform.localRotation.eulerAngles;
             Vector3 newEuler = currEuler + (axis * 180);
 
             while(timeStep <= 1)
             {
                 timeStep += Time.deltaTime / 0.15f;
-                transform.rotation = Quaternion.Lerp(Quaternion.Euler(currEuler), Quaternion.Euler(newEuler), timeStep);
+                transform.localRotation = Quaternion.Lerp(Quaternion.Euler(currEuler), Quaternion.Euler(newEuler), timeStep);
                 yield return new WaitForEndOfFrame();
             }
 

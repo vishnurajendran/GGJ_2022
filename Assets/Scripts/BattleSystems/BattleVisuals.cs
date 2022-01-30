@@ -48,6 +48,8 @@ public class BattleVisuals : SerializedMonoBehaviour
 
     [SerializeField] Animator animator;
     [SerializeField] Transform statsCanvas;
+    [SerializeField] GameObject playerHighlight;
+    [SerializeField] GameObject enemyHighlight;
 
 
     [Header("Testing")]
@@ -222,6 +224,26 @@ public class BattleVisuals : SerializedMonoBehaviour
 
         Instantiate(prefabsRef[type].prefab, transform.position, prefabsRef[type].prefab.transform.rotation);
         AudioManager.Instance.PlayClip(prefabsRef[type].sfx);
+    }
+
+    public void ShowSelector(EntityType type)
+    {
+        if(type == EntityType.PLAYER)
+        {
+            enemyHighlight.SetActive(false);
+            playerHighlight.SetActive(true);
+        }
+        else
+        {
+            enemyHighlight.SetActive(true);
+            playerHighlight.SetActive(false);
+        }
+    }
+
+    public void HideSelectors()
+    {
+        enemyHighlight.SetActive(false);
+        playerHighlight.SetActive(false);
     }
 
     [Button("SimulateHit")]

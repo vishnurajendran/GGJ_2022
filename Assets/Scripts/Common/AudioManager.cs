@@ -4,9 +4,9 @@ using UnityEngine;
 
     public class AudioManager : MonoBehaviour
     {
-        const string BATTLE_THEME = "Audio/BG/05b Battle Theme";
-        const string MENU_THEME = "Audio/BG/Menu";
-        const string CUTSCENE_THEME = "Audio/BG/11b Downtime";
+        const string BATTLE_THEME = "Audio/BG/Extreme Energy - Electric Guitar Music - Free Copyright";
+        const string MENU_THEME = "Audio/BG/Jack The Lumberer";
+        const string CUTSCENE_THEME = "Audio/BG/Jack The Lumberer";
         const string UI_SLOT_ENTER_SFX = "Audio/SFX/UI Tight 12";
         const string UI_WEAPON_EQUIP_SFX = "Audio/SFX/Weapon UI 09";
         const string PICKUP_SFX = "Audio/SFX/LRPG_Positive_Notification";
@@ -34,6 +34,8 @@ using UnityEngine;
         }
 
         [SerializeField] UnityEngine.Audio.AudioMixer mixer;
+        [SerializeField] Transform musicTitleParent;
+        [SerializeField] GameObject musicTitleRef;
 
         AudioSource bgSource;
         AudioSource sfxSource;
@@ -137,11 +139,23 @@ using UnityEngine;
             bgSource.Stop();
         }
 
+        public void PlayTheme(string clipName)
+        {
+            if (string.IsNullOrEmpty(clipName))
+                return;
+
+            bgSource.clip = Resources.Load<AudioClip>("Audio/BG/"+clipName);
+            bgSource.loop = true;
+            bgSource.Play();
+            ShowTitle();
+    }
+
         public void PlayCutSceneTheme()
         {
             bgSource.clip = Resources.Load<AudioClip>(CUTSCENE_THEME);
             bgSource.loop = true;
             bgSource.Play();
+            ShowTitle();
         }
 
         public void PlayBattleTheme()
@@ -149,6 +163,7 @@ using UnityEngine;
             bgSource.clip = Resources.Load<AudioClip>(BATTLE_THEME);
             bgSource.loop = true;
             bgSource.Play();
+            ShowTitle();
         }
 
     public void PlayMenuTheme()
@@ -156,5 +171,40 @@ using UnityEngine;
         bgSource.clip = Resources.Load<AudioClip>(MENU_THEME);
         bgSource.loop = true;
         bgSource.Play();
+        ShowTitle();
+    }
+
+    void ShowTitle()
+    {
+        if (bgSource.clip == null)
+            return;
+
+        GameObject go = Instantiate(musicTitleRef, musicTitleParent);
+        go.GetComponent<TMPro.TMP_Text>().text = bgSource.name;
+        StartCoroutine(ShowMusicTitle(go.GetComponent<CanvasGroup>()));
+    }
+
+    IEnumerator ShowMusicTitle(CanvasGroup cg)
+    {
+        float timeStep = 0;
+        while(timeStep <= 1)
+        {
+            timeStep += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(0, 1, timeStep);
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(3);
+
+        timeStep = 0;
+        while (timeStep <= 1)
+        {
+            timeStep += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(1, 0, timeStep);
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForEndOfFrame();
+        Destroy(cg.gameObject);
     }
 }
