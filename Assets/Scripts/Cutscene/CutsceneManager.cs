@@ -21,9 +21,13 @@ public class CutsceneManager : MonoBehaviour
     [SerializeField] DialogueWindow dialogueWindow;
     [SerializeField] Image cutSceneBG;
     [SerializeField] bool isTesting = false;
+    [SerializeField] Animator animator;
     
     public BattleAnimEventComplete OnCutsceneComplete;
-    
+    bool open = false;
+
+    string currCharName;
+
     public void SetImage(Sprite img)
     {
         cutSceneBG.gameObject.SetActive(false);
@@ -36,22 +40,42 @@ public class CutsceneManager : MonoBehaviour
 
     public void LoadCutsceneFor(string charName)
     {
-        OnCutsceneComplete.RemoveListener(OnCutsceneClose);
-        OnCutsceneComplete.AddListener(OnCutsceneClose);
-        dialogueWindow.StartDialogue(charName, () =>
-        {
-            OnCutsceneComplete?.Invoke();
-        });
+        this.currCharName = charName;
+        open = true;
+        SwipeCut(0.5f);
     }
 
-    void OnCutsceneClose()
+    public void OnSwipeCut()
+    {
+        if (open)
+        {
+            dialogueWindow.StartDialogue(currCharName, () =>
+            {
+                open = false;
+                SwipeCut(0);
+            }, 0.65f);
+        }
+        else
+        {
+            CloseCutscene();
+        }
+    }
+
+    void CloseCutscene()
     {
         cutSceneBG.gameObject.SetActive(false);
+        OnCutsceneComplete?.Invoke();
     }
 
     private void Start()
     {
         if(isTesting)
             LoadCutsceneFor("Test");
+    }
+
+    void SwipeCut(float jumpTo = 0)
+    {
+        AudioManager.Instance.PlayWhooshSFX();
+        animator.Play("SwipeCut",0,jumpTo);
     }
 }

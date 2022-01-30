@@ -16,6 +16,7 @@ public class MenuController : MonoBehaviour
 
     public void OnPlay()
     {
+        AudioManager.Instance.PlayWhooshSFX();
         playButton.interactable = false;
         animator.Play("FillScreen");
         Invoke("LoadGame", 2.75f);

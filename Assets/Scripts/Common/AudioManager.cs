@@ -69,6 +69,11 @@ using UnityEngine;
         DontDestroyOnLoad(this.gameObject);
         }
 
+        public void PlayClip(AudioClip clip)
+        {
+            sfxSource.PlayOneShot(clip);
+        }
+
         public void PlayMouseEnterItemSlotSFX()
         {
             AudioClip sfxClip = Resources.Load<AudioClip>(UI_SLOT_ENTER_SFX);

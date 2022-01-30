@@ -54,7 +54,7 @@ public class DialogueWindow : MonoBehaviour
 
     Image activeSpeaker;
 
-    public void StartDialogue(string npcName, System.Action onDialogueCompleted = null)
+    public void StartDialogue(string npcName, System.Action onDialogueCompleted = null, float initialDelay = 0)
     {
         optionsBody.SetActive(false);
         optionCG.alpha = 0;
@@ -74,11 +74,13 @@ public class DialogueWindow : MonoBehaviour
             StopCoroutine(dialogStartRoutine);
 
         dialogueText.text = "";
-        dialogStartRoutine = StartCoroutine(ShowDialogueBox());
+        dialogStartRoutine = StartCoroutine(ShowDialogueBox(initialDelay));
     }
 
-    IEnumerator ShowDialogueBox()
+    IEnumerator ShowDialogueBox(float delay)
     {
+        yield return new WaitForSeconds(delay);
+
         AudioManager.Instance.PlayWhooshSFX();
         float timeStep = 0;
         float startAlpha = panelCG.alpha;
@@ -93,7 +95,6 @@ public class DialogueWindow : MonoBehaviour
             yield
             return new WaitForEndOfFrame();
         }
-
         ShowDialogueText(dialogueParser.GetStartDialogue());
     }
 

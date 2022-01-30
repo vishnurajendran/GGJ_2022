@@ -25,6 +25,13 @@ public enum HitFXType
     FLIP
 }
 
+[System.Serializable]
+public class FXData
+{
+    public GameObject prefab;
+    public AudioClip sfx;
+}
+
 public class BattleVisuals : SerializedMonoBehaviour
 {
     private static BattleVisuals instance;
@@ -47,7 +54,8 @@ public class BattleVisuals : SerializedMonoBehaviour
     [SerializeField] bool isTesting = false;
     [SerializeField] Transform pl;
     [SerializeField] Transform en;
-
+    [SerializeField] EntityType target;
+    [SerializeField] HitFXType hitFXType;
 
     HealthBar playerHealth;
     HealthBar enemyHealth;
@@ -56,7 +64,7 @@ public class BattleVisuals : SerializedMonoBehaviour
     GameObject damageTextRef;
     GameObject HealthbarRef;
 
-    [OdinSerialize] Dictionary<HitFXType, GameObject> prefabsRef; 
+    [OdinSerialize] Dictionary<HitFXType, FXData> prefabsRef; 
 
 
     public BattleAnimEventComplete onBeginComplete;
@@ -212,6 +220,13 @@ public class BattleVisuals : SerializedMonoBehaviour
         if (transform == null || type == HitFXType.NONE)
             return;
 
-        Instantiate(prefabsRef[type], transform.position, Quaternion.identity);
+        Instantiate(prefabsRef[type].prefab, transform.position, prefabsRef[type].prefab.transform.rotation);
+        AudioManager.Instance.PlayClip(prefabsRef[type].sfx);
+    }
+
+    [Button("SimulateHit")]
+    void HitSimulate()
+    {
+        AddHitFX(hitFXType, target == EntityType.PLAYER?pl:en);
     }
 }
