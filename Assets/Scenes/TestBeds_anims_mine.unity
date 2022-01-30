@@ -1350,7 +1350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueWindow: {fileID: 4501479755321174712}
   cutSceneBG: {fileID: 21688309}
-  isTesting: 1
+  isTesting: 0
   animator: {fileID: 4501479754725130704}
   OnCutsceneComplete:
     m_PersistentCalls:
