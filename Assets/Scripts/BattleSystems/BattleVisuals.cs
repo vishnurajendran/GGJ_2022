@@ -294,6 +294,7 @@ public class BattleVisuals : SerializedMonoBehaviour
                 playerAnimator = pl.GetComponentInChildren<Animator>();
             }
 
+            Debug.Log("Player ATTACK!!");
             playerAnimator.SetTrigger("Attack");
         }
         else
@@ -303,6 +304,7 @@ public class BattleVisuals : SerializedMonoBehaviour
                 enemyAnimator = enObj.GetComponentInChildren<Animator>();
             }
 
+            Debug.Log("Enemy ATTACK!!");
             enemyAnimator.SetTrigger("Attack");
         }
     }

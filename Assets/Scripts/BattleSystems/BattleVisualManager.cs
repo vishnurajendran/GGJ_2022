@@ -74,6 +74,8 @@ namespace Flippards
                 (startPos, endPos) = (endPos, startPos);
 
             activeThrowObject.Init(gameState.autoTurn, startPos, endPos, OnThrowObjectReached);
+            BattleVisuals.Instance.Attack((targetEntity == EntityType.PLAYER) ? EntityType.ENEMY : EntityType.PLAYER);
+
 
             void OnThrowObjectReached()
             {
