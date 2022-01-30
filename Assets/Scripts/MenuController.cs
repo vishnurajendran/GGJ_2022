@@ -28,6 +28,6 @@ public class MenuController : MonoBehaviour
 
     void LoadGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TestBeds_Sandbox2");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("TestBeds_anims");
     }
 }
