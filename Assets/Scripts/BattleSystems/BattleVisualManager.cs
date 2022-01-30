@@ -25,20 +25,26 @@ namespace Flippards
             }
         }
 
+
+        [SerializeField] private Transform playerParticePlaceHolder;
+        [SerializeField] private Transform npcParticePlaceHolder;
+
         [SerializeField] private Transform playerPlaceHolder;
-        [SerializeField] private Transform npcPlaceHolder;
+        [SerializeField] private Transform npcPlaceHolder => BattleVisuals.Instance.NpcHolder;
 
 
         public Action onTurnAnimationsCompleted;
         public Action<EntityType> onFlipTargetChosen;
 
-        public void InitVisuals()
+        public void InitVisuals(string enemyName)
         {
+            BattleVisuals.Instance.LoadEnemy(enemyName);
             BattleVisuals.Instance.onBeginComplete.AddListener(() =>
             {
                 BattleVisuals.Instance.SetupEntity(npcPlaceHolder.GetChild(0), EntityType.ENEMY);
-                BattleVisuals.Instance.SetupEntity(playerPlaceHolder.GetChild(0), EntityType.PLAYER);
+                BattleVisuals.Instance.SetupEntity(playerPlaceHolder.GetChild(0).GetChild(0), EntityType.PLAYER);
             });
+
             BattleVisuals.Instance.PlayBegin();
         }
 
@@ -49,7 +55,7 @@ namespace Flippards
             // {
             //     fullCard.view.Flip();
             // }
-            BattleVisuals.Instance.AddHitFX(HitFXType.FLIP, entity == EntityType.PLAYER ? playerPlaceHolder : npcPlaceHolder);
+            BattleVisuals.Instance.AddHitFX(HitFXType.FLIP, entity == EntityType.PLAYER ? playerParticePlaceHolder : npcParticePlaceHolder);
             string s = $"Flipped {entity}s Cards.";
             Debug.Log($"{s.GetRichText("yellow")}");
             onTurnAnimationsCompleted?.Invoke();
@@ -71,7 +77,7 @@ namespace Flippards
 
             void OnThrowObjectReached()
             {
-                BattleVisuals.Instance.AddHitFX(GetFXTypeFromClass(cardChosen), targetEntity == EntityType.PLAYER ? playerPlaceHolder : npcPlaceHolder);
+                BattleVisuals.Instance.AddHitFX(GetFXTypeFromClass(cardChosen), targetEntity == EntityType.PLAYER ? playerParticePlaceHolder : npcParticePlaceHolder);
 
                 Debug.Log($"Dealing {"damage".GetRichText("red")} to {targetEntity} {value.ToString().GetRichText("red")}");
                 onTurnAnimationsCompleted?.Invoke();
@@ -97,7 +103,7 @@ namespace Flippards
         {
             // TODO : Add parameters based on UI needs
             Debug.Log($"Dealing {"Health".GetRichText("green")} to {targetEntity} {value.ToString().GetRichText("green")}");
-            BattleVisuals.Instance.AddHitFX(HitFXType.HEAL, targetEntity == EntityType.PLAYER ? playerPlaceHolder : npcPlaceHolder);
+            BattleVisuals.Instance.AddHitFX(HitFXType.HEAL, targetEntity == EntityType.PLAYER ? playerParticePlaceHolder : npcParticePlaceHolder);
             BattleVisuals.Instance.ApplyDamage(targetEntity, value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio, true);
             onTurnAnimationsCompleted?.Invoke();
         }

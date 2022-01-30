@@ -82,6 +82,8 @@ public class BattleVisuals : SerializedMonoBehaviour
     public bool Win = false;
     public bool InBattle = false;
 
+    public Transform NpcHolder;
+
     Animator playerAnimator;
     Animator enemyAnimator;
 
@@ -280,6 +282,7 @@ public class BattleVisuals : SerializedMonoBehaviour
     {
         GameObject obj = Resources.Load<GameObject>("Characters/Character_"+enemyName);
         enObj = Instantiate(obj, enParent);
+        NpcHolder = enObj.transform;
     }
 
     public void Attack(EntityType type)

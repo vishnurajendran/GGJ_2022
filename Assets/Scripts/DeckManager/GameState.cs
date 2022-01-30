@@ -56,7 +56,7 @@ public partial class GameState : MonoBehaviour
 
     private void Start()
     {
-        // PlayerPrefs.SetInt("CurrentLevel", 0);
+        PlayerPrefs.SetInt("CurrentLevel", 0);
         currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
         Debug.Log("Current enemy level " + currentLevel);
         GameMenuController.Instance.OnNextClicked.AddListener(() =>
@@ -101,8 +101,7 @@ public partial class GameState : MonoBehaviour
     private void InitGame()
     {
         // PlayerPrefs.DeleteAll();
-        BattleVisualManager.Instance.InitVisuals();
-
+        BattleVisualManager.Instance.InitVisuals(enemyList[currentLevel]);
         turnCount = 0;
         newDeckCount = 0;
         // isPlayersTurn = Random.Range(0, 100) % 2 == 0;
