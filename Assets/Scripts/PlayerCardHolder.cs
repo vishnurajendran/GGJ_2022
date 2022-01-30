@@ -7,6 +7,7 @@ public class PlayerCardHolder : MonoBehaviour, ICardHolder
 {
     [SerializeField] private CardsView cardViewPrefab;
     [SerializeField] private GameState gameState;
+    private RadialLayout radialLayout;
     private List<CardsView> cardsInHand = new List<CardsView>();
     private static PlayerCardHolder instance;
     public static PlayerCardHolder Instance
@@ -20,12 +21,17 @@ public class PlayerCardHolder : MonoBehaviour, ICardHolder
         }
     }
 
+    private void Start() {
+        radialLayout = GetComponent<RadialLayout>();
+    }
+
     public void AddCard(FullCard cardDrawn)
     {
         CardsView cardsView = Instantiate(cardViewPrefab);
         cardsView.Initialize(cardDrawn, this);
         cardsInHand.Add(cardsView);
         cardsView.transform.SetParent(transform);
+        radialLayout.CalculateLayoutInputVertical();
     }
 
     public void PlayCard(CardsView cardPlayed)

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class RadialLayout : LayoutGroup
 {
+    [Range(0f, 3f)]
     public float spreadMultiplier = 1f;
     public float fDistance;
     [Range(-180f, 180f)]
@@ -44,7 +45,13 @@ public class RadialLayout : LayoutGroup
         m_Tracker.Clear();
         if (activeChildCount == 0)
             return;
-        float fOffsetAngle = ((MaxAngle - MinAngle)) / (activeChildCount - 1);
+
+        float fOffsetAngle = 0;
+        if (activeChildCount > 1)
+        {
+            fOffsetAngle = ((MaxAngle - MinAngle)) / (activeChildCount - 1);
+        }
+
         for (int i = 0; i < transform.childCount; i++)
         {
             RectTransform child = (RectTransform)transform.GetChild(i);

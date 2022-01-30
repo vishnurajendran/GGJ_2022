@@ -7,6 +7,7 @@ public class EnemyCardHolder : MonoBehaviour, ICardHolder
 {
     [SerializeField] private CardsView cardViewPrefab;
     [SerializeField] private GameState gameState;
+    private RadialLayout radialLayout;
     private List<CardsView> cardsInHand = new List<CardsView>();
     private static EnemyCardHolder instance;
     public static EnemyCardHolder Instance
@@ -20,6 +21,11 @@ public class EnemyCardHolder : MonoBehaviour, ICardHolder
         }
     }
 
+    private void Start()
+    {
+        radialLayout = GetComponent<RadialLayout>();
+    }
+
     public void AddCard(FullCard cardDrawn)
     {
         CardsView cardsView = Instantiate(cardViewPrefab);
@@ -27,6 +33,7 @@ public class EnemyCardHolder : MonoBehaviour, ICardHolder
         cardsView.DisablePointerEvents();
         cardsInHand.Add(cardsView);
         cardsView.transform.SetParent(transform);
+        radialLayout.CalculateLayoutInputVertical();
     }
 
     public void PlayCard(CardsView cardPlayed)
