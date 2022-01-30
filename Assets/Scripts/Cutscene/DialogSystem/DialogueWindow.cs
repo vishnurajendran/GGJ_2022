@@ -238,6 +238,9 @@ public class DialogueWindow : MonoBehaviour
 
     private void Update()
     {
+        if (GameMenuController.isPaused)
+            return;
+
         if (blockInputs)
             return;
 
@@ -261,14 +264,14 @@ public class DialogueWindow : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown("Submit"))
+            if (Input.GetButtonDown("Submit") || Input.GetMouseButtonDown(0))
             {
                 options[selectedOptionIndex].OnOptionSelected?.Invoke();
             }
         }
         else
         {
-            if (Input.GetButtonDown("Submit"))
+            if (Input.GetButtonDown("Submit") || Input.GetMouseButtonDown(0))
             {
                 if (currEntry.NextDialogueEntry == null)
                 {
@@ -311,6 +314,9 @@ public class DialogueWindow : MonoBehaviour
     public void CloseDialogue()
     {
         HidePreviousSpeaker();
+
+        if (dialogueAnimation != null)
+            StopCoroutine(dialogueAnimation);
 
         if (dialogStartRoutine != null)
             StopCoroutine(dialogStartRoutine);

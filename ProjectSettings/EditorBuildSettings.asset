@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestBeds_anims.unity
     guid: 2d7233cdb842e35439f58dad212717c5
+  - enabled: 1
+    path: Assets/Scenes/TestBeds_anims_mine.unity
+    guid: 1b41d3213b5944748b1746ea2f6e7f12
   m_configObjects: {}

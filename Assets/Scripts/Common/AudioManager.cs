@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
     {
-        const string BATTLE_THEME = "Audio/BG/Extreme Energy - Electric Guitar Music - Free Copyright";
-        const string MENU_THEME = "Audio/BG/Jack The Lumberer - Alexander Nakarada";
-        const string CUTSCENE_THEME = "Audio/BG/Jack The Lumberer - Alexander Nakarada";
+        const string BATTLE_THEME = "Extreme Energy - Electric Guitar Music - Free Copyright";
+        const string MENU_THEME = "Jack The Lumberer - Alexander Nakarada";
+        const string CUTSCENE_THEME = "Jack The Lumberer - Alexander Nakarada";
         const string UI_SLOT_ENTER_SFX = "Audio/SFX/UI Tight 12";
         const string UI_WEAPON_EQUIP_SFX = "Audio/SFX/Weapon UI 09";
         const string PICKUP_SFX = "Audio/SFX/LRPG_Positive_Notification";
@@ -161,27 +161,18 @@ public class AudioManager : MonoBehaviour
 
         public void PlayCutSceneTheme()
         {
-            bgSource.clip = Resources.Load<AudioClip>(CUTSCENE_THEME);
-            bgSource.loop = true;
-            bgSource.Play();
-            ShowTitle();
+            PlayTheme(CUTSCENE_THEME);
         }
 
         public void PlayBattleTheme()
         {
-            bgSource.clip = Resources.Load<AudioClip>(BATTLE_THEME);
-            bgSource.loop = true;
-            bgSource.Play();
-            ShowTitle();
+            PlayTheme(BATTLE_THEME);
         }
 
-    public void PlayMenuTheme()
-    {
-        bgSource.clip = Resources.Load<AudioClip>(MENU_THEME);
-        bgSource.loop = true;
-        bgSource.Play();
-        ShowTitle();
-    }
+        public void PlayMenuTheme()
+        {
+            PlayTheme(MENU_THEME);
+        }
 
     void ShowTitle()
     {

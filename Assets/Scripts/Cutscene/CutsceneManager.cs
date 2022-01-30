@@ -28,6 +28,8 @@ public class CutsceneManager : MonoBehaviour
 
     string currCharName;
 
+    public bool CutSceneActive = false;
+
     public void SetImage(Sprite img)
     {
         cutSceneBG.gameObject.SetActive(false);
@@ -40,9 +42,15 @@ public class CutsceneManager : MonoBehaviour
 
     public void LoadCutsceneFor(string charName)
     {
+        CutSceneActive = true;
         this.currCharName = charName;
         open = true;
         SwipeCut(0.5f);
+    }
+
+    public void Skip()
+    {
+        dialogueWindow.CloseDialogue();
     }
 
     public void OnSwipeCut()
@@ -63,6 +71,7 @@ public class CutsceneManager : MonoBehaviour
 
     void CloseCutscene()
     {
+        CutSceneActive = false;
         cutSceneBG.gameObject.SetActive(false);
         OnCutsceneComplete?.Invoke();
     }

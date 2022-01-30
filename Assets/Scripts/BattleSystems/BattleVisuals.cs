@@ -79,8 +79,20 @@ public class BattleVisuals : SerializedMonoBehaviour
 
     float i=1;
 
+    public bool Win = false;
+    public bool InBattle = false;
+
     private void Start()
     {
+        onBeginComplete.AddListener(() =>
+        {
+            Win = false;
+            InBattle = true;
+        });
+
+        onLoseComplete.AddListener(() => { GameMenuController.Instance.ShowMenu(MenuType.LOSE); });
+        onWinComplete.AddListener(() => { GameMenuController.Instance.ShowMenu(MenuType.WIN); });
+
         if (isTesting)
         {
             onBeginComplete.AddListener(() =>
@@ -95,6 +107,7 @@ public class BattleVisuals : SerializedMonoBehaviour
 
     public void SetupEntity(Transform entity, EntityType type)
     {
+
         if (HealthbarRef == null)
         {
             HealthbarRef = Resources.Load<GameObject>("HealthBar");
@@ -196,12 +209,16 @@ public class BattleVisuals : SerializedMonoBehaviour
     [Button("Play Win")]
     public void PlayWin()
     {
+        Win = true;
+        InBattle = false;
         animator.Play("Win");
     }
 
     [Button("Play Lose")]
     public void PlayLose()
     {
+        Win = false;
+        InBattle = false;
         animator.Play("Lose");
     }
 
