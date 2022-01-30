@@ -57,7 +57,6 @@ public partial class GameState : MonoBehaviour
     private void Start()
     {
         currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
-        currentLevel = 4;
         if (currentLevel >= 4)
         {
             GameMenuController.Instance.transform.Find("Menus/Win/Next").gameObject.SetActive(false);
@@ -69,7 +68,7 @@ public partial class GameState : MonoBehaviour
         });
         GameMenuController.Instance.OnRestartClicked.AddListener(() =>
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Prod");
         });
         CutsceneManager.Instance.LoadCutsceneFor(enemyList[currentLevel]);
         //CutsceneManager.Instance.LoadCutsceneFor("Test");
@@ -268,6 +267,7 @@ public partial class GameState : MonoBehaviour
                 {
                     AddResult();
                     currentLevel++;
+                    currentLevel = Mathf.Clamp(currentLevel, 0, 5);
                     PlayerPrefs.SetInt("CurrentLevel", currentLevel);
                     PlayerPrefs.Save();
                     BattleVisualManager.Instance.ShowVictory();

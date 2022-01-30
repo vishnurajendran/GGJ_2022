@@ -3130,6 +3130,18 @@ PrefabInstance:
       propertyPath: gameState
       value: 
       objectReference: {fileID: 7198413073129894469}
+    - target: {fileID: 5313716153424084183, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5313716153424084183, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 5313716153424084183, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 6324652799878459586, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
       propertyPath: m_RootOrder
       value: 3
