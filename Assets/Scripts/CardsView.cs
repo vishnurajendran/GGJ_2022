@@ -13,11 +13,14 @@ public class CardsView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] private AnimationCurve scaleUpCurve;
     [SerializeField] private AnimationCurve scaleDownCurve;
     [SerializeField] private AnimationCurve flipCurve;
-    public Sprite cardFace;
+    public Sprite cardFace1;
+    public Sprite cardFace2;
     private bool isScalingUp;
     private bool isScalingDown;
 
     private bool isFlipped = false;
+    private Transform originalParent;
+    private int originalSiblingIndex;
 
     public void Initialize(FullCard cardData, ICardHolder cardHolder, bool isFlipped = false)
     {
@@ -27,26 +30,32 @@ public class CardsView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         image.sprite = front;
         this.isFlipped = isFlipped;
         this.cardHolder = cardHolder;
+        originalParent = transform.parent;
     }
 
-    public void DisablePointerEvents() {
+    public void DisablePointerEvents()
+    {
         image.raycastTarget = false;
     }
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         transform.localScale = Vector3.one * 1.5f;
-        //StartCoroutine(ScaleUp());
+        originalSiblingIndex = transform.GetSiblingIndex();
+        transform.SetParent(originalParent.parent);
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
         transform.localScale = Vector3.one;
-        //StartCoroutine(ScaleDown());
+        transform.SetParent(originalParent);
+        transform.SetSiblingIndex(originalSiblingIndex);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        transform.SetParent(originalParent);
+        transform.SetSiblingIndex(originalSiblingIndex);
         cardHolder.PlayCard(this);
     }
 
@@ -107,7 +116,8 @@ public class CardsView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         image.sprite = isFlipped ? back : front;
-        cardFace = image.sprite;
+        cardFace1 = image.sprite;
+        cardFace2 = isFlipped ? front : back;
 
         timer = 0f;
         animTime = 0.1f;

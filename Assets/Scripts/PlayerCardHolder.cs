@@ -32,39 +32,40 @@ public class PlayerCardHolder : MonoBehaviour, ICardHolder
     public void AddCard(FullCard cardDrawn)
     {
         CardsView cardsView = Instantiate(cardViewPrefab);
+        cardsView.transform.SetParent(transform);
         cardsView.Initialize(cardDrawn, this);
         cardsInHand.Add(cardsView);
-        cardsView.transform.SetParent(transform);
         radialLayout.CalculateLayoutInputVertical();
     }
 
     public void PlayCard(CardsView cardPlayed)
     {
+        var tra = cardPlayed.transform;
         gameState.CheckAndTakeTurn(cardsInHand.IndexOf(cardPlayed));
         cardsInHand.Remove(cardPlayed);
         cardPlayed.transform.SetParent(transform.parent);
-        StartCoroutine(MovePlayedCardToLastPlayed(cardPlayed));
-        //Destroy(cardPlayed.gameObject);
+        Destroy(cardPlayed);
+        tra.position = lastPlayedCardPos.position;
+        StartCoroutine(MovePlayedCardToLastPlayed(tra));
     }
 
-    IEnumerator MovePlayedCardToLastPlayed(CardsView cardToPlay)
+    IEnumerator MovePlayedCardToLastPlayed(Transform cachedTransform)
     {
         var timer = 0f;
         var animTime = 0.25f;
-        Vector3 startPos = cardToPlay.transform.position;
+        Vector3 startPos = cachedTransform.position;
         Quaternion randRot = Quaternion.Euler(lastPlayedCardPos.rotation.eulerAngles + new Vector3(0, 0, Random.Range(-30, 30)));
         while (timer < animTime)
         {
             timer += Time.deltaTime;
-            cardToPlay.transform.position = Vector3.Lerp(startPos, lastPlayedCardPos.position, lastPlayedCurve.Evaluate(timer / animTime));
-            cardToPlay.transform.rotation = Quaternion.Slerp(cardToPlay.transform.rotation, randRot, lastPlayedCurve.Evaluate(timer / animTime));
+            cachedTransform.transform.position = Vector3.Lerp(startPos, lastPlayedCardPos.position, lastPlayedCurve.Evaluate(timer / animTime));
+            cachedTransform.transform.rotation = Quaternion.Slerp(cachedTransform.rotation, randRot, lastPlayedCurve.Evaluate(timer / animTime));
             yield return null;
         }
 
-        cardToPlay.transform.position = lastPlayedCardPos.position;
-        cardToPlay.transform.rotation = lastPlayedCardPos.rotation;
-        cardToPlay.transform.SetAsLastSibling();
-        Destroy(cardToPlay);
+        cachedTransform.position = lastPlayedCardPos.position;
+        cachedTransform.rotation = randRot;
+        cachedTransform.SetAsLastSibling();
     }
 
     public void FlipCards()

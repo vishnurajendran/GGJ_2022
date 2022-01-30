@@ -32,10 +32,10 @@ public class EnemyCardHolder : MonoBehaviour, ICardHolder
     public void AddCard(FullCard cardDrawn)
     {
         CardsView cardsView = Instantiate(cardViewPrefab);
+        cardsView.transform.SetParent(transform);
         cardsView.Initialize(cardDrawn, this);
         cardsView.DisablePointerEvents();
         cardsInHand.Add(cardsView);
-        cardsView.transform.SetParent(transform);
         radialLayout.CalculateLayoutInputVertical();
     }
 

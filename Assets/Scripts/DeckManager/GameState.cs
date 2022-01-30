@@ -56,19 +56,26 @@ public partial class GameState : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt("CurrentLevel", 0);
         currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
+        currentLevel = 4;
         Debug.Log("Current enemy level " + currentLevel);
         GameMenuController.Instance.OnNextClicked.AddListener(() =>
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Prod");
+            if (currentLevel >= 4)
+            {
+                transform.Find("Next").gameObject.SetActive(false);
+            }
+            else
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Prod");
+            }
         });
         GameMenuController.Instance.OnRestartClicked.AddListener(() =>
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
         });
-        // CutsceneManager.Instance.LoadCutsceneFor(enemyList[currentLevel]);
-        CutsceneManager.Instance.LoadCutsceneFor("Test");
+        CutsceneManager.Instance.LoadCutsceneFor(enemyList[currentLevel]);
+        //CutsceneManager.Instance.LoadCutsceneFor("Test");
         CutsceneManager.Instance.OnCutsceneComplete.AddListener(() =>
         {
             InitGame();
@@ -100,7 +107,6 @@ public partial class GameState : MonoBehaviour
     [Button("Generate Deck and distribute initial!")]
     private void InitGame()
     {
-        // PlayerPrefs.DeleteAll();
         BattleVisualManager.Instance.InitVisuals(enemyList[currentLevel]);
         turnCount = 0;
         newDeckCount = 0;
@@ -199,12 +205,7 @@ public partial class GameState : MonoBehaviour
         DoTurn(cardToPlay, EntityType.PLAYER);
 
         yield return null;
-
-        if (autoTurn)
-        {
-            //StartNextTurn();
-            StartCoroutine(DoEnemyTurn());
-        }
+        StartCoroutine(DoEnemyTurn());
     }
 
     private void CheckWinCondition()
@@ -235,18 +236,14 @@ public partial class GameState : MonoBehaviour
             yield break;
         }
 
+        yield return new WaitForSeconds(2f);
+
         var cardToPlay = GetAIMove();
         EnemyCardHolder.Instance.PlayCard(enemyHand.IndexOf(cardToPlay));
         enemyHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.ENEMY);
 
         yield return null;
-
-        if (autoTurn)
-        {
-            //StartNextTurn();
-            StartCoroutine(DoPlayerTurn());
-        }
     }
 
     private void DoTurn(FullCard cardPlayed, EntityType entityType = EntityType.PLAYER)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7277546209264407447}
   - component: {fileID: 2083440227}
   m_Layer: 0
-  m_Name: Character_Duallete
+  m_Name: Character_Dualette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

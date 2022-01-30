@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1cf1e944eec7c84f98f44406db943e0, type: 3}
-  m_Name: CardDB
+  m_Name: CardDB 2
   m_EditorClassIdentifier: 
   frontCards:
   - name: Flip
@@ -18,227 +18,227 @@ MonoBehaviour:
     cardClass: 3
     cardType: 2
     count: 3
-    imagePath: Textures/joecards/flip_front
+    imagePath: Textures/Attack/Flip
   - name: Stapler
     value: 8
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Stapler_front_1
+    imagePath: Textures/Attack/stapler
   - name: Stapler
     value: 8
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Stapler_front_2
+    imagePath: Textures/Defense/stapler
   - name: Paperweight
     value: 4
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Weight_front_1
+    imagePath: Textures/Attack/paperweight
   - name: Paperweight
     value: 4
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Weight_front_2
+    imagePath: Textures/Defense/paperweight
   - name: Pen
     value: 2
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Pen_front_1
+    imagePath: Textures/Attack/pen
   - name: Pen
     value: 2
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Pen_front_2
+    imagePath: Textures/Attack/pen
   - name: Hot Coffee
     value: 8
     cardClass: 1
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Hotcoffee_front_1
+    imagePath: Textures/Defense/coffee
   - name: Hot Coffee
     value: 8
     cardClass: 1
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Hotcoffee_front_2
-  - name: Water
+    imagePath: Textures/Attack/coffee
+  - name: Jam
     value: 4
     cardClass: 1
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Water_front_1
-  - name: Water
+    imagePath: Textures/Attack/ink
+  - name: Jam
     value: 4
     cardClass: 1
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Water_front_2
-  - name: Ink
+    imagePath: Textures/Defense/ink
+  - name: Water Bottle
     value: 2
     cardClass: 1
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Ink_front_1
-  - name: Ink
+    imagePath: Textures/Attack/waterBottle
+  - name: Water Bottle
     value: 2
     cardClass: 1
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Ink_front_2
+    imagePath: Textures/Defense/waterBottle
   - name: Company Rule Book
     value: 8
     cardClass: 2
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Rulebook_front_1
+    imagePath: Textures/Attack/paperTowel
   - name: Company Rule Book
     value: 8
     cardClass: 2
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Rulebook_front_2
+    imagePath: Textures/Defense/paperTowel
   - name: Memo
     value: 4
     cardClass: 2
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Memo_front_1
+    imagePath: Textures/Attack/binder
   - name: Memo
     value: 4
     cardClass: 2
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Memo_front_2
+    imagePath: Textures/Defense/binder
   - name: Payslip
     value: 2
     cardClass: 2
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Tissue_front_1
+    imagePath: Textures/Attack/postit
   - name: Payslip
     value: 2
     cardClass: 2
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Tissue_front_2
+    imagePath: Textures/Defense/postit
   backCards:
   - name: Flip
     value: 0
     cardClass: 3
     cardType: 2
     count: 3
-    imagePath: Textures/joecards/flip_front
+    imagePath: Textures/Attack/Flip
   - name: Stapler
     value: 8
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Stapler_front_1
+    imagePath: Textures/Attack/stapler
   - name: Stapler
     value: 8
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Stapler_front_2
+    imagePath: Textures/Defense/stapler
   - name: Paperweight
     value: 4
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Weight_front_1
+    imagePath: Textures/Attack/paperweight
   - name: Paperweight
     value: 4
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Weight_front_2
+    imagePath: Textures/Defense/paperweight
   - name: Pen
     value: 2
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Pen_front_1
+    imagePath: Textures/Attack/pen
   - name: Pen
     value: 2
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Pen_front_2
+    imagePath: Textures/Attack/pen
   - name: Hot Coffee
     value: 8
     cardClass: 1
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Hotcoffee_front_1
+    imagePath: Textures/Defense/coffee
   - name: Hot Coffee
     value: 8
     cardClass: 1
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Hotcoffee_front_2
-  - name: Water
+    imagePath: Textures/Attack/coffee
+  - name: Jam
     value: 4
     cardClass: 1
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Water_front_1
-  - name: Water
+    imagePath: Textures/Attack/ink
+  - name: Jam
     value: 4
     cardClass: 1
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Water_front_2
-  - name: Ink
+    imagePath: Textures/Defense/ink
+  - name: Water Bottle
     value: 2
     cardClass: 1
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Ink_front_1
-  - name: Ink
+    imagePath: Textures/Attack/waterBottle
+  - name: Water Bottle
     value: 2
     cardClass: 1
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Ink_front_2
+    imagePath: Textures/Defense/waterBottle
   - name: Company Rule Book
     value: 8
     cardClass: 2
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Rulebook_front_1
+    imagePath: Textures/Attack/paperTowel
   - name: Company Rule Book
     value: 8
     cardClass: 2
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Rulebook_front_2
+    imagePath: Textures/Defense/paperTowel
   - name: Memo
     value: 4
     cardClass: 2
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Memo_front_1
+    imagePath: Textures/Attack/binder
   - name: Memo
     value: 4
     cardClass: 2
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Memo_front_2
+    imagePath: Textures/Defense/binder
   - name: Payslip
     value: 2
     cardClass: 2
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Tissue_front_1
+    imagePath: Textures/Attack/postit
   - name: Payslip
     value: 2
     cardClass: 2
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Tissue_front_2
+    imagePath: Textures/Defense/postit
