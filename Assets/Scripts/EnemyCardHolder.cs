@@ -50,7 +50,6 @@ public class EnemyCardHolder : MonoBehaviour, ICardHolder
 
     IEnumerator MovePlayedCardToLastPlayed(CardsView cardToPlay)
     {
-        StartCoroutine(cardToPlay.Flip());
         var timer = 0f;
         var animTime = 0.25f;
         Vector3 startPos = cardToPlay.transform.position;

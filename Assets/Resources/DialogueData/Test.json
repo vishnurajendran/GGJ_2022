@@ -16,48 +16,6 @@
             "NextDialogueEntry":"2" 
         },
         "2":{
-            "Dialogue":"Be careful on your way back, there has been a sudden increase sightings of monsters.",
-            "Options":null,
-            "Speaker":"Protagonist",
-            "IsLeft":true,
-            "NextDialogueEntry":"3" 
-        },
-        "3":{
-            "Dialogue":"This might be a start to something big...",
-            "Options":null,
-            "Speaker":"Natasha",
-            "IsLeft":true,
-            "NextDialogueEntry":"4" 
-        },
-        "4":{
-            "Dialogue":"Oh well... On your way then, ya friend is waiting, I won't take up any more of your time.",
-            "Options":null,
-            "Speaker":"Protagonist",
-            "IsLeft":true,
-            "NextDialogueEntry":"5" 
-        },
-        "5":{
-            "Dialogue":"Good Day!",
-            "Options":null,
-            "Speaker":"Cyko",
-            "IsLeft":false,
-            "NextDialogueEntry":"6" 
-        },
-        "6":{
-            "Dialogue":"Work eh!?, we do have a lot of quests lately. There has been a sudden influx of monsters recently...",
-            "Options":null,
-            "Speaker":"Liam",
-            "IsLeft":true,
-            "NextDialogueEntry":"7"  
-        },
-        "7":{
-            "Dialogue":"For this very reason, we have visits from many guilds, looks like we have another. Go on ahead, talk to the merchant, he will guide you.",
-            "Options":null,
-            "Speaker":"Dualette",
-            "IsLeft":false,
-            "NextDialogueEntry":"8" 
-        },
-        "8":{
             "Dialogue":"Have a nice day dear visitor.",
             "Options":null,
             "Speaker":"Protagonist",
