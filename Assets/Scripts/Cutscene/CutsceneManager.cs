@@ -20,7 +20,7 @@ public class CutsceneManager : MonoBehaviour
 
     [SerializeField] DialogueWindow dialogueWindow;
     [SerializeField] Image cutSceneBG;
-    [SerializeField] bool isTesting = false;
+    [SerializeField] bool isIntro = false;
     [SerializeField] Animator animator;
     
     public BattleAnimEventComplete OnCutsceneComplete;
@@ -78,8 +78,14 @@ public class CutsceneManager : MonoBehaviour
 
     private void Start()
     {
-        if(isTesting)
-            LoadCutsceneFor("Test");
+        if (isIntro)
+        {
+            LoadCutsceneFor("Game_Intro");
+            OnCutsceneComplete.AddListener(() =>
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+            });
+        }
     }
 
     void SwipeCut(float jumpTo = 0)
