@@ -24,8 +24,8 @@ public partial class GameState : MonoBehaviour
     [SerializeField] private int enemyHealth;
     [SerializeField] private int enemyMaxHealth;
 
-    public float PlayerHealthRatio => (float) playerHealth / playerMaxHealth;
-    public float EnemyHealthRatio => (float) enemyHealth / enemyMaxHealth;
+    public float PlayerHealthRatio => (float)playerHealth / playerMaxHealth;
+    public float EnemyHealthRatio => (float)enemyHealth / enemyMaxHealth;
 
     private List<Result> resultsList = new List<Result>();
 
@@ -72,14 +72,15 @@ public partial class GameState : MonoBehaviour
     {
         StartCoroutine(DoEnemyTurn());
     }
-    
+
     [Button("Generate Deck and distribute initial!")]
     private void InitGame()
     {
         BattleVisualManager.Instance.InitVisuals();
         turnCount = 0;
         newDeckCount = 0;
-        isPlayersTurn = Random.Range(0, 100) % 2 == 0;
+        // isPlayersTurn = Random.Range(0, 100) % 2 == 0;
+        isPlayersTurn = true;
         lastPlayedCard = null;
         deckManager = GetComponent<DeckManager>();
         deckManager.GenerateDeck();
@@ -97,11 +98,12 @@ public partial class GameState : MonoBehaviour
                 if (i % 2 == 0)
                 {
                     playerHand.Add(cardDrawn);
-                    CardHolder.Instance.AddCard(cardDrawn);
+                    PlayerCardHolder.Instance.AddCard(cardDrawn);
                 }
                 else
                 {
                     enemyHand.Add(cardDrawn);
+                    EnemyCardHolder.Instance.AddCard(cardDrawn);
                 }
             }
             else
@@ -130,40 +132,24 @@ public partial class GameState : MonoBehaviour
             {
                 Debug.Log($"Player took card from deck".GetRichText("orange"));
                 playerHand.Add(cardDrawn);
-                CardHolder.Instance.AddCard(cardDrawn);
+                PlayerCardHolder.Instance.AddCard(cardDrawn);
             }
             else
             {
                 Debug.Log($"Enemy took card from deck".GetRichText("orange"));
                 enemyHand.Add(cardDrawn);
+                EnemyCardHolder.Instance.AddCard(cardDrawn);
             }
         }
-
-        // if (cardDrawn == null)
-        // {
-        //     if (newDeckCount == 5)
-        //     {
-        //         AddResult();
-        //     }
-        //     deckManager.GenerateDeck();
-        //     cardDrawn = deckManager.DrawCardFromMasterDeck();
-        //     newDeckCount++;
-        // }
-
-        // if (isPlayersTurn)
-        // {
-        //     playerHand.Add(cardDrawn);
-        // }
-        // else
-        // {
-        //     enemyHand.Add(cardDrawn);
-        // }
-
-        //UI Update with card
     }
 
+    public void CheckAndTakeTurn(int index)
+    {
+        if (isPlayersTurn)
+            StartCoroutine(DoPlayerTurn(index, false));
+    }
 
-    private IEnumerator DoPlayerTurn()
+    private IEnumerator DoPlayerTurn(int index = 0, bool random = true)
     {
         turnCount++;
         if (playerHand.Count == 0)
@@ -172,7 +158,8 @@ public partial class GameState : MonoBehaviour
             yield break;
         }
 
-        var cardToPlay = playerHand[Random.Range(0, playerHand.Count)];
+        var cardToPlay = random ? playerHand[Random.Range(0, playerHand.Count)] : playerHand[index];
+
         playerHand.Remove(cardToPlay);
         DoTurn(cardToPlay, EntityType.PLAYER);
 
@@ -301,9 +288,9 @@ public partial class GameState : MonoBehaviour
                 turnCountAvg += e.turnCount;
             }
 
-            string s = "PlayerWin " + (float) playerWinCount * 100 / simulationCount + "% " + "EnemyWin " +
-                       (float) enemyWinCount * 100 / simulationCount + "% " + "Draw " +
-                       (float) drawCount * 100 / simulationCount + "% + turnCount " + turnCount;
+            string s = "PlayerWin " + (float)playerWinCount * 100 / simulationCount + "% " + "EnemyWin " +
+                       (float)enemyWinCount * 100 / simulationCount + "% " + "Draw " +
+                       (float)drawCount * 100 / simulationCount + "% + turnCount " + turnCount;
             Debug.Log(s.GetRichText("white"));
         }
         else
