@@ -142,8 +142,10 @@ public class GameMenuController : MonoBehaviour
             prevMenu.gameObject.SetActive(false);
         isPaused = false;
         parentMenu.gameObject.SetActive(false);
+        blackBG.gameObject.SetActive(true);
         StartCoroutine(Fade(() =>
         {
+            blackBG.gameObject.SetActive(false);
             OnRestartClicked?.Invoke();
         }));
     }
@@ -154,8 +156,10 @@ public class GameMenuController : MonoBehaviour
             prevMenu.gameObject.SetActive(false);
         isPaused = false;
         parentMenu.gameObject.SetActive(false);
+        blackBG.gameObject.SetActive(true);
         StartCoroutine(Fade(() =>
         {
+            blackBG.gameObject.SetActive(false);
             OnNextClicked?.Invoke();
         }));
     }
