@@ -188,7 +188,7 @@ public partial class GameState : MonoBehaviour
     private IEnumerator DoPlayerTurn(int index = 0, bool random = true)
     {
         turnCount++;
-        if (playerHand.Count == 0)
+        if (enemyHand.Count == 0 || playerHand.Count == 0)
         {
             CheckWinCondition();
             AddResult();
@@ -225,13 +225,12 @@ public partial class GameState : MonoBehaviour
     private IEnumerator DoEnemyTurn()
     {
         turnCount++;
-        if (enemyHand.Count == 0)
+        if (enemyHand.Count == 0 || playerHand.Count == 0)
         {
             CheckWinCondition();
             AddResult();
             yield break;
         }
-
         yield return new WaitForSeconds(2f);
 
         var cardToPlay = GetAIMove();
