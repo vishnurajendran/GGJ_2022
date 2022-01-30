@@ -30,6 +30,7 @@ namespace Flippards
 
 
         public Action onTurnAnimationsCompleted;
+        public Action<EntityType> onFlipTargetChosen;
 
         public void InitVisuals()
         {
@@ -41,7 +42,7 @@ namespace Flippards
             BattleVisuals.Instance.PlayBegin();
         }
 
-        public void FlipCardsVisually(EntityType entity, CardAttributes cardChosen)
+        public void FlipCardsVisually(EntityType entity)
         {
             //List<FullCard> cardsToFlip = entity == EntityType.PLAYER ? gameState.enemyHand : gameState.playerHand;
             // foreach (var fullCard in cardsToFlip)
@@ -52,7 +53,7 @@ namespace Flippards
             string s = $"Flipped {entity}s Cards.";
             Debug.Log($"{s.GetRichText("yellow")}");
             onTurnAnimationsCompleted?.Invoke();
-            
+
         }
 
         public void DealDamage(EntityType targetEntity, CardAttributes cardChosen, int value)
@@ -99,6 +100,25 @@ namespace Flippards
             BattleVisuals.Instance.AddHitFX(HitFXType.HEAL, targetEntity == EntityType.PLAYER ? playerPlaceHolder : npcPlaceHolder);
             BattleVisuals.Instance.ApplyDamage(targetEntity, value, targetEntity == EntityType.PLAYER ? gameState.PlayerHealthRatio : gameState.EnemyHealthRatio, true);
             onTurnAnimationsCompleted?.Invoke();
+        }
+
+        public void ShowVictory()
+        {
+            BattleVisuals.Instance.PlayWin();
+            BattleVisuals.Instance.onWinComplete.AddListener(() =>
+            {
+                 // TODO : levels transition
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+            });
+        }
+
+        public void ShowDefeat()
+        {
+            BattleVisuals.Instance.PlayLose();
+            BattleVisuals.Instance.onLoseComplete.AddListener(() =>
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+            });
         }
     }
 }

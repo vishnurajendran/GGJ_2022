@@ -52,6 +52,9 @@ public class BattleVisuals : SerializedMonoBehaviour
     [SerializeField] GameObject enemyHighlight;
     [SerializeField] GameObject TargetSelectionHelper;
 
+    [SerializeField] GameObject playerHighlightTrigger;
+    [SerializeField] GameObject enemyHighlightTrigger;
+
 
     [Header("Testing")]
     [SerializeField] bool isTesting = false;
@@ -135,7 +138,6 @@ public class BattleVisuals : SerializedMonoBehaviour
 
     public void ApplyDamage(EntityType entityType ,int damageValue, float healthPerc, bool isGain=false)
     {
-        return;
         healthPerc = Mathf.Clamp01(healthPerc);
         if(entityType == EntityType.PLAYER)
         {
@@ -245,6 +247,18 @@ public class BattleVisuals : SerializedMonoBehaviour
     {
         enemyHighlight.SetActive(false);
         playerHighlight.SetActive(false);
+    }
+
+    public void HideSelectorTriggers() { 
+        TargetSelectionHelper.SetActive(false);
+        enemyHighlightTrigger.SetActive(false);
+        playerHighlightTrigger.SetActive(false);
+    }
+
+    public void ShowSelectorTriggers() {
+        TargetSelectionHelper.SetActive(true);
+        enemyHighlightTrigger.SetActive(true);
+        playerHighlightTrigger.SetActive(true);
     }
 
     [Button("SimulateHit")]

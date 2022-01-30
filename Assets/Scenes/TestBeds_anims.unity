@@ -123,6 +123,88 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &20606018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 20606019}
+  - component: {fileID: 20606022}
+  - component: {fileID: 20606021}
+  - component: {fileID: 20606020}
+  m_Layer: 0
+  m_Name: OpponentsHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &20606019
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20606018}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1617818761}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 212.08}
+  m_SizeDelta: {x: 633.12, y: 391.19995}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &20606020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20606018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252c56b1d2472f94e8c5d8033342519f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardViewPrefab: {fileID: 7506218049458874997, guid: 7e0132f20fcdeec48a4e355ea20b2059, type: 3}
+  gameState: {fileID: 803977012}
+--- !u!114 &20606021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20606018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d19f986191ea14a8afe69adae21d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  spreadMultiplier: 0.73
+  fDistance: 310
+  MinAngle: -40
+  MaxAngle: 40
+--- !u!222 &20606022
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20606018}
+  m_CullTransparentMesh: 1
 --- !u!1 &21688308
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +518,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 803977010}
+  - component: {fileID: 803977013}
+  - component: {fileID: 803977012}
+  - component: {fileID: 803977011}
   m_Layer: 0
   m_Name: BattleScene
   m_TagString: Untagged
@@ -458,9 +543,377 @@ Transform:
   - {fileID: 1029715679}
   - {fileID: 1530213541}
   - {fileID: 665368985440680504}
+  - {fileID: 1617818761}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &803977011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803977009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 031fdf47f3f441d0913af14b83618ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDB: {fileID: 11400000, guid: 56eba2cf4ed80bf47b221fd659271932, type: 2}
+  MasterDeck:
+    FullCardDeck:
+    - frontCard:
+        name: Flip
+        value: 0
+        cardClass: 3
+        cardType: 2
+        count: 3
+        imagePath: Textures/Attack/Flip
+      backCard:
+        name: Flip
+        value: 0
+        cardClass: 3
+        cardType: 2
+        count: 3
+        imagePath: Textures/Attack/Flip
+      isCardFlipped: 0
+    - frontCard:
+        name: Company Rule Book
+        value: 8
+        cardClass: 2
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/paperTowel
+      backCard:
+        name: Paperweight
+        value: 4
+        cardClass: 0
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/paperweight
+      isCardFlipped: 0
+    - frontCard:
+        name: Hot Coffee
+        value: 8
+        cardClass: 1
+        cardType: 1
+        count: 1
+        imagePath: Textures/Attack/coffee
+      backCard:
+        name: Payslip
+        value: 2
+        cardClass: 2
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/postit
+      isCardFlipped: 0
+    - frontCard:
+        name: Payslip
+        value: 2
+        cardClass: 2
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/postit
+      backCard:
+        name: Water Bottle
+        value: 2
+        cardClass: 1
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/waterBottle
+      isCardFlipped: 0
+    - frontCard:
+        name: Pen
+        value: 2
+        cardClass: 0
+        cardType: 1
+        count: 1
+        imagePath: Assets/Textures/Attack/pen
+      backCard:
+        name: Company Rule Book
+        value: 8
+        cardClass: 2
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/paperTowel
+      isCardFlipped: 0
+    - frontCard:
+        name: Jam
+        value: 4
+        cardClass: 1
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/ink
+      backCard:
+        name: Pen
+        value: 2
+        cardClass: 0
+        cardType: 0
+        count: 1
+        imagePath: Assets/Textures/Attack/pen
+      isCardFlipped: 0
+    - frontCard:
+        name: Stapler
+        value: 8
+        cardClass: 0
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/stapler
+      backCard:
+        name: Flip
+        value: 0
+        cardClass: 3
+        cardType: 2
+        count: 3
+        imagePath: Textures/Attack/Flip
+      isCardFlipped: 0
+    - frontCard:
+        name: Flip
+        value: 0
+        cardClass: 3
+        cardType: 2
+        count: 3
+        imagePath: Textures/Attack/Flip
+      backCard:
+        name: Hot Coffee
+        value: 8
+        cardClass: 1
+        cardType: 1
+        count: 1
+        imagePath: Textures/Attack/coffee
+      isCardFlipped: 0
+    - frontCard:
+        name: Pen
+        value: 2
+        cardClass: 0
+        cardType: 0
+        count: 1
+        imagePath: Assets/Textures/Attack/pen
+      backCard:
+        name: Payslip
+        value: 2
+        cardClass: 2
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/postit
+      isCardFlipped: 0
+    - frontCard:
+        name: Water Bottle
+        value: 2
+        cardClass: 1
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/waterBottle
+      backCard:
+        name: Water Bottle
+        value: 2
+        cardClass: 1
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/waterBottle
+      isCardFlipped: 0
+    - frontCard:
+        name: Jam
+        value: 4
+        cardClass: 1
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/ink
+      backCard:
+        name: Stapler
+        value: 8
+        cardClass: 0
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/stapler
+      isCardFlipped: 0
+    - frontCard:
+        name: Stapler
+        value: 8
+        cardClass: 0
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/stapler
+      backCard:
+        name: Memo
+        value: 4
+        cardClass: 2
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/binder
+      isCardFlipped: 0
+    - frontCard:
+        name: Paperweight
+        value: 4
+        cardClass: 0
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/paperweight
+      backCard:
+        name: Hot Coffee
+        value: 8
+        cardClass: 1
+        cardType: 0
+        count: 1
+        imagePath: Textures/Defense/coffee
+      isCardFlipped: 0
+    - frontCard:
+        name: Water Bottle
+        value: 2
+        cardClass: 1
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/waterBottle
+      backCard:
+        name: Flip
+        value: 0
+        cardClass: 3
+        cardType: 2
+        count: 3
+        imagePath: Textures/Attack/Flip
+      isCardFlipped: 0
+    - frontCard:
+        name: Payslip
+        value: 2
+        cardClass: 2
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/postit
+      backCard:
+        name: Paperweight
+        value: 4
+        cardClass: 0
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/paperweight
+      isCardFlipped: 0
+    - frontCard:
+        name: Memo
+        value: 4
+        cardClass: 2
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/binder
+      backCard:
+        name: Pen
+        value: 2
+        cardClass: 0
+        cardType: 1
+        count: 1
+        imagePath: Assets/Textures/Attack/pen
+      isCardFlipped: 0
+    - frontCard:
+        name: Memo
+        value: 4
+        cardClass: 2
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/binder
+      backCard:
+        name: Jam
+        value: 4
+        cardClass: 1
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/ink
+      isCardFlipped: 0
+    - frontCard:
+        name: Company Rule Book
+        value: 8
+        cardClass: 2
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/paperTowel
+      backCard:
+        name: Memo
+        value: 4
+        cardClass: 2
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/binder
+      isCardFlipped: 0
+    - frontCard:
+        name: Hot Coffee
+        value: 8
+        cardClass: 1
+        cardType: 0
+        count: 1
+        imagePath: Textures/Defense/coffee
+      backCard:
+        name: Jam
+        value: 4
+        cardClass: 1
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/ink
+      isCardFlipped: 0
+    - frontCard:
+        name: Paperweight
+        value: 4
+        cardClass: 0
+        cardType: 0
+        count: 1
+        imagePath: Textures/Attack/paperweight
+      backCard:
+        name: Stapler
+        value: 8
+        cardClass: 0
+        cardType: 1
+        count: 1
+        imagePath: Textures/Defense/stapler
+      isCardFlipped: 0
+--- !u!114 &803977012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803977009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d43d5b3551408f478af1d6f11900572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHand:
+  - frontCard:
+      name: Flip
+      value: 0
+      cardClass: 3
+      cardType: 2
+      count: 3
+      imagePath: Textures/Attack/Flip
+    backCard:
+      name: Company Rule Book
+      value: 8
+      cardClass: 2
+      cardType: 1
+      count: 1
+      imagePath: Textures/Defense/paperTowel
+    isCardFlipped: 0
+  enemyHand: []
+  playerHealth: 20
+  playerMaxHealth: 20
+  enemyHealth: 20
+  enemyMaxHealth: 20
+  startingHandCount: 5
+  simulationCount: 1
+  autoTurn: 0
+--- !u!114 &803977013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803977009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e897395c0c4310a07035cedc879b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwThingPrefab: {fileID: 7897287130604163064, guid: c5c060eeed16d4162bd72074e88643d5, type: 3}
+  gameState: {fileID: 803977012}
+  playerPlaceHolder: {fileID: 1029715679}
+  npcPlaceHolder: {fileID: 1530213541}
 --- !u!1 &1029715678
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +1103,94 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1253706185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1253706186}
+  - component: {fileID: 1253706189}
+  - component: {fileID: 1253706188}
+  - component: {fileID: 1253706187}
+  m_Layer: 0
+  m_Name: FlipMine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1253706186
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253706185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1617818761}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -497.3, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1253706187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253706185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca124732020e194f9b6a0510246bac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1253706188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253706185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.398976, g: 1, b: 0.3820755, a: 0.003921569}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1253706189
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253706185}
+  m_CullTransparentMesh: 1
 --- !u!1 &1287674209
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +1252,191 @@ Transform:
   m_Father: {fileID: 803977010}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+--- !u!1 &1617818760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1617818761}
+  - component: {fileID: 1617818764}
+  - component: {fileID: 1617818763}
+  - component: {fileID: 1617818762}
+  m_Layer: 0
+  m_Name: CardsCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1617818761
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617818760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1645528038}
+  - {fileID: 20606019}
+  - {fileID: 1253706186}
+  - {fileID: 1847362012}
+  m_Father: {fileID: 803977010}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1617818762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617818760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 119
+--- !u!114 &1617818763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617818760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1617818764
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617818760}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!1 &1645528037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1645528038}
+  - component: {fileID: 1645528041}
+  - component: {fileID: 1645528040}
+  - component: {fileID: 1645528039}
+  m_Layer: 0
+  m_Name: PlayerHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1645528038
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645528037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1617818761}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1176.5}
+  m_SizeDelta: {x: 633.12, y: 391.2}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1645528039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645528037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d19f986191ea14a8afe69adae21d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  spreadMultiplier: 2.57
+  fDistance: 1312.06
+  MinAngle: -12
+  MaxAngle: 14
+--- !u!114 &1645528040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645528037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35056614bbb41a347ae5772eb7240139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardViewPrefab: {fileID: 7506218049458874997, guid: 7e0132f20fcdeec48a4e355ea20b2059, type: 3}
+  gameState: {fileID: 803977012}
+--- !u!222 &1645528041
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645528037}
+  m_CullTransparentMesh: 1
 --- !u!1 &1687045542
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +1577,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
 --- !u!114 &1845353820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,6 +1641,94 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1847362011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1847362012}
+  - component: {fileID: 1847362015}
+  - component: {fileID: 1847362014}
+  - component: {fileID: 1847362013}
+  m_Layer: 0
+  m_Name: FlipOpponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1847362012
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847362011}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1617818761}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 415, y: 27}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1847362013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847362011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca124732020e194f9b6a0510246bac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1847362014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847362011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.21226418, b: 0.21226418, a: 0.003921569}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1847362015
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847362011}
+  m_CullTransparentMesh: 1
 --- !u!1 &1864852138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +1836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueWindow: {fileID: 4501479755321174712}
   cutSceneBG: {fileID: 21688309}
-  isTesting: 1
+  isTesting: 0
   animator: {fileID: 4501479754725130704}
   OnCutsceneComplete:
     m_PersistentCalls:

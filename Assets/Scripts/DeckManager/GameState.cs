@@ -119,8 +119,13 @@ public partial class GameState : MonoBehaviour
             StartCoroutine(isPlayersTurn ? DoPlayerTurn() : DoEnemyTurn());
         }
         BattleVisualManager.Instance.onTurnAnimationsCompleted += StartNextTurn;
+        BattleVisualManager.Instance.onFlipTargetChosen += FlipAndProceed;
     }
 
+    public void FlipAndProceed(EntityType flippantEntity) {
+        FlipCards(flippantEntity);
+        StartNextTurn();
+    }
 
     private void StartNextTurn()
     {
@@ -154,6 +159,7 @@ public partial class GameState : MonoBehaviour
         turnCount++;
         if (playerHand.Count == 0)
         {
+            CheckWinCondition();
             AddResult();
             yield break;
         }
@@ -172,11 +178,24 @@ public partial class GameState : MonoBehaviour
         }
     }
 
+    private void CheckWinCondition()
+    {
+        if (playerHealth > enemyHealth)
+        {
+            BattleVisualManager.Instance.ShowVictory();
+        }
+        else
+        {
+            BattleVisualManager.Instance.ShowDefeat();
+        }
+    }
+
     private IEnumerator DoEnemyTurn()
     {
         turnCount++;
         if (enemyHand.Count == 0)
         {
+            CheckWinCondition();
             AddResult();
             yield break;
         }
@@ -207,7 +226,7 @@ public partial class GameState : MonoBehaviour
 
         if (cardToEval.cardType == CardType.Flip)
         {
-            FlipCards(entityType, cardToEval);
+            BattleVisuals.Instance.ShowSelectorTriggers();
         }
         else if (entityType == EntityType.PLAYER)
         {
@@ -220,6 +239,7 @@ public partial class GameState : MonoBehaviour
                 if (enemyHealth == 0)
                 {
                     AddResult();
+                    BattleVisualManager.Instance.ShowVictory();
                 }
 
                 //Battle visuals send health and percentage
@@ -242,9 +262,10 @@ public partial class GameState : MonoBehaviour
                 playerHealth = Mathf.Clamp(playerHealth, 0, playerMaxHealth);
                 BattleVisualManager.Instance.DealDamage(EntityType.PLAYER, cardToEval, t);
 
-                if (enemyHealth == 0)
+                if (playerHealth == 0)
                 {
                     AddResult();
+                    BattleVisualManager.Instance.ShowDefeat();
                 }
             }
             else if (cardToEval.cardType == CardType.Heal)
@@ -300,15 +321,15 @@ public partial class GameState : MonoBehaviour
         }
     }
 
-    private void FlipCards(EntityType entity, CardAttributes cardToEval)
+    private void FlipCards(EntityType entity)
     {
-        BattleVisualManager.Instance.FlipCardsVisually(entity, cardToEval);
-        List<FullCard> cardsToFlip = entity == EntityType.PLAYER ? enemyHand : playerHand;
+        BattleVisualManager.Instance.FlipCardsVisually(entity);
+        List<FullCard> cardsToFlip = entity == EntityType.ENEMY ? enemyHand : playerHand;
         foreach (var t in cardsToFlip)
         {
             t.isCardFlipped = !t.isCardFlipped;
         }
-        if(entity == EntityType.PLAYER)
+        if (entity == EntityType.PLAYER)
             PlayerCardHolder.Instance.FlipCards();
         else
             EnemyCardHolder.Instance.FlipCards();
