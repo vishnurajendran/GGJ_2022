@@ -48,13 +48,13 @@ MonoBehaviour:
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Assets/Textures/Attack/pen
+    imagePath: Textures/Attack/pen
   - name: Pen
     value: 2
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Assets/Textures/Attack/pen
+    imagePath: Textures/Attack/pen
   - name: Hot Coffee
     value: 8
     cardClass: 1
@@ -163,13 +163,13 @@ MonoBehaviour:
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Assets/Textures/Attack/pen
+    imagePath: Textures/Attack/pen
   - name: Pen
     value: 2
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Assets/Textures/Attack/pen
+    imagePath: Textures/Attack/pen
   - name: Hot Coffee
     value: 8
     cardClass: 1

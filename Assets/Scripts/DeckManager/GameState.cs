@@ -307,6 +307,10 @@ public partial class GameState : MonoBehaviour
         {
             t.isCardFlipped = !t.isCardFlipped;
         }
+        if(entity == EntityType.PLAYER)
+            PlayerCardHolder.Instance.FlipCards();
+        else
+            EnemyCardHolder.Instance.FlipCards();
     }
 
     public int GetModifiedStatValue(CardAttributes playedCard)
