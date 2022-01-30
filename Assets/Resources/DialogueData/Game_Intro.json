@@ -1,0 +1,40 @@
+{
+   "Background":"Boss_Floor",
+   "BattleMusic":"I Can't Stop by Punch Deck",
+   "Dialogues":{
+      "Start":{
+         "Dialogue":"In a world where office politics have been replaced by office wars, the only way to make your way to the top of the corporate ladder is to… KILL. THE. BOSS.",
+         "Speaker":"",
+         "IsLeft":true,
+         "NextDialogueEntry":"1"
+      },
+      "1":{
+         "Dialogue":"The path to the boss is not an easy one. There are many challenges on the way. More than playing your cards right you need to master the duality of what is on the front and the back of the cards. ",
+         "Options":null,
+         "Speaker":"",
+         "IsLeft":true,
+         "NextDialogueEntry":"2"
+      },
+      "2":{
+         "Dialogue":"Master the elements in your office, from paper supplies to stationeries… For they shall be your weapon and armour. Remember the law- Stationeries beat paper, papers beat liquids and liquids beat stationeries.",
+         "Options":null,
+         "Speaker":"",
+         "IsLeft":true,
+         "NextDialogueEntry":"3"
+      },
+      "3":{
+         "Dialogue":"Are you ready for your first fight?",
+         "Options":null,
+         "Speaker":"",
+         "IsLeft":false,
+         "NextDialogueEntry":"4"
+      },
+      "4":{
+         "Dialogue":"There’s gonna be a new boss in this building. Time to send out the memo!",
+         "Options":null,
+         "Speaker":"Protagonist",
+         "IsLeft":true,
+         "NextDialogueEntry":null
+      }
+   }
+}

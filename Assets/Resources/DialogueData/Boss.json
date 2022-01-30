@@ -1,0 +1,33 @@
+{
+   "Background":"Boss_Floor",
+   "BattleMusic":"Jack The Lumberer - Alexander Nakarada",
+   "Dialogues":{
+      "Start":{
+         "Dialogue":"Finally you’re here! Time to kill the boss and take his place!",
+         "Speaker":"",
+         "IsLeft":true,
+         "NextDialogueEntry":"1"
+      },
+      "1":{
+         "Dialogue":"How lovely! An enterprising employee… You deserve a raise!",
+         "Options":null,
+         "Speaker":"Boss",
+         "IsLeft":false,
+         "NextDialogueEntry":"2"
+      },
+      "2":{
+         "Dialogue":"Oh I'm coming for more than just a raise boss-man! I’m coming for it all!",
+         "Options":null,
+         "Speaker":"Protagonist",
+         "IsLeft":true,
+         "NextDialogueEntry":"3"
+      },
+      "3":{
+         "Dialogue":"Well, in the conference room then! SHOWDOWN!",
+         "Options":null,
+         "Speaker":"Boss",
+         "IsLeft":false,
+         "NextDialogueEntry":null
+      }
+   }
+}
