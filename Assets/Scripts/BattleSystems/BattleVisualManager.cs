@@ -36,8 +36,8 @@ namespace Flippards
         {
             BattleVisuals.Instance.onBeginComplete.AddListener(() =>
             {
-                BattleVisuals.Instance.SetupEntity(npcPlaceHolder.GetChild(0).GetChild(0), EntityType.ENEMY);
-                BattleVisuals.Instance.SetupEntity(playerPlaceHolder.GetChild(0).GetChild(0), EntityType.PLAYER);
+                BattleVisuals.Instance.SetupEntity(npcPlaceHolder.GetChild(0), EntityType.ENEMY);
+                BattleVisuals.Instance.SetupEntity(playerPlaceHolder.GetChild(0), EntityType.PLAYER);
             });
             BattleVisuals.Instance.PlayBegin();
         }
@@ -105,20 +105,11 @@ namespace Flippards
         public void ShowVictory()
         {
             BattleVisuals.Instance.PlayWin();
-            BattleVisuals.Instance.onWinComplete.AddListener(() =>
-            {
-                 // TODO : levels transition
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
-            });
         }
 
         public void ShowDefeat()
         {
             BattleVisuals.Instance.PlayLose();
-            BattleVisuals.Instance.onLoseComplete.AddListener(() =>
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
-            });
         }
     }
 }

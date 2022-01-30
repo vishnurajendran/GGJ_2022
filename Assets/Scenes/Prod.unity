@@ -264,11 +264,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &115725353 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7506218048268521988, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-  m_PrefabInstance: {fileID: 356410210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &356410210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323,94 +318,6 @@ PrefabInstance:
     - target: {fileID: 5657685144868187446, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
       propertyPath: m_Name
       value: BattleScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 7506218048268521988, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7506218048268521988, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7506218048268521988, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7506218048268521988, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7506218048268521988, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7506218048268521988, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7506218048268521988, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 778
-      objectReference: {fileID: 0}
-    - target: {fileID: 7506218048268521988, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -344
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859427563139220587, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCardPos
-      value: 
-      objectReference: {fileID: 115725353}
-    - target: {fileID: 7859427563139220587, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[0].inSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859427563139220587, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[1].inSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859427563139220587, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[0].outSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859427563139220587, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[1].outSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859427563139220587, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[0].tangentMode
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859427563139220587, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[1].tangentMode
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904992262301963959, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCardPos
-      value: 
-      objectReference: {fileID: 115725353}
-    - target: {fileID: 8904992262301963959, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[0].inSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904992262301963959, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[1].inSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904992262301963959, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[0].outSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904992262301963959, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[1].outSlope
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904992262301963959, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[0].tangentMode
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904992262301963959, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
-      propertyPath: lastPlayedCurve.m_Curve.Array.data[1].tangentMode
-      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 8922221856869132076, guid: 4cc79fdbbd32d724c9f4874da9ed5eba, type: 3}
       propertyPath: serializationData.Prefab
