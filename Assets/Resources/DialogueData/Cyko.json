@@ -1,0 +1,26 @@
+{
+   "Background":"Liam_Floor",
+   "BattleMusic":"Jack The Lumberer - Alexander Nakarada",
+   "Dialogues":{
+      "Start":{
+         "Dialogue":"There’s just one challenger between you and the boss! Be careful of this one!",
+         "Speaker":"",
+         "IsLeft":true,
+         "NextDialogueEntry":"1"
+      },
+      "1":{
+         "Dialogue":"Aaaaah… Fresh meat! I’ve been waiting for you!",
+         "Options":null,
+         "Speaker":"Cyko",
+         "IsLeft":false,
+         "NextDialogueEntry":"2"
+      },
+      "2":{
+         "Dialogue":"You’re the meat here! Once I’m done with you, the boss is next!",
+         "Options":null,
+         "Speaker":"Protagonist",
+         "IsLeft":true,
+         "NextDialogueEntry":null
+      }
+   }
+}
