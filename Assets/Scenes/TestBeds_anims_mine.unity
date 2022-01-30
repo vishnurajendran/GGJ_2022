@@ -1630,6 +1630,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1185913326}
     - target: {fileID: 665368985971858761, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
+      propertyPath: isTesting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 665368985971858761, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
       propertyPath: enemyHighlight
       value: 
       objectReference: {fileID: 191429488}
@@ -1640,7 +1644,7 @@ PrefabInstance:
     - target: {fileID: 665368985971858761, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 665368985971858761, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6324652799878459586, guid: 619785790eebaf740b9c480adfc196a1, type: 3}
       propertyPath: m_RootOrder
       value: 3
