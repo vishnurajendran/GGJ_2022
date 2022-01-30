@@ -6,7 +6,7 @@ namespace Flippards
 {
     public class ThrownObject : MonoBehaviour
     {
-        private float ThrowTime => isAutoTurn ? 0.04f : 1f;
+        private float ThrowTime => isAutoTurn ? 0.04f : 0.25f;
 
         private Vector3 startPos;
         private Vector3 endPos;

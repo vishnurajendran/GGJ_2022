@@ -9,12 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 63282772d9bcd1546bf49eb9ec7c5694
   - enabled: 1
-    path: Assets/Scenes/TestBeds_Sandbox3.unity
-    guid: 57b978d787cab4ffe89668d3ee0ff891
-  - enabled: 1
-    path: Assets/Scenes/TestBeds_anims.unity
-    guid: 2d7233cdb842e35439f58dad212717c5
-  - enabled: 1
-    path: Assets/Scenes/TestBeds_anims_mine.unity
-    guid: 1b41d3213b5944748b1746ea2f6e7f12
+    path: Assets/Scenes/Prod.unity
+    guid: ad8061d6a349b2148af5523d794f837e
   m_configObjects: {}

@@ -456,6 +456,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1044177109, guid: d81eb8adc2c65fe40b1fde95b52cb4b5, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 119
+      objectReference: {fileID: 0}
     - target: {fileID: 80424562171094976, guid: d81eb8adc2c65fe40b1fde95b52cb4b5, type: 3}
       propertyPath: m_RootOrder
       value: 4

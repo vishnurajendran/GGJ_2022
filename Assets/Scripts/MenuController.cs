@@ -29,6 +29,6 @@ public class MenuController : MonoBehaviour
 
     void LoadGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TestBeds_anims_mine");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Prod");
     }
 }

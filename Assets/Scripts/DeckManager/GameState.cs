@@ -122,7 +122,8 @@ public partial class GameState : MonoBehaviour
         BattleVisualManager.Instance.onFlipTargetChosen += FlipAndProceed;
     }
 
-    public void FlipAndProceed(EntityType flippantEntity) {
+    public void FlipAndProceed(EntityType flippantEntity)
+    {
         FlipCards(flippantEntity);
         StartNextTurn();
     }
@@ -219,14 +220,13 @@ public partial class GameState : MonoBehaviour
         CardAttributes cardToEval = cardPlayed.GetTopCardAttributes();
         isPlayersTurn = !isPlayersTurn;
 
-        // if (isPlayer)
-        //     cardToEval = isPlayerFlipped ? cardPlayed.backCard : cardPlayed.frontCard;
-        // else
-        //     cardToEval = isEnemyFlipped ? cardPlayed.backCard : cardPlayed.frontCard; 
-
         if (cardToEval.cardType == CardType.Flip)
         {
-            BattleVisuals.Instance.ShowSelectorTriggers();
+            if (entityType == EntityType.PLAYER)
+                BattleVisuals.Instance.ShowSelectorTriggers();
+            else
+                FlipAndProceed(EntityType.PLAYER);
+
         }
         else if (entityType == EntityType.PLAYER)
         {

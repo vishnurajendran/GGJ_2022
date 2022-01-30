@@ -13,7 +13,7 @@ public class CardsView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField] private AnimationCurve scaleUpCurve;
     [SerializeField] private AnimationCurve scaleDownCurve;
     [SerializeField] private AnimationCurve flipCurve;
-
+    public Sprite cardFace;
     private bool isScalingUp;
     private bool isScalingDown;
 
@@ -107,6 +107,7 @@ public class CardsView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }
 
         image.sprite = isFlipped ? back : front;
+        cardFace = image.sprite;
 
         timer = 0f;
         animTime = 0.1f;

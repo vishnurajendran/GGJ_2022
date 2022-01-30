@@ -11,7 +11,6 @@ public class FlipConfirmationButtons : MonoBehaviour, IPointerEnterHandler, IPoi
     {
         BattleVisuals.Instance.HideSelectors();
         BattleVisuals.Instance.HideSelectorTriggers();
-        BattleVisuals.Instance.ShowSelector(isPlayer ? EntityType.PLAYER : EntityType.ENEMY);
         BattleVisualManager.Instance.onFlipTargetChosen.Invoke(isPlayer ? EntityType.PLAYER : EntityType.ENEMY);
     }
 
