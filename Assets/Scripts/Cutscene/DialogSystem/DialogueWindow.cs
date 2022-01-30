@@ -82,6 +82,7 @@ public class DialogueWindow : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         AudioManager.Instance.PlayWhooshSFX();
+        AudioManager.Instance.PlayTheme(dialogueParser.CutsceneTheme);
         float timeStep = 0;
         float startAlpha = panelCG.alpha;
         dialogueBody.gameObject.SetActive(true);
@@ -355,5 +356,6 @@ public class DialogueWindow : MonoBehaviour
         onDialogueCompleted?.Invoke();
         onDialogueCompleted = null;
         dialogueBody.gameObject.SetActive(false);
+        AudioManager.Instance.PlayTheme(dialogueParser.BattleTheme);
     }
 }

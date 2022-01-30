@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-    public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
     {
         const string BATTLE_THEME = "Audio/BG/Extreme Energy - Electric Guitar Music - Free Copyright";
-        const string MENU_THEME = "Audio/BG/Jack The Lumberer";
-        const string CUTSCENE_THEME = "Audio/BG/Jack The Lumberer";
+        const string MENU_THEME = "Audio/BG/Jack The Lumberer - Alexander Nakarada";
+        const string CUTSCENE_THEME = "Audio/BG/Jack The Lumberer - Alexander Nakarada";
         const string UI_SLOT_ENTER_SFX = "Audio/SFX/UI Tight 12";
         const string UI_WEAPON_EQUIP_SFX = "Audio/SFX/Weapon UI 09";
         const string PICKUP_SFX = "Audio/SFX/LRPG_Positive_Notification";
@@ -142,9 +143,17 @@ using UnityEngine;
         public void PlayTheme(string clipName)
         {
             if (string.IsNullOrEmpty(clipName))
+            {
+            Debug.Log("Clip Empty");
                 return;
+            }
 
-            bgSource.clip = Resources.Load<AudioClip>("Audio/BG/"+clipName);
+            AudioClip clip = Resources.Load<AudioClip>("Audio/BG/" + clipName);
+            
+            if (bgSource.clip == clip)
+                return;
+            
+            bgSource.clip = clip;
             bgSource.loop = true;
             bgSource.Play();
             ShowTitle();
@@ -180,14 +189,20 @@ using UnityEngine;
             return;
 
         GameObject go = Instantiate(musicTitleRef, musicTitleParent);
-        go.GetComponent<TMPro.TMP_Text>().text = bgSource.name;
+        go.SetActive(true);
+        go.GetComponentInChildren<TMPro.TMP_Text>().text = bgSource.clip.name;
         StartCoroutine(ShowMusicTitle(go.GetComponent<CanvasGroup>()));
     }
 
     IEnumerator ShowMusicTitle(CanvasGroup cg)
     {
         float timeStep = 0;
-        while(timeStep <= 1)
+        cg.gameObject.SetActive(false);
+        yield return new WaitForEndOfFrame();
+        cg.gameObject.SetActive(true);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(cg.GetComponent<RectTransform>());
+        
+        while (timeStep <= 1)
         {
             timeStep += Time.deltaTime;
             cg.alpha = Mathf.Lerp(0, 1, timeStep);

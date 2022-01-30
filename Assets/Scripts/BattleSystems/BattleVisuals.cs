@@ -50,6 +50,7 @@ public class BattleVisuals : SerializedMonoBehaviour
     [SerializeField] Transform statsCanvas;
     [SerializeField] GameObject playerHighlight;
     [SerializeField] GameObject enemyHighlight;
+    [SerializeField] GameObject TargetSelectionHelper;
 
 
     [Header("Testing")]

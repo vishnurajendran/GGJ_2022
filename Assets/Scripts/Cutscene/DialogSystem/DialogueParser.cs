@@ -17,6 +17,8 @@ namespace IRIS.RPG.DialogueSystem
     public class DialogueStruct
     {
         public string Background;
+        public string BattleMusic = "Extreme Energy - Electric Guitar Music - Free Copyright";
+        public string CutsceneMusic = "Jack The Lumberer - Alexander Nakarada";
         public Dictionary<string, DailogueEntry> Dialogues;
     }
 
@@ -28,13 +30,37 @@ namespace IRIS.RPG.DialogueSystem
 
     public class DialogParser
     {
+        DialogueStruct dStruct;
+
         Dictionary<string, DailogueEntry> dialogs;
 
         public void LoadDialogFromTextAsset(TextAsset textAsset)
         {
-            DialogueStruct dStruct =  Newtonsoft.Json.JsonConvert.DeserializeObject<DialogueStruct>(textAsset.text);
+            dStruct =  Newtonsoft.Json.JsonConvert.DeserializeObject<DialogueStruct>(textAsset.text);
             dialogs = dStruct.Dialogues;
             CutsceneManager.Instance.SetImage(Resources.Load<Sprite>("Floors/" + dStruct.Background));
+        }
+
+        public string CutsceneTheme
+        {
+            get
+            {
+                if (dStruct != null)
+                    return dStruct.CutsceneMusic;
+
+                return string.Empty;
+            }
+        }
+
+        public string BattleTheme
+        {
+            get
+            {
+                if (dStruct != null)
+                    return dStruct.BattleMusic;
+
+                return string.Empty;
+            }
         }
 
         public DailogueEntry GetStartDialogue()
