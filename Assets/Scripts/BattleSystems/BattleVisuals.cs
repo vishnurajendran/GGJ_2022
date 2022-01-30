@@ -54,12 +54,12 @@ public class BattleVisuals : SerializedMonoBehaviour
 
     [SerializeField] GameObject playerHighlightTrigger;
     [SerializeField] GameObject enemyHighlightTrigger;
-
+    [SerializeField] Transform pl;
+    [SerializeField] Transform enParent;
+    [SerializeField] GameObject enObj;
 
     [Header("Testing")]
     [SerializeField] bool isTesting = false;
-    [SerializeField] Transform pl;
-    [SerializeField] Transform en;
     [SerializeField] EntityType target;
     [SerializeField] HitFXType hitFXType;
 
@@ -82,6 +82,9 @@ public class BattleVisuals : SerializedMonoBehaviour
     public bool Win = false;
     public bool InBattle = false;
 
+    Animator playerAnimator;
+    Animator enemyAnimator;
+
     private void Start()
     {
         onBeginComplete.AddListener(() =>
@@ -92,17 +95,6 @@ public class BattleVisuals : SerializedMonoBehaviour
 
         onLoseComplete.AddListener(() => { GameMenuController.Instance.ShowMenu(MenuType.LOSE); });
         onWinComplete.AddListener(() => { GameMenuController.Instance.ShowMenu(MenuType.WIN); });
-
-        if (isTesting)
-        {
-            onBeginComplete.AddListener(() =>
-            {
-                SetupEntity(pl, EntityType.PLAYER);
-                SetupEntity(en, EntityType.ENEMY);
-            });
-
-            PlayBegin();
-        }
     }
 
     public void SetupEntity(Transform entity, EntityType type)
@@ -189,10 +181,10 @@ public class BattleVisuals : SerializedMonoBehaviour
     {
         float timeStep = 0;
         Vector3 uiPos = Camera.main.WorldToScreenPoint(entityTransform.position);
-        Vector3 uiPosUp = new Vector3(uiPos.x, uiPos.y + 50, uiPos.z);
+        Vector3 uiPosUp = new Vector3(uiPos.x, uiPos.y + 75, uiPos.z);
         while (timeStep <= 1)
         {
-            timeStep += Time.deltaTime/0.25f;
+            timeStep += Time.deltaTime/0.5f;
             uiDmgText.position = Vector3.Lerp(uiPos, uiPosUp, timeStep);
             yield return new WaitForEndOfFrame();
         }
@@ -281,6 +273,34 @@ public class BattleVisuals : SerializedMonoBehaviour
     [Button("SimulateHit")]
     void HitSimulate()
     {
-        AddHitFX(hitFXType, target == EntityType.PLAYER?pl:en);
+        AddHitFX(hitFXType, target == EntityType.PLAYER?pl:enParent);
+    }
+
+    public void LoadEnemy(string enemyName)
+    {
+        GameObject obj = Resources.Load<GameObject>("Characters/Character_"+enemyName);
+        enObj = Instantiate(obj, enParent);
+    }
+
+    public void Attack(EntityType type)
+    {
+        if (EntityType.PLAYER == type)
+        {
+            if(playerAnimator == null)
+            {
+                playerAnimator = pl.GetComponentInChildren<Animator>();
+            }
+
+            playerAnimator.SetTrigger("Attack");
+        }
+        else
+        {
+            if (enemyAnimator == null)
+            {
+                enemyAnimator = enObj.GetComponentInChildren<Animator>();
+            }
+
+            enemyAnimator.SetTrigger("Attack");
+        }
     }
 }
