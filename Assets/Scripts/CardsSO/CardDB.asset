@@ -133,112 +133,112 @@ MonoBehaviour:
     cardClass: 3
     cardType: 2
     count: 3
-    imagePath: Textures/joecards/flip_front
+    imagePath: Textures/joecards/flip_back
   - name: Stapler
     value: 8
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Stapler_front_1
+    imagePath: Textures/joecards/Stapler_back_1
   - name: Stapler
     value: 8
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Stapler_front_2
+    imagePath: Textures/joecards/Stapler_back_2
   - name: Paperweight
     value: 4
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Weight_front_1
+    imagePath: Textures/joecards/Weight_back_1
   - name: Paperweight
     value: 4
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Weight_front_2
+    imagePath: Textures/joecards/Weight_back_2
   - name: Pen
     value: 2
     cardClass: 0
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Pen_front_1
+    imagePath: Textures/joecards/Pen_back_1
   - name: Pen
     value: 2
     cardClass: 0
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Pen_front_2
+    imagePath: Textures/joecards/Pen_back_2
   - name: Hot Coffee
     value: 8
     cardClass: 1
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Hotcoffee_front_1
+    imagePath: Textures/joecards/Hotcoffee_back_1
   - name: Hot Coffee
     value: 8
     cardClass: 1
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Hotcoffee_front_2
+    imagePath: Textures/joecards/Hotcoffee_back_2
   - name: Water
     value: 4
     cardClass: 1
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Water_front_1
+    imagePath: Textures/joecards/Water_back_1
   - name: Water
     value: 4
     cardClass: 1
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Water_front_2
+    imagePath: Textures/joecards/Water_back_2
   - name: Ink
     value: 2
     cardClass: 1
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Ink_front_1
+    imagePath: Textures/joecards/Ink_back_1
   - name: Ink
     value: 2
     cardClass: 1
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Ink_front_2
+    imagePath: Textures/joecards/Ink_back_2
   - name: Company Rule Book
     value: 8
     cardClass: 2
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Rulebook_front_1
+    imagePath: Textures/joecards/Rulebook_back_1
   - name: Company Rule Book
     value: 8
     cardClass: 2
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Rulebook_front_2
+    imagePath: Textures/joecards/Rulebook_back_2
   - name: Memo
     value: 4
     cardClass: 2
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Memo_front_1
+    imagePath: Textures/joecards/Memo_back_1
   - name: Memo
     value: 4
     cardClass: 2
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Memo_front_2
+    imagePath: Textures/joecards/Memo_back_2
   - name: Payslip
     value: 2
     cardClass: 2
     cardType: 0
     count: 1
-    imagePath: Textures/joecards/Tissue_front_1
+    imagePath: Textures/joecards/Tissue_back_1
   - name: Payslip
     value: 2
     cardClass: 2
     cardType: 1
     count: 1
-    imagePath: Textures/joecards/Tissue_front_2
+    imagePath: Textures/joecards/Tissue_back_2

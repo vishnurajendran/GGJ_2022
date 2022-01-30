@@ -58,17 +58,14 @@ public partial class GameState : MonoBehaviour
     {
         currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
         currentLevel = 4;
+        if (currentLevel >= 4)
+        {
+            GameMenuController.Instance.transform.Find("Menus/Win/Next").gameObject.SetActive(false);
+        }
         Debug.Log("Current enemy level " + currentLevel);
         GameMenuController.Instance.OnNextClicked.AddListener(() =>
         {
-            if (currentLevel >= 4)
-            {
-                transform.Find("Next").gameObject.SetActive(false);
-            }
-            else
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Prod");
-            }
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Prod");
         });
         GameMenuController.Instance.OnRestartClicked.AddListener(() =>
         {
