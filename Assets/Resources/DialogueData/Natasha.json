@@ -1,0 +1,26 @@
+{
+   "Background":"Natasha_Floor",
+   "BattleMusic":"Extreme Energy - Electric Guitar Music - Free Copyright",
+   "Dialogues":{
+      "Start":{
+         "Dialogue":"It’s time to take on the executives!",
+         "Speaker":"",
+         "IsLeft":true,
+         "NextDialogueEntry":"1"
+      },
+      "1":{
+         "Dialogue":"Who let you in here?! This area is for executives only! (Sigh)... Looks like i’ll have to take out the trash!",
+         "Options":null,
+         "Speaker":"Natasha",
+         "IsLeft":false,
+         "NextDialogueEntry":"2"
+      },
+      "2":{
+         "Dialogue":"You executives are dying today!",
+         "Options":null,
+         "Speaker":"Protagonist",
+         "IsLeft":true,
+         "NextDialogueEntry":null
+      }
+   }
+}

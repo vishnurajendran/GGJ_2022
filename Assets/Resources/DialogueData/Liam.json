@@ -1,0 +1,26 @@
+{
+   "Background":"Office_Floor",
+   "BattleMusic":"I Can't Stop by Punch Deck",
+   "Dialogues":{
+      "Start":{
+         "Dialogue":"The first challenger appears!",
+         "Speaker":"",
+         "IsLeft":true,
+         "NextDialogueEntry":"1"
+      },
+      "1":{
+         "Dialogue":"Ha! You think you can reach the boss, small fry? Load up your staplers and fill your water bottles!",
+         "Options":null,
+         "Speaker":"Liam",
+         "IsLeft":false,
+         "NextDialogueEntry":"2"
+      },
+      "2":{
+         "Dialogue":"The boss dies today Liam! Come at me!",
+         "Options":null,
+         "Speaker":"Protagonist",
+         "IsLeft":true,
+         "NextDialogueEntry":null
+      }
+   }
+}

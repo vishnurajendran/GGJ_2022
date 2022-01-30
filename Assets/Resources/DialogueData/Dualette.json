@@ -1,0 +1,26 @@
+{
+   "Background":"Office_Floor",
+   "BattleMusic":"Extreme Energy - Electric Guitar Music - Free Copyright",
+   "Dialogues":{
+      "Start":{
+         "Dialogue":"Another worthy challenger! What now?",
+         "Speaker":"",
+         "IsLeft":true,
+         "NextDialogueEntry":"1"
+      },
+      "1":{
+         "Dialogue":"You killed Liam? I’m not surprised… But this is as far as you go!",
+         "Options":null,
+         "Speaker":"Dualette",
+         "IsLeft":false,
+         "NextDialogueEntry":"2"
+      },
+      "2":{
+         "Dialogue":"Arm up Dualette, I’m taking you down.",
+         "Options":null,
+         "Speaker":"Protagonist",
+         "IsLeft":true,
+         "NextDialogueEntry":null
+      }
+   }
+}
