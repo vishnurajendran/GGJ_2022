@@ -27,6 +27,7 @@ public class CardsView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         image = GetComponent<Image>();
         front = Resources.Load<Sprite>(cardData.frontCard.imagePath);
         back = Resources.Load<Sprite>(cardData.backCard.imagePath);
+        transform.localScale = Vector3.one;
         image.sprite = front;
         this.isFlipped = isFlipped;
         this.cardHolder = cardHolder;
